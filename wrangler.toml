@@ -1,0 +1,11 @@
+name = "your-worker-name"
+type = "javascript"
+
+# This will configure Wrangler to use the static files from the dist directory
+[build]
+  command = "npm run build"
+  cwd = "./"  # Ensure this points to your project root
+
+[build.upload]
+  format = "service-worker"  # Necessary for Cloudflare Workers to handle it properly
+  dir = "./dist"  # Point this to your build directory (created by Vite)
