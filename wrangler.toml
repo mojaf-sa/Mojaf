@@ -1,11 +1,13 @@
 name = "your-worker-name"
-type = "javascript"
+compatibility_date = "2025-05-04"
 
-# This will configure Wrangler to use the static files from the dist directory
+# Main entry point for the worker
+main = "dist/index.html"  # This should be your generated HTML file after the build
+
+# Configure assets directory to point to the build output
+[assets]
+directory = "./dist"  # Ensure this is the correct output directory for Vite
+
+# Optionally specify the build command
 [build]
-  command = "npm run build"
-  cwd = "./"  # Ensure this points to your project root
-
-[build.upload]
-  format = "service-worker"  # Necessary for Cloudflare Workers to handle it properly
-  dir = "./dist"  # Point this to your build directory (created by Vite)
+command = "npm run build"  # Run Vite's build process
