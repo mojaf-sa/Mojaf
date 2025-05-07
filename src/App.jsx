@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import AllProductsPage from './AllProductsPage';
+import ThankYou from './ThankYou';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-products" element={<AllProductsPage />} />
+        <Route path="/thanks" element={<ThankYou />} />
       </Routes>
     </Router>
   )

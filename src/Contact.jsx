@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Header.css'; 
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
+import { useLocation } from 'react-router-dom';
 
 function Contact() {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('submitted') === 'true') {
+      alert('Your request has been submitted successfully!');
+      window.history.replaceState({}, document.title, location.pathname); // remove query param
+    }
+  }, [location]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +62,7 @@ function Contact() {
     >
       {/* Protect against bots */}
       <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you" />
+      <input type="hidden" name="_next" value="http://localhost:5173/thanks" />
       
       <div className="form-group">
         <input type="text" name="name" placeholder="Your Name" required />
