@@ -16,13 +16,14 @@ import Contact from './Contact';
 import Footer from './Footer';
 import ServicesSection from './ServicesSection';
 import ProductShowcase from './ProductShowcase';
+import Header from './Header';
 
 
 
 function Services() {
   return (
     <div>
-      <header className="header">
+      {/* <header className="header">
         <div className="container">
           <div className="logo">
             <h1>MOJAF</h1>
@@ -30,10 +31,10 @@ function Services() {
           </div>
           <nav className="nav">
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#products">Products</a></li>
+              <li><a href="#hero1">Home</a></li>
+              <li><a href="#in-info">About</a></li>
+              <li><a href="#ss-services">Services</a></li>
+              <li><a href="#pp-products">Products</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
             <div className="mobile-menu-btn">
@@ -41,17 +42,17 @@ function Services() {
             </div>
           </nav>
         </div>
-      </header>
-
+      </header> */}
+     <Header />
       <div id="hero1"></div>
       <div id="info1"></div>
 
       <div className="mobile-menu">
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#products">Products</a></li>
+          <li><a href="#hero1">Home</a></li>
+          <li><a href="#in-info">About</a></li>
+          <li><a href="#ss-services">Services</a></li>
+          <li><a href="#pp-products">Products</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>

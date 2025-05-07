@@ -19,7 +19,7 @@ function Home() {
   
   return (
     <>
-    <Header />
+     <Header />
       <Hero />
       <Info />
       <Services />
