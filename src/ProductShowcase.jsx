@@ -134,7 +134,7 @@ const ProductShowcase = () => {
 
   const handleQuoteClick = (productId) => {
     // Scroll to contact form
-    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   };
 
   const openProductModal = (product) => {
@@ -143,7 +143,7 @@ const ProductShowcase = () => {
   };
 
   return (
-    <div className="pp-container">
+    <div className="pp-container" id='pp-products'>
       {/* Featured Products Section */}
       <section className="pp-featured-products">
         <h2 className="pp-section-title">Featured Products</h2>

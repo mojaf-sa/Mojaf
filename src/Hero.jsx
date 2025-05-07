@@ -20,7 +20,7 @@ const Hero = () => {
 
   return (
     <div>
- <section className="hero-section1">
+ <section className="hero-section1" id='hero1'>
         <div className="hero-bg1">
           <div className="hero-content1">
             <div className="welcome-container1">

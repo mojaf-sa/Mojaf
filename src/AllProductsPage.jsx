@@ -96,7 +96,7 @@ const AllProductsPage = () => {
   };
 
   const handleQuoteClick = () => {
-    navigate('/contact');
+    navigate('/#contact');
   };
 
   const openProductModal = (product) => {

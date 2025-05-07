@@ -138,7 +138,7 @@ import {
     ];
   
     return (
-      <div className="ss-main-container">
+      <div className="ss-main-container" id='ss-services'>
         {/* Services Section at Top */}
         <section className="ss-services-section">
           <div className="ss-container">

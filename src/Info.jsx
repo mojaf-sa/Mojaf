@@ -13,7 +13,7 @@ const Info = () => {
 
   return (
     <div>
-      <section className="in-why-section">
+      <section className="in-why-section" id='in-info'>
         <div className="in-container">
           <div className="in-why-content">
             <div className="in-section-header">

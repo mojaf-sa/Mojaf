@@ -3,6 +3,26 @@ import './Header.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 
 function Contact() {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const res = await fetch("https://formspree.io/f/eayzay001@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+  
+    if (res.ok) {
+      alert("Your request has been submitted successfully!");
+      setFormData({ name: '', email: '', message: '' });
+    } else {
+      alert("There was an error. Please try again.");
+    }
+  };
+  
   return (
     <div>
     <section className="contact" id="contact">
@@ -25,21 +45,29 @@ function Contact() {
           </div>
         </div>
         <div className="contact-form" data-aos="fade-left">
-          <form id="contactForm">
-            <div className="form-group">
-              <input type="text" id="name" placeholder="Your Name" required/>
-            </div>
-            <div className="form-group">
-              <input type="email" id="email" placeholder="Your Email" required/>
-            </div>
-            <div className="form-group">
-              <input type="tel" id="phone" placeholder="Your Phone"/>
-            </div>
-            <div className="form-group">
-              <textarea id="message" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" className="btn">Send Message</button>
-          </form>
+        <form
+      action="https://formsubmit.co/eayzay001@gmail.com"
+      method="POST"
+    >
+      {/* Protect against bots */}
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you" />
+      
+      <div className="form-group">
+        <input type="text" name="name" placeholder="Your Name" required />
+      </div>
+      <div className="form-group">
+        <input type="email" name="email" placeholder="Your Email" required />
+      </div>
+      <div className="form-group">
+        <input type="tel" name="phone" placeholder="Your Phone" />
+      </div>
+      <div className="form-group">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" className="btn">Send Message</button>
+    </form>
+
         </div>
       </div>
     </div>
