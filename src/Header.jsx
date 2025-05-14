@@ -24,7 +24,7 @@ const Header = () => {
               <li><a href="#hero1">Home</a></li>
               <li><a href="#in-info">About</a></li>
               <li><a href="#ss-services">Services</a></li>
-              <li><a href="#pp-products">Products</a></li>
+              <li><a href="/all-products">Products</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
             <div className="mobile-menu-btn" onClick={toggleMobileMenu}>
@@ -40,7 +40,7 @@ const Header = () => {
             <li><a href="#hero1" onClick={toggleMobileMenu}>Home</a></li>
             <li><a href="#in-info" onClick={toggleMobileMenu}>About</a></li>
             <li><a href="#ss-services" onClick={toggleMobileMenu}>Services</a></li>
-            <li><a href="#pp-products" onClick={toggleMobileMenu}>Products</a></li>
+            <li><a href="/all-products" onClick={toggleMobileMenu}>Products</a></li>
             <li><a href="#contact" onClick={toggleMobileMenu}>Contact</a></li>
           </ul>
         </div>

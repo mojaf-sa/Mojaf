@@ -37,7 +37,7 @@ function Footer() {
                 <li><a href="#ss-services">Flooring</a></li>
               </ul>
             </div>
-            <div class="footer-col">
+            <div className="footer-col">
                     <h3>Contact Info</h3>
                     <ul>
                         <li><FaEnvelope className="icon" /> Info@mojaf-sa.com</li>

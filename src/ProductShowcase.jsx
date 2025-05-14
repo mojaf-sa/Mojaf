@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { FaQuoteRight, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 const ProductShowcase = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const thumbnailSliderRef = useRef(null);
+  const mainSliderRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Sample product data (replace with your actual data)
   const featuredProducts = [
     {
       id: 1,
@@ -121,25 +123,61 @@ const ProductShowcase = () => {
     "Safety Products", "Electrical Items", "Screws/Fasteners"
   ];
 
-  // Slider settings for product images
-  const sliderSettings = {
-    dots: true,
+   // Slider settings for main carousel
+  const mainSliderSettings = {
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <FaArrowRight />,
-    prevArrow: <FaArrowLeft />
+    arrows: true,
+    nextArrow: <FaArrowRight className="pp-slider-arrow" />,
+    prevArrow: <FaArrowLeft className="pp-slider-arrow" />,
+    adaptiveHeight: true,
+    afterChange: (current) => {
+      setCurrentSlide(current);
+      thumbnailSliderRef.current.slickGoTo(current);
+    }
+  };
+
+  // Slider settings for thumbnails
+  const thumbnailSliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }
+    ]
+  };
+
+  const handleThumbnailClick = (index) => {
+    setCurrentSlide(index);
+    mainSliderRef.current.slickGoTo(index);
   };
 
   const handleQuoteClick = (productId) => {
-    // Scroll to contact form
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   };
 
   const openProductModal = (product) => {
     setSelectedProduct(product);
     setShowModal(true);
+    setCurrentSlide(0);
   };
 
   return (
@@ -149,17 +187,19 @@ const ProductShowcase = () => {
         <h2 className="pp-section-title">Featured Products</h2>
         <div className="pp-products-grid">
           {featuredProducts.map(product => (
-            <div key={product.id} className="pp-product-card">
+            <div onClick={() => openProductModal(product)} key={product.id} className="pp-product-card">
               <div className="pp-product-image-container">
                 <img 
                   src={product.images[0]} 
                   alt={product.name}
                   className="pp-product-image"
-                  onClick={() => openProductModal(product)}
                 />
                 <button 
                   className="pp-quote-button"
-                  onClick={() => handleQuoteClick(product.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleQuoteClick(product.id);
+                  }}
                 >
                   <FaQuoteRight /> Get Quote
                 </button>
@@ -168,14 +208,6 @@ const ProductShowcase = () => {
                 <h3 className="pp-product-name">{product.name}</h3>
                 <p className="pp-product-description">{product.description.substring(0, 100)}...</p>
                 <div className="pp-product-specs">{product.specs.split(', ').slice(0, 2).join(', ')}...</div>
-                <a 
-                  href={product.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="pp-product-link"
-                >
-                  View Details
-                </a>
               </div>
             </div>
           ))}
@@ -185,7 +217,7 @@ const ProductShowcase = () => {
         </Link>
       </section>
 
-      {/* Product Modal */}
+      {/* Enhanced Product Modal */}
       {showModal && selectedProduct && (
         <div className="pp-product-modal">
           <div className="pp-modal-content">
@@ -197,17 +229,43 @@ const ProductShowcase = () => {
             </button>
             
             <div className="pp-modal-slider">
-              <Slider {...sliderSettings}>
+              <Slider 
+                {...mainSliderSettings}
+                ref={mainSliderRef}
+              >
                 {selectedProduct.images.map((img, index) => (
                   <div key={index} className="pp-modal-slide">
-                    <img 
-                      src={img} 
-                      alt={`${selectedProduct.name} ${index + 1}`}
-                      className="pp-modal-image"
-                    />
+                    <div className="pp-slide-image-container">
+                      <img 
+                        src={img} 
+                        alt={`${selectedProduct.name} ${index + 1}`}
+                        className="pp-modal-image"
+                      />
+                    </div>
                   </div>
                 ))}
               </Slider>
+                 {/* Thumbnail Navigation */}
+              <div className="pp-thumbnail-container">
+                <Slider 
+                  {...thumbnailSliderSettings}
+                  ref={thumbnailSliderRef}
+                >
+                  {selectedProduct.images.map((img, index) => (
+                    <div 
+                      key={index} 
+                      className={`pp-thumbnail-slide ${index === currentSlide ? 'active' : ''}`}
+                      onClick={() => handleThumbnailClick(index)}
+                    >
+                      <img 
+                        src={img} 
+                        alt={`Thumbnail ${index + 1}`}
+                        className="pp-thumbnail-image"
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
             </div>
             
             <div className="pp-modal-info">
@@ -232,14 +290,6 @@ const ProductShowcase = () => {
                 >
                   <FaQuoteRight /> Request Quote
                 </button>
-                <a 
-                  href={selectedProduct.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="pp-modal-link"
-                >
-                  View Full Details
-                </a>
               </div>
             </div>
           </div>
@@ -284,6 +334,7 @@ const ProductShowcase = () => {
           overflow: hidden;
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
         }
 
         .pp-product-card:hover {
@@ -294,7 +345,6 @@ const ProductShowcase = () => {
         .pp-product-image-container {
           position: relative;
           height: 220px;
-          cursor: pointer;
           overflow: hidden;
         }
 
@@ -305,7 +355,7 @@ const ProductShowcase = () => {
           transition: transform 0.5s ease;
         }
 
-        .pp-product-image:hover {
+        .pp-product-card:hover .pp-product-image {
           transform: scale(1.05);
         }
 
@@ -359,20 +409,6 @@ const ProductShowcase = () => {
           line-height: 1.4;
         }
 
-        .pp-product-link {
-          color: #d4af37;
-          text-decoration: none;
-          font-weight: 500;
-          transition: color 0.3s ease;
-          display: inline-block;
-          margin-top: 0.5rem;
-        }
-
-        .pp-product-link:hover {
-          color: #2980b9;
-          text-decoration: underline;
-        }
-
         .pp-see-all-button {
           display: flex;
           align-items: center;
@@ -416,7 +452,6 @@ const ProductShowcase = () => {
           max-height: 90vh;
           overflow-y: auto;
           border-radius: 8px;
-          display: flex;
           position: relative;
           box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
@@ -445,28 +480,90 @@ const ProductShowcase = () => {
           background: rgba(0,0,0,0.05);
         }
 
+        /* Enhanced Slider Styles */
         .pp-modal-slider {
-          width: 50%;
-          padding: 2rem;
-          background: #f8f9fa;
+          padding: 0;
+          background: #f5f5f5;
+          position: relative;
         }
 
         .pp-modal-slide {
-          height: 350px;
+          width: 100%;
+          outline: none;
+        }
+
+        .pp-slide-image-container {
+          width: 100%;
+          height: 400px;
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .pp-slide-image-container::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+          pointer-events: none;
         }
 
         .pp-modal-image {
-          max-width: 100%;
-          max-height: 100%;
-          object-fit: contain;
-          border-radius: 4px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .pp-slider-arrow {
+          width: 40px;
+          height: 40px;
+          background: rgba(255,255,255,0.9);
+          border-radius: 50%;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          color: #2c3e50;
+          z-index: 10;
+          transition: all 0.3s ease;
+        }
+
+        .pp-slider-arrow:hover {
+          background: #d4af37;
+          color: white;
+          transform: scale(1.1);
+        }
+
+        .slick-prev {
+          left: 20px;
+        }
+
+        .slick-next {
+          right: 20px;
+        }
+
+        .slick-dots {
+          bottom: 20px;
+        }
+
+        .slick-dots li button:before {
+          color: white;
+          opacity: 0.7;
+          font-size: 10px;
+        }
+
+        .slick-dots li.slick-active button:before {
+          color: #d4af37;
+          opacity: 1;
         }
 
         .pp-modal-info {
-          width: 50%;
           padding: 2rem;
           display: flex;
           flex-direction: column;
@@ -543,86 +640,21 @@ const ProductShowcase = () => {
           background: #2980b9;
         }
 
-        .pp-modal-link {
-          background: #2c3e50;
-          color: white;
-          text-decoration: none;
-          padding: 12px 20px;
-          border-radius: 4px;
-          text-align: center;
-          transition: background 0.3s ease;
-          flex: 1;
-        }
-
-        .pp-modal-link:hover {
-          background: #1a252f;
-        }
-
-        /* Slider arrows customization */
-        .slick-arrow {
-          width: 40px;
-          height: 40px;
-          z-index: 1;
-          background: rgba(255,255,255,0.7);
-          border-radius: 50%;
-          display: flex !important;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-        }
-
-        .slick-arrow:hover {
-          background: rgba(255,255,255,0.9);
-        }
-
-        .slick-arrow::before {
-          display: none;
-        }
-
-        .slick-prev {
-          left: 10px;
-        }
-
-        .slick-next {
-          right: 10px;
-        }
-
-        .slick-dots {
-          bottom: 15px;
-        }
-
-        .slick-dots li button:before {
-          font-size: 10px;
-          color: white;
-          opacity: 0.5;
-        }
-
-        .slick-dots li.slick-active button:before {
-          color: white;
-          opacity: 1;
-        }
-
         @media (max-width: 768px) {
           .pp-modal-content {
-            flex-direction: column;
             width: 95%;
           }
 
-          .pp-modal-slider,
-          .pp-modal-info {
-            width: 100%;
+          .pp-slide-image-container {
+            height: 300px;
           }
-
-          .pp-modal-slider {
-            padding: 1rem;
+          
+          .slick-prev {
+            left: 10px;
           }
-
-          .pp-modal-slide {
-            height: 250px;
-          }
-
-          .pp-modal-info {
-            padding: 1.5rem;
+          
+          .slick-next {
+            right: 10px;
           }
 
           .pp-products-grid {
@@ -631,12 +663,76 @@ const ProductShowcase = () => {
         }
 
         @media (max-width: 480px) {
+          .pp-slide-image-container {
+            height: 250px;
+          }
+          
+          .pp-slider-arrow {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+          }
+
           .pp-modal-actions {
             flex-direction: column;
           }
 
           .pp-section-title {
             font-size: 1.5rem;
+          }
+        }
+          .pp-thumbnail-container {
+          padding: 10px 20px;
+          margin-top: 10px;
+        }
+
+        .pp-thumbnail-slide {
+          padding: 0 5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .pp-thumbnail-slide:hover {
+          opacity: 0.8;
+        }
+
+        .pp-thumbnail-slide.active {
+          position: relative;
+        }
+
+        .pp-thumbnail-slide.active::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 5px;
+          right: 5px;
+          height: 3px;
+          background: #d4af37;
+        }
+
+        .pp-thumbnail-image {
+          width: 100%;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 4px;
+          border: 2px solid transparent;
+          transition: all 0.3s ease;
+        }
+
+        .pp-thumbnail-slide.active .pp-thumbnail-image {
+          border-color: #d4af37;
+        }
+
+        /* Responsive adjustments for thumbnails */
+        @media (max-width: 768px) {
+          .pp-thumbnail-image {
+            height: 60px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .pp-thumbnail-image {
+            height: 50px;
           }
         }
       `}</style>

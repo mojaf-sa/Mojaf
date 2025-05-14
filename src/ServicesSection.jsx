@@ -44,7 +44,7 @@ import {
       {
         title: "Warehousing Services",
         icon: <FaWarehouse />,
-        image: "https://images.pexels.com/photos/5098040/pexels-photo-5098040.jpeg",
+        image: "https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg",
         description: "We offer secure and strategically located warehousing services across the country, equipped to handle a wide range of building and construction materials.",
         highlights: [
           "Short-term and long-term storage",
@@ -57,7 +57,7 @@ import {
       {
         title: "After Sales Services Support",
         icon: <FaHeadset />,
-        image: "https://images.pexels.com/photos/3800069/pexels-photo-3800069.jpeg",
+        image: "https://images.pexels.com/photos/7658191/pexels-photo-7658191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         description: "We are committed to delivering value beyond the initial sale with comprehensive after-sales services across the country.",
         highlights: [
           "Prompt assistance for product queries",
@@ -177,7 +177,7 @@ import {
     
         <section className="ss-products-section">
           <div className="ss-container">
-            <h2 className="ss-section-title">Building Solutions</h2>
+            <h2 className="ss-section-title">Construction & Building Solutions</h2>
             <div className="ss-products-grid">
               {products.map((product, index) => (
                 <div key={index} className="ss-product-card">

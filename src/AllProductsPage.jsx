@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch, FaFilter, FaTimes, FaArrowLeft, FaArrowRight, FaQuoteRight } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { allProducts, productCategories, subCategories } from './product.js';
 
 const AllProductsPage = () => {
   const navigate = useNavigate();
@@ -13,86 +14,81 @@ const AllProductsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedSubCategory, setSelectedSubCategory] = useState('All');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const mainSliderRef = useRef(null);
+  const thumbnailSliderRef = useRef(null);
 
-  // Sample product data with 50+ products across categories
-  const productCategories = [
-    'All', 'Flooring', 'Skirting Board', 'Wall Panels', 
-    'Insulation', 'Boards', 'Doors', 'Safety Products', 
-    'Electrical Items', 'Screws/Fasteners'
-  ];
 
-  const subCategories = {
-    'Flooring': ['Vinyl/PVC Flooring', 'SPC Flooring', 'LVT Flooring'],
-    'Skirting Board': ['MDF Skirting', 'WPC Skirting', 'PS Skirting'],
-    'Wall Panels': ['PU Stone Panel', 'Acoustic Wall Panel', 'WPC Wall Panels'],
-    'Doors': ['Steel Doors', 'MDF Wooden Door', 'WPC Door']
-  };
-
-  // Generate sample products
+// Filter products based on search, category and sub-category
   useEffect(() => {
-    const sampleProducts = [];
-    const materials = ['Steel', 'Wood', 'PVC', 'Aluminum', 'Fiberglass'];
-    const sizes = ['Small', 'Medium', 'Large', 'Extra Large'];
-    const colors = ['White', 'Black', 'Brown', 'Gray', 'Beige'];
-    const brands = ['MOJAF', 'Premium', 'Elite', 'Standard', 'Economy'];
-
-    // Generate products for each category
-    productCategories.slice(1).forEach(category => {
-      const categorySubs = subCategories[category] || [category];
-      
-      categorySubs.forEach(subCategory => {
-        for (let i = 1; i <= 5; i++) {
-          sampleProducts.push({
-            id: `${category}-${subCategory}-${i}`,
-            name: `${subCategory} ${i}`,
-            category,
-            subCategory,
-            description: `High-quality ${subCategory.toLowerCase()} made from ${materials[i % materials.length]} with ${colors[i % colors.length]} finish`,
-            specs: `Material: ${materials[i % materials.length]} | Size: ${sizes[i % sizes.length]} | Color: ${colors[i % colors.length]} | Brand: ${brands[i % brands.length]}`,
-            images: [
-              `https://source.unsplash.com/random/300x300/?${subCategory.replace(/ /g,',')},${i}`,
-              `https://source.unsplash.com/random/300x300/?${category.replace(/ /g,',')},${i+1}`,
-              `https://source.unsplash.com/random/300x300/?building,material,${i+2}`
-            ],
-            price: `$${(50 + Math.random() * 200).toFixed(2)}`,
-            moq: `${Math.ceil(Math.random() * 10)} units`,
-            link: '#'
-          });
-        }
-      });
-    });
-
-    setProducts(sampleProducts);
-    setFilteredProducts(sampleProducts);
-  }, []);
-
-  // Filter products based on search and category
-  useEffect(() => {
-    let results = products;
+    let results = allProducts;
     
     if (selectedCategory !== 'All') {
       results = results.filter(product => product.category === selectedCategory);
+      
+      if (selectedSubCategory !== 'All') {
+        results = results.filter(product => product.subCategory === selectedSubCategory);
+      }
     }
     
     if (searchTerm) {
       results = results.filter(product => 
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (product.subCategory && product.subCategory.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
     
     setFilteredProducts(results);
-  }, [searchTerm, selectedCategory, products]);
-
-  // Slider settings for product images
-  const sliderSettings = {
-    dots: true,
+  }, [searchTerm, selectedCategory, selectedSubCategory]);
+  // Slider settings for main carousel
+  const mainSliderSettings = {
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <FaArrowRight className="ap-slider-arrow" />,
+    prevArrow: <FaArrowLeft className="ap-slider-arrow" />,
+    adaptiveHeight: true,
+    afterChange: (current) => {
+      setCurrentSlide(current);
+      thumbnailSliderRef.current.slickGoTo(current);
+    }
+  };
+
+  // Slider settings for thumbnails
+  const thumbnailSliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }
+    ]
+  };
+
+  const handleThumbnailClick = (index) => {
+    setCurrentSlide(index);
+    mainSliderRef.current.slickGoTo(index);
   };
 
   const handleQuoteClick = () => {
@@ -102,6 +98,16 @@ const AllProductsPage = () => {
   const openProductModal = (product) => {
     setSelectedProduct(product);
     setShowModal(true);
+    setCurrentSlide(0);
+  };
+
+  const renderSpecifications = (specs) => {
+    return Object.entries(specs).map(([key, value]) => (
+      <div key={key} className="ap-spec-item">
+        <strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong>
+        <span>{value}</span>
+      </div>
+    ));
   };
 
   return (
@@ -131,6 +137,23 @@ const AllProductsPage = () => {
         </div>
       </div>
 
+      {/* Sub-category filter bar */}
+      {selectedCategory !== 'All' && (
+        <div className="ap-subcategory-filter">
+          <div className="ap-subcategory-scroll">
+            {subCategories[selectedCategory].map(subCat => (
+              <button
+                key={subCat}
+                className={`ap-subcategory-btn ${selectedSubCategory === subCat ? 'active' : ''}`}
+                onClick={() => setSelectedSubCategory(subCat)}
+              >
+                {subCat}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="ap-content">
         {/* Category sidebar - hidden on mobile by default */}
         <div className={`ap-sidebar ${showMobileFilters ? 'ap-mobile-visible' : ''}`}>
@@ -151,11 +174,16 @@ const AllProductsPage = () => {
                 className={`ap-category-item ${selectedCategory === category ? 'ap-active-category' : ''}`}
                 onClick={() => {
                   setSelectedCategory(category);
+                  setSelectedSubCategory('All');
                   setShowMobileFilters(false);
                 }}
               >
                 {category}
-                {selectedCategory === category && <span className="ap-category-count">({filteredProducts.length})</span>}
+                {selectedCategory === category && (
+                  <span className="ap-category-count">
+                    ({filteredProducts.length})
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -167,21 +195,27 @@ const AllProductsPage = () => {
             filteredProducts.map(product => (
               <div key={product.id} className="ap-product-card">
                 <div className="ap-product-image-container">
-                  <img 
-                    src={product.images[0]} 
-                    alt={product.name}
-                    className="ap-product-image"
-                    onClick={() => openProductModal(product)}
-                  />
+                  {product.images.length > 0 ? (
+                    <img 
+                      src={product.images[0]} 
+                      alt={product.name}
+                      className="ap-product-image"
+                      onClick={() => openProductModal(product)}
+                    />
+                  ) : (
+                    <div className="ap-product-image-placeholder" onClick={() => openProductModal(product)}>
+                      {product.name}
+                    </div>
+                  )}
                   <div className="ap-product-badge">{product.category}</div>
                 </div>
                 
                 <div className="ap-product-info">
                   <h3 className="ap-product-name">{product.name}</h3>
-                  <p className="ap-product-category">{product.subCategory}</p>
+                  <p className="ap-product-subcategory">{product.subCategory}</p>
                   <p className="ap-product-description">{product.description}</p>
                   <div className="ap-product-specs">
-                    <span>Price: {product.price}</span>
+                    {/* <span>Price: {product.price}</span> */}
                     <span>MOQ: {product.moq}</span>
                   </div>
                   
@@ -211,6 +245,7 @@ const AllProductsPage = () => {
                 onClick={() => {
                   setSearchTerm('');
                   setSelectedCategory('All');
+                  setSelectedSubCategory('All');
                 }}
               >
                 Clear Filters
@@ -220,7 +255,7 @@ const AllProductsPage = () => {
         </div>
       </div>
 
-      {/* Product Detail Modal */}
+      {/* Product Detail Modal with Thumbnail Navigation */}
       {showModal && selectedProduct && (
         <div className="ap-product-modal">
           <div className="ap-modal-content">
@@ -232,18 +267,59 @@ const AllProductsPage = () => {
             </button>
             
             <div className="ap-modal-columns">
-              <div className="ap-modal-slider">
-                <Slider {...sliderSettings}>
-                  {selectedProduct.images.map((img, index) => (
-                    <div key={index} className="ap-modal-slide">
-                      <img 
-                        src={img} 
-                        alt={`${selectedProduct.name} ${index + 1}`}
-                        className="ap-modal-image"
-                      />
-                    </div>
-                  ))}
-                </Slider>
+              <div className="ap-modal-slider-container">
+                <div className="ap-modal-slider">
+                  <Slider 
+                    {...mainSliderSettings}
+                    ref={mainSliderRef}
+                  >
+                    {selectedProduct.images.length > 0 ? (
+                      selectedProduct.images.map((img, index) => (
+                        <div key={index} className="ap-modal-slide">
+                          <div className="ap-slide-image-container">
+                            <img 
+                              src={img} 
+                              alt={`${selectedProduct.name} ${index + 1}`}
+                              className="ap-modal-image"
+                            />
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="ap-modal-slide">
+                        <div className="ap-slide-image-container">
+                          <div className="ap-modal-image-placeholder">
+                            {selectedProduct.name}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </Slider>
+                </div>
+                
+                {/* Thumbnail Navigation */}
+                {selectedProduct.images.length > 1 && (
+                  <div className="ap-thumbnail-container">
+                    <Slider 
+                      {...thumbnailSliderSettings}
+                      ref={thumbnailSliderRef}
+                    >
+                      {selectedProduct.images.map((img, index) => (
+                        <div 
+                          key={index} 
+                          className={`ap-thumbnail-slide ${index === currentSlide ? 'active' : ''}`}
+                          onClick={() => handleThumbnailClick(index)}
+                        >
+                          <img 
+                            src={img} 
+                            alt={`Thumbnail ${index + 1}`}
+                            className="ap-thumbnail-image"
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
+                )}
               </div>
               
               <div className="ap-modal-info">
@@ -251,7 +327,7 @@ const AllProductsPage = () => {
                   <h2>{selectedProduct.name}</h2>
                   <div className="ap-modal-category">
                     <span>{selectedProduct.category}</span>
-                    {selectedProduct.subCategory && <span>{selectedProduct.subCategory}</span>}
+                    <span>{selectedProduct.subCategory}</span>
                   </div>
                 </div>
                 
@@ -260,27 +336,12 @@ const AllProductsPage = () => {
                 <div className="ap-modal-specs">
                   <h3>Specifications</h3>
                   <div className="ap-specs-grid">
-                    <div>
-                      <strong>Material:</strong>
-                      <span>{selectedProduct.specs.split('|')[0]?.split(':')[1]?.trim() || 'N/A'}</span>
-                    </div>
-                    <div>
-                      <strong>Size:</strong>
-                      <span>{selectedProduct.specs.split('|')[1]?.split(':')[1]?.trim() || 'N/A'}</span>
-                    </div>
-                    <div>
-                      <strong>Color:</strong>
-                      <span>{selectedProduct.specs.split('|')[2]?.split(':')[1]?.trim() || 'N/A'}</span>
-                    </div>
-                    <div>
-                      <strong>Brand:</strong>
-                      <span>{selectedProduct.specs.split('|')[3]?.split(':')[1]?.trim() || 'N/A'}</span>
-                    </div>
-                    <div>
+                    {renderSpecifications(selectedProduct.specs)}
+                    {/* <div className="ap-spec-item">
                       <strong>Price:</strong>
                       <span>{selectedProduct.price}</span>
-                    </div>
-                    <div>
+                    </div> */}
+                    <div className="ap-spec-item">
                       <strong>MOQ:</strong>
                       <span>{selectedProduct.moq}</span>
                     </div>
@@ -297,14 +358,6 @@ const AllProductsPage = () => {
                   >
                     <FaQuoteRight /> Request Quote
                   </button>
-                  <a 
-                    href={selectedProduct.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="ap-modal-link"
-                  >
-                    View Full Specifications
-                  </a>
                 </div>
               </div>
             </div>
@@ -324,7 +377,7 @@ const AllProductsPage = () => {
           display: flex;
           flex-direction: column;
           gap: 20px;
-          margin-bottom: 30px;
+          margin-bottom: 20px;
         }
 
         .ap-title {
@@ -372,6 +425,38 @@ const AllProductsPage = () => {
           align-items: center;
           gap: 8px;
           cursor: pointer;
+        }
+
+        /* Sub-category filter */
+        .ap-subcategory-filter {
+          margin-bottom: 20px;
+          overflow-x: auto;
+          padding-bottom: 10px;
+        }
+
+        .ap-subcategory-scroll {
+          display: flex;
+          gap: 10px;
+          padding: 5px 0;
+        }
+
+        .ap-subcategory-btn {
+          background: #f5f5f5;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 20px;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .ap-subcategory-btn:hover {
+          background: #e0e0e0;
+        }
+
+        .ap-subcategory-btn.active {
+          background: #d4af37;
+          color: white;
         }
 
         .ap-content {
@@ -442,6 +527,7 @@ const AllProductsPage = () => {
         }
 
         .ap-product-card {
+          height: 500px;
           background: white;
           border-radius: 8px;
           overflow: hidden;
@@ -466,6 +552,19 @@ const AllProductsPage = () => {
           object-fit: cover;
         }
 
+        .ap-product-image-placeholder {
+          width: 100%;
+          height: 100%;
+          background: #f5f5f5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+          color: #7f8c8d;
+          font-weight: 500;
+        }
+
         .ap-product-badge {
           position: absolute;
           top: 15px;
@@ -487,10 +586,11 @@ const AllProductsPage = () => {
           margin: 0 0 5px 0;
         }
 
-        .ap-product-category {
+        .ap-product-subcategory {
           font-size: 0.9rem;
-          color: #7f8c8d;
+          color: #d4af37;
           margin: 0 0 10px 0;
+          font-weight: 500;
         }
 
         .ap-product-description {
@@ -498,6 +598,10 @@ const AllProductsPage = () => {
           font-size: 0.95rem;
           line-height: 1.5;
           margin-bottom: 15px;
+           display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
         }
 
         .ap-product-specs {
@@ -614,19 +718,87 @@ const AllProductsPage = () => {
           display: flex;
         }
 
-        .ap-modal-slider {
+        .ap-modal-slider-container {
           width: 50%;
           padding: 20px;
+        }
+
+        .ap-modal-slider {
+          margin-bottom: 15px;
         }
 
         .ap-modal-slide {
           height: 400px;
         }
 
-        .ap-modal-image {
+        .ap-slide-image-container {
           width: 100%;
           height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f9f9f9;
+        }
+
+        .ap-modal-image {
+          max-width: 100%;
+          max-height: 100%;
           object-fit: contain;
+        }
+
+        .ap-modal-image-placeholder {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 30px;
+          color: #7f8c8d;
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+
+        /* Thumbnail Navigation Styles */
+        .ap-thumbnail-container {
+          padding: 10px 0;
+        }
+
+        .ap-thumbnail-slide {
+          padding: 0 5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .ap-thumbnail-slide:hover {
+          opacity: 0.8;
+        }
+
+        .ap-thumbnail-slide.active {
+          position: relative;
+        }
+
+        .ap-thumbnail-slide.active::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 5px;
+          right: 5px;
+          height: 3px;
+          background: #d4af37;
+        }
+
+        .ap-thumbnail-image {
+          width: 100%;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 4px;
+          border: 2px solid transparent;
+          transition: all 0.3s ease;
+        }
+
+        .ap-thumbnail-slide.active .ap-thumbnail-image {
+          border-color: #d4af37;
         }
 
         .ap-modal-info {
@@ -671,12 +843,12 @@ const AllProductsPage = () => {
           margin-bottom: 25px;
         }
 
-        .ap-specs-grid div {
+        .ap-spec-item {
           display: flex;
           flex-direction: column;
         }
 
-        .ap-specs-grid strong {
+        .ap-spec-item strong {
           color: #7f8c8d;
           font-size: 0.9rem;
           margin-bottom: 5px;
@@ -702,15 +874,33 @@ const AllProductsPage = () => {
           font-size: 1rem;
         }
 
-        .ap-modal-link {
-          flex: 1;
-          background: #2c3e50;
+        /* Slider arrows */
+        .ap-slider-arrow {
+          width: 40px;
+          height: 40px;
+          background: rgba(255,255,255,0.9);
+          border-radius: 50%;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          color: #2c3e50;
+          z-index: 10;
+          transition: all 0.3s ease;
+        }
+
+        .ap-slider-arrow:hover {
+          background: #d4af37;
           color: white;
-          text-align: center;
-          padding: 12px;
-          border-radius: 4px;
-          text-decoration: none;
-          font-size: 1rem;
+          transform: scale(1.1);
+        }
+
+        .slick-prev {
+          left: 10px;
+        }
+
+        .slick-next {
+          right: 10px;
         }
 
         /* Mobile Styles */
@@ -754,12 +944,12 @@ const AllProductsPage = () => {
             flex-direction: column;
           }
 
-          .ap-modal-slider,
+          .ap-modal-slider-container,
           .ap-modal-info {
             width: 100%;
           }
 
-          .ap-modal-slider {
+          .ap-modal-slider-container {
             padding: 15px;
           }
 
@@ -793,6 +983,10 @@ const AllProductsPage = () => {
           .ap-mobile-filter-btn {
             width: 100%;
             justify-content: center;
+          }
+
+          .ap-subcategory-scroll {
+            padding-right: 20px;
           }
         }
       `}</style>

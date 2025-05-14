@@ -21,11 +21,11 @@ const Info = () => {
               <span className="in-section-subtitle">Why MOJAF?</span>
             </div>
             <h2 className="in-section-title" data-aos="fade-left" data-aos-duration="400">
-              Distributing the Quality Building Materials
+              Distributing the Quality Construction & Building Materials
             </h2>
             <div className="in-section-text" data-aos="fade-left" data-aos-duration="400" data-aos-delay="100">
               <p>
-                As your dedicated source for building materials solutions, MOJAF offers a comprehensive range of top-tier hardware essentials...
+                As your dedicated source for construction and building materials solutions, MOJAF offers a comprehensive range of top-tier hardware essentials...
               </p>
               <p>
                 Uncover a world of craftsmanship and reliability as you navigate through our carefully curated collection...
@@ -50,7 +50,7 @@ const Info = () => {
             How We Excel as Your Premier Building Material Supplier
           </h2>
           <p className="in-section-description in-center" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100">
-            As a leading building materials supplier, MOJAF is committed to delivering high-quality products and exceptional service...
+            As a leading construction and building materials supplier, MOJAF is committed to delivering high-quality products and exceptional service...
           </p>
         </div>
       </section>
@@ -61,7 +61,7 @@ const Info = () => {
           <div className="in-feature">
             <div className="in-feature-content">
               <h3 className="in-feature-title" data-aos="fade-right" data-aos-duration="500">
-                Sourcing Top Quality Building Materials
+                Sourcing Top Quality Construction & Building Materials
               </h3>
 
               <div className="in-feature-item">
@@ -101,7 +101,7 @@ const Info = () => {
                 <div className="in-accent-line" data-aos="flip-left" data-aos-duration="1500"></div>
                 <div>
                   <h4 className="in-feature-subtitle">Strategic Partnerships</h4>
-                  <p className="in-feature-text">We collaborate with quality brands to offer premium building materials...</p>
+                  <p className="in-feature-text">We collaborate with quality brands to offer premium construction and building materials...</p>
                 </div>
               </div>
 
@@ -115,7 +115,7 @@ const Info = () => {
             </div>
             <div className="in-feature-image">
               <img
-                src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3..."
+                src="https://www.portakabin.com/contentassets/96117c8c47bc41bdaef924f2c7831d28/7322-100.jpg"
                 alt="Global Standards"
               />
               <div className="in-decorative-box in-box-1"></div>
@@ -127,7 +127,7 @@ const Info = () => {
           <div className="in-feature">
             <div className="in-feature-content">
               <h3 className="in-feature-title" data-aos="fade-right" data-aos-duration="500">
-                Maintaining the Largest Stock of Building Materials
+                Maintaining the Largest Stock of Construction & Building Materials
               </h3>
 
               <div className="in-feature-item">
