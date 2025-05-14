@@ -4,8 +4,10 @@ import 'aos/dist/aos.css';
 import './Hero.css'; // Adjust path as necessary
 import Slider from 'react-slick';
 import Header from './Header';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
@@ -17,6 +19,11 @@ const Hero = () => {
     slidesToShow: 1, // Number of slides to show at once
     slidesToScroll: 1, // Number of slides to scroll at once
   };
+
+  const handleClick = (e) => {
+  e.preventDefault();
+  navigate('/all-products');
+};
 
   return (
     <div>
@@ -39,7 +46,7 @@ const Hero = () => {
               </div>
             </div>
             <div className="hero-button-container1">
-              <a href="/all-products" className="hero-button1">
+              <a href="/all-products" className="hero-button1" onClick={handleClick}>
                 <div className="button-text1">Explore Products</div>
               </a>
             </div>
