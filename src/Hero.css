@@ -104,6 +104,7 @@
 
 .hero-button1 {
     text-decoration: none;
+    z-index: 100000;
 }
 
 .hero-button1 div {

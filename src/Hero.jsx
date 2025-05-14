@@ -39,7 +39,7 @@ const Hero = () => {
               </div>
             </div>
             <div className="hero-button-container1">
-              <a href="/products/" className="hero-button1">
+              <a href="/all-products" className="hero-button1">
                 <div className="button-text1">Explore Products</div>
               </a>
             </div>
