@@ -392,6 +392,7 @@ const ServicesSection = () => {
           margin-bottom: 20px;
           font-size: 1rem;
           line-height: 1.7;
+          text-align: justify;
         }
 
         .ss-feature-highlights {
@@ -545,6 +546,7 @@ const ServicesSection = () => {
           font-size: 0.9rem;
           margin-bottom: 15px;
           line-height: 1.6;
+          text-align: justify;
         }
 
         .ss-product-features {

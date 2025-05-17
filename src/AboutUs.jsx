@@ -114,6 +114,7 @@ function AboutUs() {
           line-height: 1.7;
           color: #555;
           margin-bottom: 40px;
+          text-align: justify;
         }
         
         .vision-mission-section {
@@ -163,6 +164,7 @@ function AboutUs() {
           font-size: 16px;
           line-height: 1.6;
           color: #555;
+          text-align: justify;
         }
         
         .experience-counter {

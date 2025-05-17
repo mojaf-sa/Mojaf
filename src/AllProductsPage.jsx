@@ -575,6 +575,7 @@ const AllProductsPage = () => {
           font-size: 1rem;
           line-height: 1.6;
           margin-bottom: 20px;
+          text-align: justify;
         }
 
         .ap-product-specs {
