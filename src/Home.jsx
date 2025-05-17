@@ -4,6 +4,10 @@ import Hero from './Hero'
 import Header from './Header';
 import Services from './Services';
 import { useLocation } from 'react-router-dom';
+import AboutUs from './AboutUs';
+import ServicesSection from './ServicesSection';
+import Contact from './Contact';
+import Footer from './Footer';
 
 function Home() {
   const location = useLocation();
@@ -21,8 +25,12 @@ function Home() {
     <>
      <Header />
       <Hero />
+      <AboutUs />
       <Info />
       <Services />
+      <ServicesSection />
+      <Contact />
+      <Footer />
     </>
   )
 }

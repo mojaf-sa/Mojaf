@@ -1,59 +1,220 @@
-import React, { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
-import './Header.css'; // Make sure you create and import styles
-import Hero from './Hero';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-const navigate = useNavigate();
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('');
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-    const handleClick = (e) => {
-  e.preventDefault();
-  navigate('/all-products');
-};
+  const handleLinkClick = (path) => {
+    setActiveLink(path);
+    setIsMenuOpen(false);
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest('.nav-links') && !event.target.closest('.hamburger')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
 
   return (
     <>
-      {/* Header */}
+      <style>{`
+        .header {
+          background-color: #fff;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          padding: 1rem 2rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          z-index: 100;
+        }
+        
+        .logo-container {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          z-index: 1001;
+        }
+        
+        .logo {
+          height: 48px;
+          width: auto;
+          object-fit: cover;
+          border-radius: 5%;
+        }
+        
+        .nav-links {
+          display: flex;
+          gap: 1.5rem;
+        }
+        
+        .nav-links a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          transition: all 0.3s;
+          padding: 0.5rem 0;
+          position: relative;
+        }
+        
+        .nav-links a:hover {
+          color: #FFD700;
+        }
+        
+        .nav-links a.active {
+          color: #FFD700;
+        }
+        
+        .nav-links a::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: #FFD700;
+          transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+          width: 100%;
+        }
+        
+        .hamburger {
+          display: none;
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: #333;
+          z-index: 1001;
+        }
+        
+        .close-icon {
+          display: none;
+        }
+        
+        @media (max-width: 768px) {
+          .nav-links {
+            position: fixed;
+            top: 0;
+            left: ${isMenuOpen ? '0' : '-100%'};
+            width: 70%;
+            height: 100vh;
+            background-color: #fff;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 6rem 2rem 2rem;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1000;
+          }
+          
+          .nav-links a {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+          }
+          
+          .hamburger {
+            display: ${isMenuOpen ? 'none' : 'block'};
+          }
+          
+          .close-icon {
+            display: ${isMenuOpen ? 'block' : 'none'};
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+          }
+        }
+      `}</style>
+
       <header className="header">
-        <div className="container">
-          <div className="logo">
-            <h1>MOJAF</h1>
-            <span>Your Procurement Partner</span>
-          </div>
-          <nav className="nav">
-            <ul>
-              <li><a href="#hero1">Home</a></li>
-              <li><a href="#in-info">About</a></li>
-              <li><a href="#ss-services">Services</a></li>
-              <li><a href="/all-products" onClick={handleClick}>Products</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div className="mobile-menu-btn" onClick={toggleMobileMenu}>
-              <FaBars />
-            </div>
-          </nav>
-        </div>
+        <Link to="/" className="logo-container" onClick={() => handleLinkClick('/')}>
+          <img 
+            src='/MOJ.jpg'
+            alt="Company Logo" 
+            className="logo" 
+          />
+        </Link>
+
+        <button className="hamburger" onClick={toggleMenu}>
+          <FaBars />
+        </button>
+        
+        {isMenuOpen && (
+          <button className="close-icon" onClick={toggleMenu}>
+            <FaTimes />
+          </button>
+        )}
+
+        <nav className="nav-links">
+          <Link 
+            to="/" 
+            className={activeLink === '/' ? 'active' : ''}
+            onClick={() => handleLinkClick('/')}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className={activeLink === '/about' ? 'active' : ''}
+            onClick={() => handleLinkClick('/about')}
+          >
+            About
+          </Link>
+          <Link 
+            to="/services" 
+            className={activeLink === '/services' ? 'active' : ''}
+            onClick={() => handleLinkClick('/services')}
+          >
+            Services
+          </Link>
+          <Link 
+            to="/all-products" 
+            className={activeLink === '/all-products' ? 'active' : ''}
+            onClick={() => handleLinkClick('/all-products')}
+          >
+            Products
+          </Link>
+          <Link 
+            to="/catalogs" 
+            className={activeLink === '/catalogs' ? 'active' : ''}
+            onClick={() => handleLinkClick('/catalogs')}
+          >
+            Catalogs
+          </Link>
+          <Link 
+            to="/partners" 
+            className={activeLink === '/partners' ? 'active' : ''}
+            onClick={() => handleLinkClick('/partners')}
+          >
+            Partners
+          </Link>
+          <Link 
+            to="/contact" 
+            className={activeLink === '/contact' ? 'active' : ''}
+            onClick={() => handleLinkClick('/contact')}
+          >
+            Contact
+          </Link>
+        </nav>
       </header>
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="mobile-menu">
-          <ul>
-            <li><a href="#hero1" onClick={toggleMobileMenu}>Home</a></li>
-            <li><a href="#in-info" onClick={toggleMobileMenu}>About</a></li>
-            <li><a href="#ss-services" onClick={toggleMobileMenu}>Services</a></li>
-            <li><a href="/all-products" onClick={()=>{
-              handleClick()
-              toggleMobileMenu()
-              }}>Products</a></li>
-            <li><a href="#contact" onClick={toggleMobileMenu}>Contact</a></li>
-          </ul>
-        </div>
-      )}
     </>
   );
 };

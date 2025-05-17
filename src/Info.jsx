@@ -21,7 +21,7 @@ const Info = () => {
               <span className="in-section-subtitle">Why MOJAF?</span>
             </div>
             <h2 className="in-section-title" data-aos="fade-left" data-aos-duration="400">
-              Distributing the Quality Construction & Building Materials
+              Providing the Quality Construction & Building Materials
             </h2>
             <div className="in-section-text" data-aos="fade-left" data-aos-duration="400" data-aos-delay="100">
               <p>
@@ -34,7 +34,7 @@ const Info = () => {
           </div>
           <div className="in-why-image">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3..."
+              src="https://www.deercreekstables.com/wp-content/uploads/2021/07/Portable-Building-Advantages.jpg"
               alt="Building Materials"
               className="in-main-image"
             />
@@ -47,7 +47,7 @@ const Info = () => {
       <section className="in-excellence-section">
         <div className="in-container1">
           <h2 className="in-section-title in-center" data-aos="fade-up" data-aos-duration="400">
-            How We Excel as Your Premier Building Material Supplier
+            How We Excel as Your Premier Construction & Building Material Supplier
           </h2>
           <p className="in-section-description in-center" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100">
             As a leading construction and building materials supplier, MOJAF is committed to delivering high-quality products and exceptional service...
@@ -82,7 +82,7 @@ const Info = () => {
             </div>
             <div className="in-feature-image">
               <img
-                src="https://images.pexels.com/photos/4792494/pexels-photo-4792494.jpeg?auto=compress..."
+                src="https://bvb1.eu/images/gradjevinski-materijali.jpg"
                 alt="Quality Materials"
               />
               <div className="in-decorative-box in-box-1"></div>

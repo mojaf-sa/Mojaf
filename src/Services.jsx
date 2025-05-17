@@ -1,19 +1,17 @@
 import React from 'react';
-import './Header.css'; 
-import Contact from './Contact';
-import Footer from './Footer';
-import ServicesSection from './ServicesSection';
-import ProductShowcase from './ProductShowcase';
-import Header from './Header';
 import { 
   FaCheckCircle, FaTruck, FaTag, FaHeadset,
   FaHome, FaBorderStyle, FaVectorSquare, FaSnowflake,
   FaThLarge, FaDoorOpen, FaShieldAlt, FaBolt, FaScrewdriver
 } from 'react-icons/fa';
-
-
+import Contact from './Contact';
+import Footer from './Footer';
+import ServicesSection from './ServicesSection';
+import Header from './Header';
+import { useNavigate } from 'react-router-dom';
 
 function Services() {
+  const navigate = useNavigate();
   const productCategories = [
     {
       id: 1,
@@ -70,74 +68,250 @@ function Services() {
       description: 'High-performance fastening solutions for all construction projects'
     }
   ];
+
+  const handleQuoteClick = () => {
+    navigate('/contact');
+  };
   return (
-    <div>
-     <Header />
-      <div id="hero1"></div>
-      <div id="info1"></div>
-
-      <div className="mobile-menu">
-        <ul>
-          <li><a href="#hero1">Home</a></li>
-          <li><a href="#in-info">About</a></li>
-          <li><a href="#ss-services">Services</a></li>
-          <li><a href="#pp-products">Products</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <section className="hero" id="home" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')" }}>
-        <div className="container">
-          <div className="hero-content" data-aos="fade-up">
+    <div className="s-services-container">
+      <section className="s-hero" id="home" style={{backgroundImage: "url('/herobg.avif')" }}>
+        <div className="s-container">
+          <div className="s-hero-content" data-aos="fade-up">
             <h1>Your Procurement Partner</h1>
             <p>We deliver your promise with high-quality products and reliable service.</p>
-            <a href="#contact" className="btn">Get in Touch</a>
+            <a href="#contact" onClick={handleQuoteClick} className="s-btn">Get in Touch</a>
           </div>
         </div>
       </section>
 
-     <section className="why-choose-us">
-     <div className="container">
-       <h2 className="section-title" data-aos="fade-up">Why Choose MOJAF</h2>
-       <div className="features-grid">
-         {productCategories.map((product) => (
-               <div className="feature" data-aos="fade-up" data-aos-delay="100">
-           <div className="icon">{product?.icon}</div>
-           <h3>{product?.name}</h3>
-           <p>{product?.description}</p>
-         </div>
+      <section className="s-why-choose-us">
+        <div className="s-container">
+          <h2 className="s-section-title" data-aos="fade-up">Why Choose MOJAF</h2>
+          <div className="s-features-grid">
+            {productCategories.map((product) => (
+              <div className="s-feature" data-aos="fade-up" data-aos-delay="100" key={product.id}>
+                <div className="s-icon">{product.icon}</div>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+              </div>
             ))}
-         <div className="feature" data-aos="fade-up" data-aos-delay="100">
-           <div className="icon"><FaCheckCircle /></div>
-           <h3>Quality Assurance</h3>
-           <p>Our dedicated quality assurance team ensures all products meet the highest industry standards.</p>
-         </div>
-         <div className="feature" data-aos="fade-up" data-aos-delay="200">
-           <div className="icon"><FaTruck /></div>
-           <h3>Fast Delivery</h3>
-           <p>We pride ourselves on fast and reliable delivery to keep your projects on schedule.</p>
-         </div>
-         <div className="feature" data-aos="fade-up" data-aos-delay="300">
-           <div className="icon"><FaTag /></div>
-           <h3>Competitive Pricing</h3>
-           <p>Get high-quality products at competitive prices without compromising on quality.</p>
-         </div>
-         <div className="feature" data-aos="fade-up" data-aos-delay="400">
-           <div className="icon"><FaHeadset /></div>
-           <h3>Customer Support</h3>
-           <p>Our comprehensive customer support is always ready to assist you with any inquiries.</p>
-         </div>
-       </div>
-     </div>
-   </section>
- 
-  <div style={{marginTop:40}} />
-  <ServicesSection />
+            <div className="s-feature" data-aos="fade-up" data-aos-delay="100">
+              <div className="s-icon"><FaCheckCircle /></div>
+              <h3>Quality Assurance</h3>
+              <p>Our dedicated quality assurance team ensures all products meet the highest industry standards.</p>
+            </div>
+            <div className="s-feature" data-aos="fade-up" data-aos-delay="200">
+              <div className="s-icon"><FaTruck /></div>
+              <h3>Fast Delivery</h3>
+              <p>We pride ourselves on fast and reliable delivery to keep your projects on schedule.</p>
+            </div>
+            <div className="s-feature" data-aos="fade-up" data-aos-delay="300">
+              <div className="s-icon"><FaTag /></div>
+              <h3>Competitive Pricing</h3>
+              <p>Get high-quality products at competitive prices without compromising on quality.</p>
+            </div>
+            <div className="s-feature" data-aos="fade-up" data-aos-delay="400">
+              <div className="s-icon"><FaHeadset /></div>
+              <h3>Customer Support</h3>
+              <p>Our comprehensive customer support is always ready to assist you with any inquiries.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<ProductShowcase />
-     <Contact />
+      <div style={{marginTop: 40}} />
 
-     <Footer />
+
+      <style jsx>{`
+        /* Services Component Styles */
+        .s-services-container {
+          font-family: 'Poppins', sans-serif;
+          color: #555555;
+          line-height: 1.6;
+        }
+        
+        .s-container {
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .s-hero {
+          height: 100vh;
+          min-height: 700px;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          display: flex;
+          align-items: center;
+          position: relative;
+          margin-top: 80px;
+        }
+        
+        .s-hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(10, 37, 64, 0.7);
+        }
+        
+        .s-hero-content {
+          position: relative;
+          z-index: 1;
+          color: #ffffff;
+          max-width: 600px;
+        }
+        
+        .s-hero-content h1 {
+          font-size: 3.5rem;
+          color: #ffffff;
+          margin-bottom: 20px;
+          font-weight: 600;
+          line-height: 1.2;
+        }
+        
+        .s-hero-content p {
+          font-size: 1.2rem;
+          margin-bottom: 30px;
+          color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .s-btn {
+          display: inline-block;
+          background-color: #d4af37;
+          color: #ffffff;
+          padding: 12px 30px;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .s-btn:hover {
+          background-color: #c19b2c;
+          transform: translateY(-3px);
+          box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Why Choose Us Section */
+        .s-why-choose-us {
+          padding: 100px 0;
+          background-color: #f5f5f5;
+        }
+        
+        .s-section-title {
+          font-size: 2.5rem;
+          margin-bottom: 50px;
+          text-align: center;
+          position: relative;
+          color: #333333;
+          font-weight: 600;
+        }
+        
+        .s-section-title::after {
+          content: '';
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 3px;
+          background-color: #d4af37;
+        }
+        
+        .s-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 30px;
+        }
+        
+        .s-feature {
+          background-color: #ffffff;
+          padding: 30px;
+          border-radius: 8px;
+          text-align: center;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+        }
+        
+        .s-feature:hover {
+          transform: translateY(-10px);
+        }
+        
+        .s-icon {
+          width: 70px;
+          height: 70px;
+          background-color: rgba(212, 175, 55, 0.1);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 20px;
+          color: #d4af37;
+          font-size: 1.8rem;
+        }
+        
+        .s-feature h3 {
+          margin-bottom: 15px;
+          font-size: 1.3rem;
+          color: #333333;
+          font-weight: 600;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+          .s-section-title {
+            font-size: 2rem;
+          }
+          
+          .s-hero-content h1 {
+            font-size: 3rem;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .s-hero {
+            min-height: 600px;
+          }
+          
+          .s-hero-content h1 {
+            font-size: 2.5rem;
+          }
+          
+          .s-hero-content p {
+            font-size: 1rem;
+          }
+          
+          .s-section-title {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+          }
+        }
+        
+        @media (max-width: 576px) {
+          .s-section-title {
+            font-size: 1.6rem;
+          }
+          
+          .s-hero-content h1 {
+            font-size: 2rem;
+          }
+          
+          .s-btn {
+            padding: 10px 25px;
+          }
+          
+          .s-features-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </div>
   );
 }
