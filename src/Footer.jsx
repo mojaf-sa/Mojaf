@@ -1,7 +1,14 @@
 import React from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function Footer() {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
+
   return (
     <div className="f-footer-container">
       <footer className="f-footer">
@@ -17,31 +24,31 @@ function Footer() {
             <div className="f-footer-col">
               <h3>Quick Links</h3>
               <ul>
-                <li><a href="#hero1">Home</a></li>
-                <li><a href="#in-info">About Us</a></li>
-                <li><a href="#ss-services">Services</a></li>
-                <li><a href="#pp-products">Products</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a onClick={() => handleNavigation('/')}>Home</a></li>
+                <li><a onClick={() => handleNavigation('/about')}>About Us</a></li>
+                <li><a onClick={() => handleNavigation('/services')}>Services</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>Products</a></li>
+                <li><a onClick={() => handleNavigation('/contact')}>Contact</a></li>
               </ul>
             </div>
             <div className="f-footer-col">
               <h3>Products</h3>
               <ul>
-                <li><a href="#ss-products-section">Screws & Fasteners</a></li>
-                <li><a href="#ss-products-section">MDF & PVC Skirting</a></li>
-                <li><a href="#ss-products-section">Safety Equipment</a></li>
-                <li><a href="#ss-products-section">Doors</a></li>
-                <li><a href="#ss-products-section">Electrical Items</a></li>
-                <li><a href="#ss-products-section">Flooring</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>Screws & Fasteners</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>MDF & PVC Skirting</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>Safety Equipment</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>Doors</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>Electrical Items</a></li>
+                <li><a onClick={() => handleNavigation('/all-products')}>Flooring</a></li>
               </ul>
             </div>
-              <div className="f-footer-col">
+            <div className="f-footer-col">
               <h3>Services</h3>
               <ul>
-                <li><a href="#ss-services">Procurement Outsourcing</a></li>
-                <li><a href="#ss-services">Logistics Coordination & Management</a></li>
-                <li><a href="#ss-services">Warehousing Services</a></li>
-                <li><a href="#ss-services">After Sales Services Support</a></li>
+                <li><a onClick={() => handleNavigation('/services')}>Procurement Outsourcing</a></li>
+                <li><a onClick={() => handleNavigation('/services')}>Logistics Coordination & Management</a></li>
+                <li><a onClick={() => handleNavigation('/services')}>Warehousing Services</a></li>
+                <li><a onClick={() => handleNavigation('/services')}>After Sales Services Support</a></li>
               </ul>
             </div>
             <div className="f-footer-col">
@@ -106,6 +113,7 @@ function Footer() {
         .f-footer-col ul li a {
           color: rgba(255, 255, 255, 0.7);
           transition: all 0.3s ease;
+          cursor: pointer;
         }
         
         .f-footer-col ul li a:hover {

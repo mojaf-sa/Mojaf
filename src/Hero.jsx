@@ -31,12 +31,12 @@ const Hero = () => {
   };
 
   const sliderImages = [
+    "https://hhic.sa/wp-content/uploads/2023/11/Pic-2.png",
+    "https://hhic.sa/wp-content/uploads/2023/11/Pic-5.png",
     "https://maggiescarf.com/wp-content/uploads/2019/01/images2089-5c34eb74dd517-1024x683.jpg",
     "https://images.pexels.com/photos/218445/pexels-photo-218445.jpeg",
     "https://content.app-sources.com/s/10477147413060978/uploads/Blog_Images/unnamed_58-9991579.jpg",
     "https://www.decormania.co.uk/cdn/shop/files/il11-2m-black-wallstyl-skirting-board-covings-decormania-656622.webp",
-    "https://www.sdyostpipe.com/Content/uploads/2022596973/20220525151825e9472b508a7d40a4a6f691488f89cd59.jpg",
-    "https://wfmmedia.com/wp-content/uploads/2022/01/Fiberglass-and-Steel-Doors.jpg"
   ];
 
   const handleClick = (e) => {

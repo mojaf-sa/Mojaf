@@ -298,6 +298,15 @@ const ProductDetailPage = () => {
               </div>
             )}
 
+   {product?.option && (
+              <div className="pdp-section">
+                <h2>Option</h2>
+                <div className="pdp-description">
+                  <p>{product.option}</p>
+                </div>
+              </div>
+            )}
+
             {product?.note && (
               <div className="pdp-section">
                 <h2>Note</h2>

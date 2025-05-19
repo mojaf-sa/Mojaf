@@ -26,8 +26,8 @@ function Home() {
      <Header />
       <Hero />
       <AboutUs />
-      <Info />
-      <Services />
+      {/* <Info /> */}
+      {/* <Services /> */}
       <ServicesSection />
       <Contact />
       <Footer />

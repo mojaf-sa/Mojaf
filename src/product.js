@@ -81,22 +81,24 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
+    option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // SPC Flooring
   products.push({
     id: 'modern-8mm-grey-spc-hybrid-flooring',
-    name: 'PC Flooring Paving',
+    name: 'SPC Flooring Paving',
     category: 'Flooring',
     subCategory: 'SPC Flooring',
-    shortDescription: '8mm SPC flooring with moisture resistance and modern forrest design',
-    description: '8mm thick SPC (Stone Plastic Composite) flooring featuring moisture-resistance, heat insulation, and anti-slip properties. The modern forrest design combines aesthetics with functionality, offering waterproof and wear-resistant performance. Ideal for villas and homes with click lock installation system.',
+    shortDescription: 'SPC flooring with moisture resistance and modern forrest design',
+    description: '2mm/4mm/6mm/8mm (customizable) thick SPC (Stone Plastic Composite) flooring featuring moisture-resistance, heat insulation, and anti-slip properties. The modern forrest design combines aesthetics with functionality, offering waterproof and wear-resistant performance. Ideal for villas and homes with click lock installation system.',
     specs: {
-      'Thickness': '8mm',
+      'Thickness': '2mm/4mm/6mm/8mm (customizable)',
       'Material': 'SPC (Stone Plastic Composite)',
       'Feature': 'Moisture-Resistant, Heat-Insulation, Anti-Slip, Waterproof, Wear-Resistant',
       'Design': 'Forrest Design',
-      'Color': 'Grey',
+      'Color': 'Grey/ (customizable)',
       'Application': 'Villa, Home',
       'Installation': 'Click Lock System',
     },
@@ -111,6 +113,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // LVT Flooring
@@ -122,11 +126,11 @@ const generateProducts = () => {
     shortDescription: 'Waterproof luxury vinyl tile with wood design and self-adhesive installation',
     description: 'Premium LVT (Luxury Vinyl Tile) flooring with waterproof and fireproof properties. Features self-adhesive installation, textured surface, and eco-friendly materials. Suitable for offices, hotels, villas, apartments, hospitals, schools, and malls with modern design style.',
     specs: {
+      'Thickness': '1.5mm/3mm (customizable)',
       'Feature': 'Waterproof, wear resistant, Anti-Scratch, Eco-Friendly, Fireproof',
       'Installation': 'Self-Adhesive',
       'Shape': 'Rectangle',
       'Surface Texture': 'Textured',
-      'Model': '1.5mm 2mm',
       'Use': 'indoor',
       'Surface Treatment': 'Simple Color',
       'Water Protection': 'Waterproof',
@@ -144,6 +148,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // ==================== SKIRTING BOARD CATEGORY ====================
@@ -178,6 +184,8 @@ const generateProducts = () => {
     ],
     price: 0,
     rating: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // WPC Skirting
@@ -209,12 +217,14 @@ const generateProducts = () => {
     priceRange: { min: 0.38, max: 3.05 },
     rating: 0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // PS Skirting Board
   products.push({
     id: 'black-color-waterproof-ps-skirting-corner-baseboard-flooring-accessories-skirting-profiles',
-    name: 'Black Color Waterproof PS Skirting Corner Baseboard Flooring Accessories Skirting Profiles',
+    name: 'PS Skirting Board',
     category: 'Skirting Board',
     subCategory: 'PS Skirting Board',
     shortDescription: 'Waterproof PS skirting board in black for flooring accessories',
@@ -239,6 +249,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // ==================== WALL PANELS CATEGORY ====================
@@ -273,6 +285,8 @@ const generateProducts = () => {
     price: 0,
     rating: 5.0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // Acoustic Wall Panel
@@ -302,6 +316,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // WPC Wall Panels
@@ -335,6 +351,8 @@ const generateProducts = () => {
     price: 0,
     rating: 5.0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // UV/PVC/PU Sheet
@@ -371,6 +389,8 @@ const generateProducts = () => {
     minOrder: 200,
     rating: 0,
     stock: 0,
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // ==================== INSULATION CATEGORY ====================
@@ -451,6 +471,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
+    option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // Rockwool Blankets (Rolls)
@@ -539,7 +561,9 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
-    brand: 'ROCKAL'
+    brand: 'ROCKAL',
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // ==================== BOARDS CATEGORY ====================
@@ -577,7 +601,9 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
-    brand: 'Mada'
+    brand: 'Mada',
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // ==================== DOORS CATEGORY ====================
@@ -609,8 +635,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 100,
-    brand: 'Zhejiang Shenggu',
-    leadTime: '25 days for 1-100 sets, negotiable for larger orders'
+  option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // MDF Wooden Door
@@ -670,8 +696,8 @@ const generateProducts = () => {
       responseTime: '≤2h',
       deliveryRate: '100.0%'
     },
-    certifications: ['ISO9001', 'ISO14001', 'SGS', 'BV'],
-    leadTime: '20 days for 1-500 pieces, negotiable for larger orders'
+  option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // Melamine Wooden Door
@@ -708,20 +734,8 @@ const generateProducts = () => {
     price: 80,
     rating: 0,
     stock: 0,
-    brand: 'TOF DOOR',
-    supplier: 'Zhejiang Tofine Commercial & Trade Co., Ltd.',
-    leadTime: '35 days for 1-3000 pieces, 45 days for 3001-4000 pieces, negotiable for >4000 pieces',
-    certifications: ['UL 10C', 'WH', 'CE'],
-    packaging: {
-      'Selling units': 'Single item',
-      'Single package size': '205X96X7 cm',
-      'Single gross weight': '50.000 kg'
-    },
-    priceTiers: [
-      { quantity: '100-249 pieces', price: 100 },
-      { quantity: '250-399 pieces', price: 90 },
-      { quantity: '≥400 pieces', price: 80 }
-    ]
+     option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // Full WPC Door
@@ -761,16 +775,8 @@ const generateProducts = () => {
     price: 80,
     rating: 0,
     stock: 0,
-    brand: 'XG',
-    leadTime: '20 days for 1-200 sets, negotiable for larger orders',
-    supplier: {
-      name: 'Shandong Everjoy Technology Material Co., Ltd.',
-      type: 'Manufacturer, Trading Company',
-      location: 'China',
-      yearsOnAlibaba: 5,
-      deliveryRate: '100.0%',
-      responseTime: '≤4h'
-    }
+      option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // WPC Skin Door
@@ -810,16 +816,8 @@ const generateProducts = () => {
     price: 50,
     rating: 0,
     stock: 100,
-    brand: 'Huangshan Best Balance',
-    leadTime: '15 days for 1-50 sets, negotiable for larger orders',
-    supplier: {
-      name: 'Huangshan Best Balance Industry & Trade Co., Ltd.',
-      type: 'Manufacturer, Trading Company',
-      location: 'China',
-      yearsOnAlibaba: 4,
-      responseTime: '≤3h',
-      onlineRevenue: 'US$30,000+'
-    }
+     option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // WPC Glass Door
@@ -859,28 +857,9 @@ const generateProducts = () => {
     minOrder: 50,
     rating: 0,
     stock: 0,
-    brand: 'Best Balance',
-    supplier: {
-      name: 'Huangshan Best Balance Industry & Trade Co., Ltd.',
-      type: 'Manufacturer, Trading Company',
-      yearsOnAlibaba: 4,
-      location: 'China',
-      responseTime: '≤3h',
-      onlineRevenue: 'US$ 30,000+'
-    },
-    customizationOptions: [
-      'Customized logo (Min. order: 100 sets)',
-      'Customized packaging (Min. order: 100 sets)',
-      'Graphic customization (Min. order: 100 sets)'
-    ],
-    leadTime: {
-      '1-50 sets': '15 days',
-      '>50 sets': 'To be negotiated'
-    },
-    packaging: {
-      singlePackageSize: '240X10X10 cm',
-      singleGrossWeight: '20.000 kg'
-    }
+     option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
+   
   });
 
   // ==================== SAFETY PRODUCTS CATEGORY ====================
@@ -925,19 +904,8 @@ const generateProducts = () => {
     price: 13.90,
     rating: 5.0,
     stock: 1000,
-    brand: 'Coeffort',
-    leadTime: '3 days for 1-100 pairs, 7 days for 101-1000 pairs',
-    supplier: {
-      name: 'Xiamen Coeffort Import And Export Co., Ltd.',
-      location: 'China',
-      yearsInBusiness: 2,
-      rating: '96.4% positive reviews'
-    },
-    customizationOptions: [
-      'Customized logo (Min. order: 100 pairs)',
-      'Customized packaging (Min. order: 100 pairs)',
-      'Graphic customization (Min. order: 100 pairs)'
-    ]
+    option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // Safety Jackets
@@ -979,8 +947,8 @@ const generateProducts = () => {
     price: 0,
     rating: 0,
     stock: 0,
-    brand: 'Henan Eastman Protection Technology Co., Ltd.',
-    leadTime: '35 days for 1-5000 pieces, negotiable for larger orders',
+  option:'Customization Options Available',
+    note: 'Reach out to our team for detailed information.'
   });
 
   // ==================== ELECTRICAL ITEMS CATEGORY ====================
@@ -1013,6 +981,7 @@ const generateProducts = () => {
     rating: 0,
     stock: 0,
     brand: '',
+    option:'Customization Options Available',
     note: 'For more details about specific cable types and technical specifications, please contact us.'
   });
 
@@ -1368,6 +1337,7 @@ const generateProducts = () => {
     rating: 0,
     stock: 0,
     brand: '',
+    option:'Customization Options Available',
     note: 'Reach out to our team for detailed information.'
   });
 
@@ -1394,6 +1364,7 @@ const generateProducts = () => {
     rating: 0,
     stock: 0,
     brand: '',
+      option:'Customization Options Available',
     note: 'Reach out to our team for detailed information.'
   });
 
@@ -1418,6 +1389,7 @@ const generateProducts = () => {
     rating: 0,
     stock: 0,
     brand: '',
+      option:'Customization Options Available',
     note: 'Reach out to our team for detailed information.'
   });
 
@@ -1446,6 +1418,7 @@ const generateProducts = () => {
     rating: 0,
     stock: 0,
     brand: '',
+      option:'Customization Options Available',
     note: 'Reach out to our team for detailed information.'
   });
 
@@ -1472,6 +1445,7 @@ const generateProducts = () => {
     rating: 0,
     stock: 0,
     brand: '',
+     option:'Customization Options Available',
     note: 'Reach out to our team for detailed information.'
   });
 

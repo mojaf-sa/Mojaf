@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('');
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState(location.pathname);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,6 +15,11 @@ const Header = () => {
     setActiveLink(path);
     setIsMenuOpen(false);
   };
+
+  // Update active link when route changes
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location]);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -75,6 +81,7 @@ const Header = () => {
         
         .nav-links a.active {
           color: #FFD700;
+          border-bottom: 2px dashed #FFD700;
         }
         
         .nav-links a::after {
@@ -88,8 +95,7 @@ const Header = () => {
           transition: width 0.3s;
         }
         
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+        .nav-links a:hover::after {
           width: 100%;
         }
         

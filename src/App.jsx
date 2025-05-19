@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -11,11 +11,25 @@ import ServicesScreen from './ServicesScreen';
 import ContactScreen from './ContactScreen';
 import PartnersScreen from './PartnersScreen';
 import CatalogsScreen from './CatalogsScreen';
+import { useLocation } from 'react-router-dom';
+import FloatingContactButtons from './FloatingContactButtons';
+
+const ScrollToTop = () => {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }) // or 'auto'
+    }, [pathname])
+
+    return null
+}
 
 
 function App() {
   return (
-<Router>
+    <>
+         <Router>
+        <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-products" element={<AllProductsPage />} />
@@ -28,6 +42,9 @@ function App() {
          <Route path="/catalogs" element={<CatalogsScreen />} />
       </Routes>
     </Router>
+    <FloatingContactButtons />
+    </>
+
   )
 }
 
