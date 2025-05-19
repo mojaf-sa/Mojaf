@@ -56,7 +56,7 @@ function Footer() {
               <ul>
                 <li><FaEnvelope className="f-icon" /> Info@mojaf-sa.com</li>
                 <li><FaPhone className="f-icon" /> +966 56 840 1900</li>
-                <li><FaMapMarkerAlt className="f-icon" /> Jeddah, Riyadh, Dammam</li>
+                <li><FaMapMarkerAlt className="f-icon" /> Jeddah, Riyadh, Dammam,Khobar, Madinah, Makkah</li>
               </ul>
             </div>
           </div>

@@ -104,7 +104,7 @@ const Partners = () => {
               </div>
               <div className="partner-info">
                 <h3 className="partner-name">{partner.name}</h3>
-                <span className="partner-year">Since {partner.year}</span>
+                {/* <span className="partner-year">Since {partner.year}</span> */}
               </div>
             </motion.div>
           ))}
@@ -114,7 +114,7 @@ const Partners = () => {
       <style jsx>{`
         .partners-section {
           padding: 6rem 2rem;
-          background: #ffffff;
+          background: #f5f5f5;
           text-align: center;
           overflow: hidden;
           position: relative;

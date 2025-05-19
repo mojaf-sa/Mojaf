@@ -39,7 +39,42 @@ const CatalogComponent = () => {
       pdfUrl: "https://drive.google.com/file/d/1YNgJI0dfm1AoZ5nP-f4owQ6S3B5ssUZc/view?usp=sharing",
       thumbnail: "/festth.png",
       category: "Hardware"
-    }
+    },
+    {
+      id: 6,
+      title: "Wallpanel Acoustic",
+      pdfUrl: "https://drive.google.com/file/d/1rIe2cJKYaVdoZD1fjA6lItn9nZxEYl_y/view?usp=sharing",
+      thumbnail: "/wallpanel.png",
+      category: "Hardware"
+    },
+    {
+      id: 7,
+      title: "WPC Wallpanel",
+      pdfUrl: "https://drive.google.com/file/d/1rqfoH4lbdbgzGzizvPJu8pCPiZCkWBhJ/view?usp=sharing",
+      thumbnail: "/wpcWallpanel.png",
+      category: "Hardware"
+    },
+    {
+      id: 8,
+      title: "PVC Flooring",
+      pdfUrl: "https://drive.google.com/file/d/1-wTEM9fDvwlL4tcRe3fPTkGTK2VDPPzV/view?usp=sharing",
+      thumbnail: "/pvcFlooring.png",
+      category: "Hardware"
+    },
+    {
+      id: 9,
+      title: "PU-Stone Panel",
+      pdfUrl: "https://drive.google.com/file/d/1YNgJI0dfm1AoZ5nP-f4owQ6S3B5ssUZc/view?usp=sharing",
+      thumbnail: "/puStone.png",
+      category: "Hardware"
+    },
+    {
+      id: 10,
+      title: "JX-Skirting Board",
+      pdfUrl: "https://drive.google.com/file/d/1YNgJI0dfm1AoZ5nP-f4owQ6S3B5ssUZc/view?usp=sharing",
+      thumbnail: "/psSkirting.png",
+      category: "Hardware"
+    },
   ];
 
   const handleDownload = (pdfUrl) => {
@@ -153,7 +188,7 @@ const CatalogComponent = () => {
           max-width: 1400px;
           margin: 0 auto;
           padding: 40px 20px;
-          background-color: #f8fafc;
+          background-color: #f5f5f5;
           min-height: 100vh;
         }
         

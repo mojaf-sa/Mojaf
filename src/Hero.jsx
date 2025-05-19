@@ -33,10 +33,12 @@ const Hero = () => {
   const sliderImages = [
     "https://hhic.sa/wp-content/uploads/2023/11/Pic-2.png",
     "https://hhic.sa/wp-content/uploads/2023/11/Pic-5.png",
-    "https://maggiescarf.com/wp-content/uploads/2019/01/images2089-5c34eb74dd517-1024x683.jpg",
+    "https://images.pexels.com/photos/6444268/pexels-photo-6444268.jpeg",
+    "https://images.pexels.com/photos/7745977/pexels-photo-7745977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/16641362/pexels-photo-16641362/free-photo-of-empty-room-in-house.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/218445/pexels-photo-218445.jpeg",
+    "https://images.pexels.com/photos/259988/pexels-photo-259988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://content.app-sources.com/s/10477147413060978/uploads/Blog_Images/unnamed_58-9991579.jpg",
-    "https://www.decormania.co.uk/cdn/shop/files/il11-2m-black-wallstyl-skirting-board-covings-decormania-656622.webp",
   ];
 
   const handleClick = (e) => {

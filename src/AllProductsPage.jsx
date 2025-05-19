@@ -61,7 +61,7 @@ const AllProductsPage = () => {
         {/* Header with optimized animated background */}
         <div className="ap-header">
           <div className="ap-header-slideshow">
-            {allProducts.slice(6, 16).map((product, index) => (
+            {allProducts.slice(0, 16).map((product, index) => (
               product.images?.[0] && (
                 <div key={index} className="ap-header-slide-container" style={{ '--delay': index * 3 }}>
                   <img 
@@ -249,6 +249,7 @@ const AllProductsPage = () => {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px 40px;
+            background-color: #f5f5f5;
           }
 
           /* Improved Header Styles */

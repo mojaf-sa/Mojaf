@@ -46,7 +46,7 @@ function Contact() {
               
               <div className="c-info-item">
                 <FaMapMarkerAlt className="c-info-icon" />
-                <p className="c-info-text">Branches: Jeddah, Riyadh, Dammam</p>
+                <p className="c-info-text">Branches: Jeddah, Riyadh, Dammam, Khobar, Madinah, Makkah</p>
               </div>
             </div>
             
@@ -116,7 +116,7 @@ function Contact() {
         /* Section Styles */
         .c-contact-section {
           padding: 4rem 1rem;
-          background-color: #f9f9f9;
+          background-color: #f5f5f5;
         }
         
         .c-contact-wrapper {

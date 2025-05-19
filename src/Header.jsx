@@ -45,6 +45,7 @@ const Header = () => {
           align-items: center;
           position: relative;
           z-index: 100;
+          
         }
         
         .logo-container {

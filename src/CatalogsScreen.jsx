@@ -6,7 +6,7 @@ function CatalogsScreen() {
   return (
     <div>
         <Header />
-        {/* <CatalogComponent /> */}
+        <CatalogComponent />
     </div>
   )
 }

@@ -81,6 +81,7 @@ function AboutUs() {
           padding: 60px 20px;
           font-family: 'Arial', sans-serif;
           position: relative;
+          background-color: #f5f5f5;
         }
         
         .text-content {

@@ -2,8 +2,8 @@ import React from 'react';
 import { FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 
 const FloatingContactButtons = () => {
-    const phoneNumber = '+966569243276'; // Replace with your phone number
-    const whatsappNumber = '+966569243276'; // WhatsApp number (without +)
+    const phoneNumber = '+966568401900'; // Replace with your phone number
+    const whatsappNumber = '+966568401900'; // WhatsApp number (without +)
 
     return (
         <div style={styles.container}>
