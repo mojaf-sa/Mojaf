@@ -8,35 +8,35 @@ const CatalogComponent = () => {
     {
       id: 1,
       title: "Flooring Catalogue",
-      pdfUrl: "/flooring.pdf",
+      pdfUrl: "https://drive.google.com/file/d/16S5AyahBqGL2dXrJ_eNG2j2UPGEmUxoA/view?usp=sharing",
       thumbnail: "/floorth.png",
       category: "Flooring Solutions"
     },
     {
       id: 2,
       title: "Doors Catalogue",
-      pdfUrl: "/Mojaf-doors-catalog.pdf",
+      pdfUrl: "https://drive.google.com/file/d/1AXswFpJmy2DQxknGwSyiXJvlyIj0TPoI/view?usp=sharing",
       thumbnail: "/door2th.png",
       category: "Door Systems"
     },
     {
       id: 3,
       title: "Screws Catalogue",
-      pdfUrl: "/mojaf_screws.pdf",
+      pdfUrl: "https://drive.google.com/file/d/19UHoDRE2I4mrYAlVAnBdEGjNy7Sx196_/view?usp=sharing",
       thumbnail: "/screwsth.png",
       category: "Fastening Solutions"
     },
     {
       id: 4,
       title: "Premium Doors",
-      pdfUrl: "/mojaf-doors.pdf",
+      pdfUrl: "https://drive.google.com/file/d/1a97kGN25xUINPmANx9_2qkajgb--RX--/view?usp=sharing",
       thumbnail: "/doorth.png",
       category: "Door Systems"
     },
     {
       id: 5,
       title: "Fasteners Catalogue",
-      pdfUrl: "/Mojaf-Fasteners-Catalog.pdf",
+      pdfUrl: "https://drive.google.com/file/d/1YNgJI0dfm1AoZ5nP-f4owQ6S3B5ssUZc/view?usp=sharing",
       thumbnail: "/festth.png",
       category: "Hardware"
     }
