@@ -53,7 +53,7 @@ function Contact() {
             {/* Contact Form Section */}
             <div className="c-contact-form" data-aos="fade-left">
               <form 
-                action="https://formsubmit.co/eayzay001@gmail.com" 
+                action="https://formsubmit.co/Info@mojaf-sa.com" 
                 method="POST"
                 className="c-form"
               >
