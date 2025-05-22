@@ -3,6 +3,7 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet-async';
 
 function Contact() {
   const location = useLocation();
@@ -22,47 +23,73 @@ function Contact() {
 
   return (
     <div className="c-contact-container">
+      {/* SEO Meta Tags in Helmet (should be included in your main layout component) */}
+      <Helmet>
+        <title>Contact Mojaf Saudi Arabia - Construction & Engineering Services</title>
+        <meta name="description" content="Get in touch with Mojaf Saudi Arabia for construction and engineering services. Contact us via phone, email, or visit our branches in Jeddah, Riyadh, Dammam and more." />
+        <meta name="keywords" content="Mojaf Saudi Arabia, construction Saudi Arabia, engineering services, contact Mojaf, Jeddah construction, Riyadh engineering" />
+        <meta property="og:title" content="Contact Mojaf Saudi Arabia - Construction & Engineering Services" />
+        <meta property="og:description" content="Get in touch with Mojaf Saudi Arabia for construction and engineering services." />
+        <meta property="og:url" content="https://www.mojaf-sa.com/contact" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.mojaf-sa.com/contact" />
+</Helmet>
       <section className="c-contact-section" id="contact">
         <div className="c-contact-wrapper">
-          <h2 className="c-section-title" data-aos="fade-up">Contact Us</h2>
+          <h1 className="c-section-title" data-aos="fade-up">Contact Mojaf Saudi Arabia</h1>
           
           <div className="c-contact-grid">
             {/* Contact Info Section */}
             <div className="c-contact-info" data-aos="fade-right">
-              <h3 className="c-info-title">Get in Touch</h3>
+              <h2 className="c-info-title">Get in Touch With Our Team</h2>
               
               <div className="c-info-item">
                 <FaEnvelope className="c-info-icon" />
-                <p className="c-info-text">Info@mojaf-sa.com</p>
+                <p className="c-info-text">
+                  <a href="mailto:Info@mojaf-sa.com" aria-label="Email Mojaf Saudi Arabia">
+                    Info@mojaf-sa.com
+                  </a>
+                </p>
               </div>
               
               <div className="c-info-item">
                 <FaPhone className="c-info-icon" />
                 <p className="c-info-text">
-                  +966 56 840 1900<br />
-                  +966 56 679 2904
+                  <a href="tel:+966568401900" aria-label="Call Mojaf Saudi Arabia first number">
+                    +966 56 840 1900
+                  </a>
+                  <br />
+                  <a href="tel:+966566792904" aria-label="Call Mojaf Saudi Arabia second number">
+                    +966 56 679 2904
+                  </a>
                 </p>
               </div>
               
               <div className="c-info-item">
                 <FaMapMarkerAlt className="c-info-icon" />
-                <p className="c-info-text">Branches: Jeddah, Riyadh, Dammam, Khobar, Madinah, Makkah</p>
+                <p className="c-info-text">
+                  <strong>Branches:</strong> Jeddah, Riyadh, Dammam, Khobar, Madinah, Makkah
+                </p>
               </div>
             </div>
             
             {/* Contact Form Section */}
             <div className="c-contact-form" data-aos="fade-left">
+              <h2 className="visually-hidden">Contact Form</h2>
               <form 
                 action="https://formsubmit.co/Info@mojaf-sa.com" 
                 method="POST"
                 className="c-form"
               >
                 <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="http://localhost:5173/thanks" />
+                <input type="hidden" name="_next" value="https://www.mojaf-sa.com/thanks" />
+                <input type="hidden" name="_subject" value="New Contact Request from Mojaf Website" />
                 
                 <div className="c-form-group">
+                  <label htmlFor="name" className="visually-hidden">Your Name</label>
                   <input 
                     type="text" 
+                    id="name"
                     name="name" 
                     placeholder="Your Name" 
                     className="c-form-input" 
@@ -71,8 +98,10 @@ function Contact() {
                 </div>
                 
                 <div className="c-form-group">
+                  <label htmlFor="email" className="visually-hidden">Your Email</label>
                   <input 
                     type="email" 
+                    id="email"
                     name="email" 
                     placeholder="Your Email" 
                     className="c-form-input" 
@@ -81,8 +110,10 @@ function Contact() {
                 </div>
                 
                 <div className="c-form-group">
+                  <label htmlFor="phone" className="visually-hidden">Your Phone</label>
                   <input 
                     type="tel" 
+                    id="phone"
                     name="phone" 
                     placeholder="Your Phone" 
                     className="c-form-input" 
@@ -90,7 +121,9 @@ function Contact() {
                 </div>
                 
                 <div className="c-form-group">
+                  <label htmlFor="message" className="visually-hidden">Your Message</label>
                   <textarea 
+                    id="message"
                     name="message" 
                     placeholder="Your Message" 
                     className="c-form-textarea" 
@@ -199,6 +232,16 @@ function Contact() {
           color: #555;
         }
         
+        .c-info-text a {
+          color: #555;
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+        
+        .c-info-text a:hover {
+          color: #d4af37;
+        }
+        
         /* Form Styles */
         .c-contact-form {
           background: white;
@@ -253,11 +296,17 @@ function Contact() {
           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        /* Divider Styles */
-        .c-divider {
+        /* Accessibility Styles */
+        .visually-hidden {
+          position: absolute;
+          width: 1px;
           height: 1px;
-          background: #eee;
-          margin: 1.5rem 0;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
         }
         
         /* Responsive Adjustments */

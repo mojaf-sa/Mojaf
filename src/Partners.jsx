@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -71,6 +72,44 @@ const Partners = () => {
 
   return (
     <section className="partners-section" ref={ref}>
+      <Helmet>
+        <title>Our Partners | MOJAF Saudi Arabia - Trusted Construction Partners</title>
+        <meta 
+          name="description" 
+          content="MOJAF Saudi Arabia partners with industry leaders including Masdar, Skyline Portacabin, and SPGC. Discover our network of trusted construction partners in Riyadh and across KSA." 
+        />
+        <meta
+          name="keywords"
+          content="MOJAF partners, Saudi construction partners, building materials suppliers, trusted companies in Riyadh, Masdar KSA, Skyline Portacabin Saudi, Rockal, SPGC Saudi, YouMats"
+        />
+        <meta property="og:title" content="Our Trusted Partners | MOJAF Saudi Arabia" />
+        <meta property="og:description" content="MOJAF's network of trusted construction partners and suppliers in Saudi Arabia including Masdar, Skyline Portacabin, and SPGC." />
+        <meta property="og:url" content="https://www.mojaf-sa.com/partners" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ar_SA" />
+        <meta property="og:site_name" content="MOJAF Saudi Arabia" />
+        <meta property="og:image" content="https://www.mojaf-sa.com/images/partners-og-image.jpg" />
+        <link rel="canonical" href="https://www.mojaf-sa.com/partners" />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Our Partners",
+            "description": "MOJAF Saudi Arabia's network of trusted construction partners",
+            "url": "https://www.mojaf-sa.com/partners",
+            "publisher": {
+              "@type": "Organization",
+              "name": "MOJAF Saudi Arabia",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.mojaf-sa.com/logo.png"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
+
       <div className="section-container">
         <motion.div 
           className="section-header"
@@ -78,7 +117,7 @@ const Partners = () => {
           animate={controls}
           variants={titleAnimation}
         >
-          <h2 className="section-title">Trusted by Industry Leaders</h2>
+          <h1 className="section-title">Trusted by Industry Leaders</h1>
           <p className="section-subtitle">We're proud to collaborate with these innovative companies</p>
         </motion.div>
         
@@ -98,13 +137,14 @@ const Partners = () => {
                 <img 
                   className="partner-logo" 
                   src={partner.logo} 
-                  alt={partner.name} 
+                  alt={`${partner.name} - MOJAF Partner`} 
                   loading="lazy"
+                  width="120"
+                  height="80"
                 />
               </div>
               <div className="partner-info">
-                <h3 className="partner-name">{partner.name}</h3>
-                {/* <span className="partner-year">Since {partner.year}</span> */}
+                <h2 className="partner-name">{partner.name}</h2>
               </div>
             </motion.div>
           ))}
@@ -195,12 +235,6 @@ const Partners = () => {
           font-weight: 600;
         }
         
-        .partner-year {
-          font-size: 0.85rem;
-          color: #7f8c8d;
-          display: block;
-        }
-
         @media (max-width: 1024px) {
           .partners-grid {
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

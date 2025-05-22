@@ -3,6 +3,7 @@ import { FaSearch, FaFilter, FaTimes, FaQuoteRight, FaStar } from 'react-icons/f
 import { Link, useNavigate } from 'react-router-dom';
 import { allProducts, productCategories, subCategories } from './product.js';
 import Header from './Header.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const AllProductsPage = () => {
   const navigate = useNavigate();
@@ -12,6 +13,13 @@ const AllProductsPage = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  // Generate meta description based on products
+  const metaDescription = `Browse our extensive collection of ${allProducts.length} high-quality products. 
+  Find the perfect materials for your project across ${productCategories.length} categories.`;
+
+  // Generate canonical URL
+  const canonicalUrl = window.location.href.split('?')[0];
 
   useEffect(() => {
     let results = allProducts;
@@ -54,8 +62,52 @@ const AllProductsPage = () => {
     );
   };
 
+  // Generate schema.org markup for the product collection
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": allProducts.slice(0, 10).map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.name,
+        "description": product.description || `${product.category} product - ${product.name}`,
+        "category": product.category,
+        "url": `${window.location.origin}/products/${product.id}`,
+        ...(product.images && product.images.length > 0 ? {
+          "image": product.images[0]
+        } : {})
+      }
+    }))
+  };
+
   return (
     <>
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Our Product Collection | High-Quality Materials for Your Projects</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content="Our Product Collection | High-Quality Materials" />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={allProducts[0]?.images?.[0] || `${window.location.origin}/default-product-image.jpg`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Product Collection | High-Quality Materials" />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={allProducts[0]?.images?.[0] || `${window.location.origin}/default-product-image.jpg`} />
+        
+        {/* Schema.org markup */}
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
+</Helmet>
       <Header />
       <div className="ap-container">
         {/* Header with optimized animated background */}
@@ -66,7 +118,7 @@ const AllProductsPage = () => {
                 <div key={index} className="ap-header-slide-container" style={{ '--delay': index * 3 }}>
                   <img 
                     src={product.images[0]}
-                    alt={product.name}
+                    alt={`${product.name} - ${product.category}`}
                     className="ap-header-slide"
                     loading="eager"
                   />
@@ -89,12 +141,14 @@ const AllProductsPage = () => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="ap-search-input"
+                  aria-label="Search products"
                 />
               </div>
               
               <button 
                 className="ap-mobile-filter-btn"
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
+                aria-label="Open filters"
               >
                 <FaFilter /> Filters
               </button>
@@ -111,6 +165,7 @@ const AllProductsPage = () => {
                   key={subCat}
                   className={`ap-subcategory-btn ${selectedSubCategory === subCat ? 'active' : ''}`}
                   onClick={() => setSelectedSubCategory(subCat)}
+                  aria-label={`Filter by ${subCat}`}
                 >
                   {subCat}
                 </button>
@@ -122,10 +177,11 @@ const AllProductsPage = () => {
         <div className="ap-content">
           <div className={`ap-sidebar ${showMobileFilters ? 'ap-mobile-visible' : ''}`}>
             <div className="ap-sidebar-header">
-              <h3>Categories</h3>
+              <h2>Categories</h2>
               <button 
                 className="ap-close-sidebar"
                 onClick={() => setShowMobileFilters(false)}
+                aria-label="Close filters"
               >
                 <FaTimes />
               </button>
@@ -141,6 +197,7 @@ const AllProductsPage = () => {
                     setSelectedSubCategory('All');
                     setShowMobileFilters(false);
                   }}
+                  aria-label={`Browse ${category} products`}
                 >
                   {category}
                   {selectedCategory === category && (
@@ -161,7 +218,7 @@ const AllProductsPage = () => {
               </div>
             ) : filteredProducts.length > 0 ? (
               filteredProducts.map(product => (
-                <div key={product.id} className="ap-product-card-horizontal">
+                <article key={product.id} className="ap-product-card-horizontal" itemScope itemType="https://schema.org/Product">
                   <div className="ap-product-image-container">
                     {product.images?.length > 0 ? (
                       <img 
@@ -169,24 +226,25 @@ const AllProductsPage = () => {
                         alt={product.name}
                         className="ap-product-image"
                         loading="lazy"
+                        itemProp="image"
                       />
                     ) : (
                       <div className="ap-product-image-placeholder">
                         {product.name}
                       </div>
                     )}
-                    <div className="ap-product-badge">{product.category}</div>
+                    <div className="ap-product-badge" itemProp="category">{product.category}</div>
                   </div>
                   
                   <div className="ap-product-info">
                     <div className="ap-product-header">
-                      <h3 className="ap-product-name">{product.name}</h3>
+                      <h3 className="ap-product-name" itemProp="name">{product.name}</h3>
                       <p className="ap-product-subcategory">{product.subCategory}</p>
                       {product.rating > 0 && renderRating(product.rating)}
                     </div>
                     
                     {product.description && (
-                      <p className="ap-product-description">{product.description}</p>
+                      <p className="ap-product-description" itemProp="description">{product.description}</p>
                     )}
                     
                     {product.specs && Object.keys(product.specs).length > 0 && (
@@ -206,27 +264,29 @@ const AllProductsPage = () => {
                       <Link 
                         to={`/products/${product.id}`}
                         className="ap-details-button"
+                        itemProp="url"
                       >
                         View Details
                       </Link>
                       <button 
                         className="ap-quote-button"
                         onClick={handleQuoteClick}
+                        aria-label={`Get quote for ${product.name}`}
                       >
                         <FaQuoteRight /> Get Quote
                       </button>
                     </div>
                   </div>
-                </div>
+                </article>
               ))
             ) : (
               <div className="ap-no-results">
                 <img 
                   src="https://cdn.dribbble.com/users/2382015/screenshots/6065978/no_result.gif" 
-                  alt="No results found" 
+                  alt="No products found matching your search criteria" 
                   className="ap-no-results-image"
                 />
-                <h3>No products found</h3>
+                <h2>No products found</h2>
                 <p>Try adjusting your search or filter criteria</p>
                 <button 
                   className="ap-clear-filters"
@@ -235,6 +295,7 @@ const AllProductsPage = () => {
                     setSelectedCategory('All');
                     setSelectedSubCategory('All');
                   }}
+                  aria-label="Clear all filters"
                 >
                   Clear Filters
                 </button>
@@ -243,6 +304,7 @@ const AllProductsPage = () => {
           </div>
         </div>
 
+        {/* All your existing styles remain exactly the same */}
         <style jsx="true">{`
           .ap-container {
             font-family: 'Inter', sans-serif;

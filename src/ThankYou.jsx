@@ -6,7 +6,7 @@ const ThankYou = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/#contact');
+      navigate('/');
     }, 3000); // 3 seconds delay
 
     return () => clearTimeout(timer);

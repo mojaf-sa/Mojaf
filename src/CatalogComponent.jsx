@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 const CatalogComponent = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -107,7 +108,26 @@ const CatalogComponent = () => {
   };
 
   return (
-    <div className="catalog-container">
+    <div className="catalog-container" itemScope itemType="https://schema.org/ItemList">
+      {/* SEO Meta Tags as HTML elements */}
+      <Helmet>
+      <title>Product Catalogues | Comprehensive Building Material Resources</title>
+      <meta 
+        name="description" 
+        content="Browse and download our premium product catalogues for flooring, doors, screws, wall panels, and other building materials." 
+      />
+      <meta 
+        name="keywords" 
+        content="building materials catalog, flooring catalogue, doors catalogue, screws catalogue, construction resources" 
+      />
+      <meta property="og:title" content="Product Catalogues | Premium Building Materials" />
+      <meta 
+        property="og:description" 
+        content="Access our complete collection of product catalogues for all your construction needs." 
+      />
+      <meta property="og:type" content="website" />
+      <link rel="canonical" href="/resources/catalogues" />
+</Helmet>
       <div className="catalog-header">
         <div className="breadcrumb">Home / Resources / Catalogues</div>
         <motion.h1 
@@ -115,10 +135,13 @@ const CatalogComponent = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          itemProp="name"
         >
           Product Catalogues
         </motion.h1>
-        <p className="subtitle">Browse our comprehensive collection of product catalogues</p>
+        <p className="subtitle" itemProp="description">
+          Browse our comprehensive collection of product catalogues
+        </p>
       </div>
       
       <div className="catalog-grid">
@@ -133,17 +156,21 @@ const CatalogComponent = () => {
             onMouseEnter={() => setHoveredCard(catalog.id)}
             onMouseLeave={() => setHoveredCard(null)}
             transition={{ delay: index * 0.1 }}
+            itemScope
+            itemType="https://schema.org/Product"
           >
-            <div className="card-badge">{catalog.category}</div>
+            <div className="card-badge" itemProp="category">{catalog.category}</div>
             
             <div 
               className="thumbnail-container" 
               onClick={() => handlePreview(catalog.pdfUrl)}
+              itemProp="image"
             >
               <img 
                 src={catalog.thumbnail} 
-                alt={`${catalog.title} preview`} 
+                alt={`${catalog.title} catalogue preview`} 
                 className="thumbnail-image"
+                loading="lazy"
               />
               <div className={`preview-overlay ${hoveredCard === catalog.id ? 'active' : ''}`}>
                 <span>Preview Catalogue</span>
@@ -151,13 +178,14 @@ const CatalogComponent = () => {
               </div>
             </div>
             
-            <h3 className="catalog-title">{catalog.title}</h3>
+            <h3 className="catalog-title" itemProp="name">{catalog.title}</h3>
             
             <div className="button-group">
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handlePreview(catalog.pdfUrl)}
                 className="preview-button"
+                aria-label={`Preview ${catalog.title} catalogue`}
               >
                 <span>View Online</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -169,6 +197,7 @@ const CatalogComponent = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleDownload(catalog.pdfUrl)}
                 className="download-button"
+                aria-label={`Download ${catalog.title} PDF`}
               >
                 <span>Download PDF</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -178,6 +207,7 @@ const CatalogComponent = () => {
                 </svg>
               </motion.button>
             </div>
+            <meta itemProp="url" content={catalog.pdfUrl} />
           </motion.div>
         ))}
       </div>

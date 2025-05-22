@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { 
@@ -193,6 +194,69 @@ const ServicesSection = () => {
 
   return (
     <div className="ss-main-container" id='ss-services'>
+      {/* SEO Optimization with Helmet */}
+      <Helmet>
+        <title>Mojaf SA | Comprehensive Procurement & Construction Solutions in Saudi Arabia</title>
+        <meta name="description" content="Mojaf SA offers end-to-end procurement, logistics, and construction material solutions in Saudi Arabia. Explore our services and premium building products." />
+        <meta name="keywords" content="Mojaf SA, Saudi Arabia procurement, construction materials, logistics services, warehousing Saudi Arabia, building products KSA" />
+        <meta property="og:title" content="Mojaf SA | Procurement & Construction Solutions in KSA" />
+        <meta property="og:description" content="Leading provider of procurement services and construction materials in Saudi Arabia. Quality products and reliable logistics solutions." />
+        <meta property="og:url" content="https://www.mojaf-sa.com/services" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ar_SA" />
+        <meta property="og:site_name" content="Mojaf SA" />
+        <link rel="canonical" href="https://www.mojaf-sa.com/services" />
+        
+        {/* Saudi Arabia specific tags */}
+        <meta name="geo.region" content="SA" />
+        <meta name="geo.placename" content="Saudi Arabia" />
+        <meta name="geo.position" content="24.7136;46.6753" />
+        <meta name="ICBM" content="24.7136, 46.6753" />
+        
+        {/* Business schema markup */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Mojaf SA",
+            "image": "https://www.mojaf-sa.com/logo.png",
+            "@id": "https://www.mojaf-sa.com",
+            "url": "https://www.mojaf-sa.com",
+            "telephone": "+966XXXXXXXXX",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "",
+              "addressLocality": "Riyadh",
+              "addressRegion": "Riyadh",
+              "postalCode": "",
+              "addressCountry": "SA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 24.7136,
+              "longitude": 46.6753
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday"
+              ],
+              "opens": "08:00",
+              "closes": "17:00"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/mojaf-sa",
+              "https://twitter.com/mojaf_sa",
+              "https://www.facebook.com/mojaf.sa"
+            ]
+          })}
+        </script>
+      </Helmet>
+
       {/* Services Header Section */}
       <section className="ss-header-section">
         <div className="ss-container">
@@ -201,9 +265,9 @@ const ServicesSection = () => {
               <div className="ss-accent-line" data-aos="flip-left" data-aos-duration="1500"></div>
               <span className="ss-section-subtitle">Our Services</span>
             </div>
-            <h2 className="ss-section-title" data-aos="fade-up" data-aos-delay="100">
+            <h1 className="ss-section-title" data-aos="fade-up" data-aos-delay="100">
               Comprehensive Procurement & Logistics Solutions
-            </h2>
+            </h1>
             <p className="ss-section-description" data-aos="fade-up" data-aos-delay="200">
               We provide end-to-end procurement and logistics services to streamline your supply chain and ensure timely delivery of quality materials.
             </p>
@@ -217,7 +281,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div className={`ss-feature ${index % 2 === 1 ? 'ss-reverse' : ''}`} key={index}>
               <div className="ss-feature-content" data-aos="fade-right">
-                <h3 className="ss-feature-title">{service.title}</h3>
+                <h2 className="ss-feature-title">{service.title}</h2>
                 <p className="ss-feature-description">{service.description}</p>
                 <ul className="ss-feature-highlights">
                   {service.highlights.map((highlight, i) => (
@@ -230,7 +294,7 @@ const ServicesSection = () => {
                 </ul>
               </div>
               <div className="ss-feature-image" data-aos="fade-left">
-                <img src={service.image} alt={service.title} />
+                <img src={service.image} alt={service.title} loading="lazy" />
                 <div className="ss-decorative-box ss-box-1"></div>
                 <div className="ss-decorative-box ss-box-2"></div>
                 <div className="ss-feature-icon">
@@ -260,7 +324,7 @@ const ServicesSection = () => {
             {products.map((product, index) => (
               <div className="ss-product-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="ss-product-image">
-                  <img src={product.image} alt={product.title} />
+                  <img src={product.image} alt={product.title} loading="lazy" />
                   <div className="ss-product-icon">
                     {product.icon}
                   </div>
@@ -272,7 +336,6 @@ const ServicesSection = () => {
                     {product.features.map((feature, i) => (
                       <li className="ss-feature-item" key={i}>
                           <div className="ss-accent-line-small"></div>
-                        {/* <FaCheck className="ss-feature-icon" /> */}
                         {feature}
                       </li>
                     ))}
@@ -282,7 +345,7 @@ const ServicesSection = () => {
             ))}
           </div>
         </div>
-          <Link to="/all-products" className="ss-see-all-button">
+          <Link to="/all-products" className="ss-see-all-button" aria-label="View all products">
           See All Products <FaArrowRight />
         </Link>
       </section>
