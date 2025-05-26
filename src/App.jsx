@@ -13,7 +13,7 @@ import PartnersScreen from './PartnersScreen';
 import CatalogsScreen from './CatalogsScreen';
 import { useLocation } from 'react-router-dom';
 import FloatingContactButtons from './FloatingContactButtons';
-import { HelmetProvider, Helmet} from 'react-helmet-async';
+import { HelmetProvider} from 'react-helmet-async';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -28,21 +28,6 @@ const ScrollToTop = () => {
 function App() {
   return (
     <HelmetProvider>
-    
- <Helmet>
-        <title>Mojaf SA | Premium Construction & Building Materials Supplier in Saudi Arabia</title>
-        <meta 
-          name="description" 
-          content="Leading supplier of flooring, wall panels, doors & construction & building materials in Jeddah, Riyadh, Dammam. Contact +966 56 840 1900 for wholesale prices."
-        />
-        <link rel="icon" href="https://mojaf-sa.com/MOJ.jpg" type="image/jpg" />
-        
-        {/* Open Graph Tags */}
-        <meta property="og:title" content="Mojaf SA | Construction Materials Supplier Saudi Arabia" />
-        <meta property="og:description" content="Authorized distributor of building materials across Jeddah, Riyadh, Dammam. Certified quality products." />
-        <meta property="og:image" content="https://www.mojaf-sa.com/logo-social.png" />
-        
-      </Helmet>
       <Router>
         <ScrollToTop />
         <Routes>
