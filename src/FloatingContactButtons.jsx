@@ -22,7 +22,7 @@ const FloatingContactButtons = () => {
                 href={`https://www.facebook.com/profile.php?id=61576350434274#`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={styles.whatsappButton}
+                style={styles.callButton}
                 title="Facebook"
             >
                 <FaFacebook size={24} />
