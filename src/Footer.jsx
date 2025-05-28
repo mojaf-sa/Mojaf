@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaFacebook } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 function Footer() {
@@ -57,6 +57,16 @@ function Footer() {
                 <li><FaEnvelope className="f-icon" /> Info@mojaf-sa.com</li>
                 <li><FaPhone className="f-icon" /> +966 56 840 1900</li>
                 <li><FaMapMarkerAlt className="f-icon" /> Jeddah, Riyadh, Dammam,Khobar, Madinah, Makkah</li>
+                {/* Facebook button added here */}
+                <li>
+                  <a 
+                    href="https://www.facebook.com/profile.php?id=61576350434274" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook className="f-icon" /> Facebook
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 
 const FloatingContactButtons = () => {
     const phoneNumber = '+966568401900'; // Replace with your phone number
@@ -18,10 +18,22 @@ const FloatingContactButtons = () => {
                 <FaWhatsapp size={24} />
             </a>
 
+              <a
+                href={`https://www.facebook.com/profile.php?id=61576350434274#`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.whatsappButton}
+                title="Facebook"
+            >
+                <FaFacebook size={24} />
+            </a>
+
         {/* Call Button */}
             <a href={`tel:${phoneNumber}`} style={styles.callButton} title="Call Us">
                 <FaPhoneAlt size={20} />
             </a>
+
+
 
         </div>
     );
