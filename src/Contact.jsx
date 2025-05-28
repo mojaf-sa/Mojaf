@@ -36,7 +36,7 @@ function Contact() {
 </Helmet>
       <section className="c-contact-section" id="contact">
         <div className="c-contact-wrapper">
-          <h1 className="c-section-title" data-aos="fade-up">Contact Mojaf Saudi Arabia</h1>
+          <h1 className="c-section-title" data-aos="fade-up">Contact MOJAF Saudi Arabia</h1>
           
           <div className="c-contact-grid">
             {/* Contact Info Section */}
