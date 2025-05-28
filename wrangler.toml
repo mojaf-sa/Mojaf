@@ -3,17 +3,5 @@ compatibility_date="2025-05-07"
 assets = { directory = "dist"}
 routes = [
   "mojaf-sa.com/*",
-  "www.mojaf-sa.com/*",
-  "mojaf-sa.com/about",
-  "www.mojaf-sa.com/about",
-  "mojaf-sa.com/services",
-  "www.mojaf-sa.com/services",
-  "mojaf-sa.com/all-products",
-  "www.mojaf-sa.com/all-products",
-  "mojaf-sa.com/catalogs",
-  "www.mojaf-sa.com/catalogs",
-  "mojaf-sa.com/partners",
-  "www.mojaf-sa.com/partners",
-  "mojaf-sa.com/contact",
-  "www.mojaf-sa.com/contact"
+  "www.mojaf-sa.com/*"
 ]
