@@ -14,7 +14,7 @@
 
   <!-- About -->
   <url>
-    <loc>https://mojaf-sa.com/about</loc>
+    <loc>https://mojaf-sa.com/#/about</loc>
     <lastmod>2023-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +22,7 @@
 
   <!-- Services -->
   <url>
-    <loc>https://mojaf-sa.com/services</loc>
+    <loc>https://mojaf-sa.com/#/services</loc>
     <lastmod>2023-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
   <!-- Products -->
   <url>
-    <loc>https://mojaf-sa.com/all-products</loc>
+    <loc>https://mojaf-sa.com/#/all-products</loc>
     <lastmod>2023-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -38,7 +38,7 @@
 
   <!-- Catalogs -->
   <url>
-    <loc>https://mojaf-sa.com/catalogs</loc>
+    <loc>https://mojaf-sa.com/#/catalogs</loc>
     <lastmod>2023-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -46,7 +46,7 @@
 
   <!-- Partners -->
   <url>
-    <loc>https://mojaf-sa.com/partners</loc>
+    <loc>https://mojaf-sa.com/#/partners</loc>
     <lastmod>2023-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -54,7 +54,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://mojaf-sa.com/contact</loc>
+    <loc>https://mojaf-sa.com/#/contact</loc>
     <lastmod>2023-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
