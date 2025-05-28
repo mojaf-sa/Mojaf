@@ -5,7 +5,7 @@ routes = [
   "mojaf-sa.com/*",
   "www.mojaf-sa.com/*",
   "mojaf-sa.com/about",
-  "www.mojaf-sa.com/about"
+  "www.mojaf-sa.com/about",
   "mojaf-sa.com/services",
   "www.mojaf-sa.com/services",
   "mojaf-sa.com/all-products",
