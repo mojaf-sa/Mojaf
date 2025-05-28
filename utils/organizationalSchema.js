@@ -27,15 +27,15 @@ export const organizationSchema = {
       'https://schema.org/Wednesday',
       'https://schema.org/Thursday',
       'https://schema.org/Friday',
+      'https://schema.org/Saturday',
+      'https://schema.org/Sunday'
     ],
-    opens: '08:00',
-    closes: '18:00'
   },
   sameAs: [
     'https://www.facebook.com/profile.php?id=61576350434274#',
     'https://www.mojaf-sa.com',
     'https://www.mojaf-as.com',
-     'https://mojaf-as.com',
+    'https://mojaf-as.com',
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
