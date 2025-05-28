@@ -14,6 +14,7 @@ import CatalogsScreen from './CatalogsScreen';
 import { useLocation } from 'react-router-dom';
 import FloatingContactButtons from './FloatingContactButtons';
 import { HelmetProvider} from 'react-helmet-async';
+import SEO from '../utils/SEO';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -28,6 +29,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <HelmetProvider>
+      {/* <SEO /> */}
       <Router>
         <ScrollToTop />
         <Routes>
