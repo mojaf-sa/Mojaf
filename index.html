@@ -36,80 +36,107 @@
     <meta name="twitter:image" content="https://mojaf-sa.com/MOJ.jpg">
 
     <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ConstructionBusiness",
-        "name": "MOJAF SA",
-        "image": "https://mojaf-sa.com/MOJ.jpg",
-        "@id": "https://www.mojaf-sa.com",
-        "url": "https://www.mojaf-sa.com",
-        "telephone": "+966 56 840 1900",
-        "email": "info@mojaf-sa.com",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Multiple Locations Across KSA",
-            "addressLocality": ["Jeddah", "Riyadh", "Dammam", "Khobar", "Makkah", "Madinah"],
-            "addressRegion": "Saudi Arabia",
-            "postalCode": "XXXXX",
-            "addressCountry": "SA"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "21.543333",
-            "longitude": "39.172778"
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "18:00"
-        },
-        "sameAs": [
-            "https://www.linkedin.com/company/mojaf-sa",
-            "https://twitter.com/mojaf_sa"
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Construction Materials Catalog",
-            "itemListElement": [
-                {
-                    "@type": "OfferCatalog",
-                    "name": "Flooring Solutions",
-                    "itemListElement": [
-                        {"@type": "Product", "name": "LVT Flooring", "description": "Luxury Vinyl Tile flooring for commercial spaces"},
-                        {"@type": "Product", "name": "SPC Flooring", "description": "Stone Plastic Composite waterproof flooring"}
-                    ]
-                },
-                {
-                    "@type": "OfferCatalog",
-                    "name": "Wall Systems",
-                    "itemListElement": [
-                        {"@type": "Product", "name": "MDF Skirting Boards", "description": "High-quality wall skirting solutions"},
-                        {"@type": "Product", "name": "Acoustic Wall Panels", "description": "Noise-reduction wall panels"}
-                    ]
-                },
-                {
-                    "@type": "OfferCatalog",
-                    "name": "Fasteners & Hardware",
-                    "itemListElement": [
-                        {"@type": "Product", "name": "Self-Drilling Screws", "description": "Premium construction screws"},
-                        {"@type": "Product", "name": "Stainless Steel Fasteners", "description": "Durable fastening solutions"}
-                    ]
-                },
-                {
-                    "@type": "OfferCatalog",
-                    "name": "Electrical Components",
-                    "itemListElement": [
-                        {"@type": "Product", "name": "LED Lighting Systems", "description": "Energy-efficient lighting solutions"},
-                        {"@type": "Product", "name": "Circuit Breakers", "description": "Electrical safety components"}
-                    ]
-                }
-            ]
-        }
-    }
-    </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Construction&BuildingMaterialBusiness",
+  "name": "MOJAF SA",
+  "url": "https://www.mojaf-sa.com",
+  "logo": "https://mojaf-sa.com/MOJ.jpg",
+  "image": "https://mojaf-sa.com/MOJ.jpg",
+  "description": "MOJAF SA is a leading construction materials supplier in Saudi Arabia, offering high-quality flooring, wall systems, fasteners, and electrical components across multiple cities.",
+  "telephone": "+966 56 840 1900",
+  "email": "info@mojaf-sa.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Multiple Locations Across KSA",
+    "addressLocality": "Jeddah, Riyadh, Dammam, Khobar, Makkah, Madinah",
+    "addressRegion": "Saudi Arabia",
+    "addressCountry": "SA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "21.543333",
+    "longitude": "39.172778"
+  },
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61576350434274#",
+    "https://www.mojaf-sa.com",
+    "https://mojaf-sa.com",
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Construction Materials Catalog",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Flooring Solutions",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "LVT Flooring",
+            "description": "Luxury Vinyl Tile flooring for commercial spaces"
+          },
+          {
+            "@type": "Product",
+            "name": "SPC Flooring",
+            "description": "Stone Plastic Composite waterproof flooring"
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Wall Systems",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "MDF Skirting Boards",
+            "description": "High-quality wall skirting solutions"
+          },
+          {
+            "@type": "Product",
+            "name": "Acoustic Wall Panels",
+            "description": "Noise-reduction wall panels"
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Fasteners & Hardware",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "Self-Drilling Screws",
+            "description": "Premium construction screws"
+          },
+          {
+            "@type": "Product",
+            "name": "Stainless Steel Fasteners",
+            "description": "Durable fastening solutions"
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Electrical Components",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "LED Lighting Systems",
+            "description": "Energy-efficient lighting solutions"
+          },
+          {
+            "@type": "Product",
+            "name": "Circuit Breakers",
+            "description": "Electrical safety components"
+          }
+        ]
+      }
+    ]
+  }
+}
+</script>
+
 
     <!-- Preload -->
     <link rel="preload" href="/src/main.jsx" as="script" crossorigin>
