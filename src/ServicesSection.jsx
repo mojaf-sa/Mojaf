@@ -196,7 +196,7 @@ const ServicesSection = () => {
     <div className="ss-main-container" id='ss-services'>
       {/* SEO Optimization with Helmet */}
       <Helmet>
-        <title>Mojaf SA | Comprehensive Procurement & Construction Solutions in Saudi Arabia</title>
+        <title>MOJAF SA | Comprehensive Procurement & Construction Solutions in Saudi Arabia</title>
         <meta name="description" content="Mojaf SA offers end-to-end procurement, logistics, and construction material solutions in Saudi Arabia. Explore our services and premium building products." />
         <meta name="keywords" content="Mojaf SA, Saudi Arabia procurement, construction materials, logistics services, warehousing Saudi Arabia, building products KSA" />
         <meta property="og:title" content="Mojaf SA | Procurement & Construction Solutions in KSA" />

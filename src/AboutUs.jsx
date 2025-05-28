@@ -5,7 +5,7 @@ function AboutUs() {
   return (
     <>
     <Helmet>
-        <title>About Mojaf - Leading Construction Materials Supplier in Saudi Arabia</title>
+        <title>About MOJAF - Leading Construction Materials Supplier in Saudi Arabia</title>
         <meta 
           name="description" 
           content="Mojaf is Saudi Arabia's premier building materials supplier since 2020, offering steel, timber, insulation, plumbing, electrical, tools & more across 5 locations." 
@@ -63,7 +63,7 @@ function AboutUs() {
 
         <div className="text-content e-con-full e-flex e-child">
           <div className="heading-section">
-            <h1 className="main-heading elementor-heading-title">About Mojaf</h1>
+            <h1 className="main-heading elementor-heading-title">About MOJAF</h1>
             <h2 className="sub-heading elementor-heading-title">All Building & Construction Materials Under One Roof</h2>
             <p className="description">
               Founded in 2020, Mojaf is the leading building & construction materials company in Saudi Arabia, 

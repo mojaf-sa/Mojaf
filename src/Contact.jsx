@@ -25,7 +25,7 @@ function Contact() {
     <div className="c-contact-container">
       {/* SEO Meta Tags in Helmet (should be included in your main layout component) */}
       <Helmet>
-        <title>Contact Mojaf Saudi Arabia - Construction & Engineering Services</title>
+        <title>Contact MOJAF Saudi Arabia - Construction & Engineering Services</title>
         <meta name="description" content="Get in touch with Mojaf Saudi Arabia for construction and engineering services. Contact us via phone, email, or visit our branches in Jeddah, Riyadh, Dammam and more." />
         <meta name="keywords" content="Mojaf Saudi Arabia, construction Saudi Arabia, engineering services, contact Mojaf, Jeddah construction, Riyadh engineering" />
         <meta property="og:title" content="Contact Mojaf Saudi Arabia - Construction & Engineering Services" />
