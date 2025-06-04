@@ -196,15 +196,15 @@ const ServicesSection = () => {
     <div className="ss-main-container" id='ss-services'>
       {/* SEO Optimization with Helmet */}
       <Helmet>
-        <title>MOJAF SA | Comprehensive Procurement & Construction Solutions in Saudi Arabia</title>
-        <meta name="description" content="Mojaf SA offers end-to-end procurement, logistics, and construction material solutions in Saudi Arabia. Explore our services and premium building products." />
-        <meta name="keywords" content="Mojaf SA, Saudi Arabia procurement, construction materials, logistics services, warehousing Saudi Arabia, building products KSA" />
-        <meta property="og:title" content="Mojaf SA | Procurement & Construction Solutions in KSA" />
+        <title>MOJAF | Comprehensive Procurement & Construction Solutions in Saudi Arabia</title>
+        <meta name="description" content="MOJAF offers end-to-end procurement, logistics, and construction material solutions in Saudi Arabia. Explore our services and premium building products." />
+        <meta name="keywords" content="MOJAF , Saudi Arabia procurement, construction materials, logistics services, warehousing Saudi Arabia, building products KSA" />
+        <meta property="og:title" content="MOJAF | Procurement & Construction Solutions in KSA" />
         <meta property="og:description" content="Leading provider of procurement services and construction materials in Saudi Arabia. Quality products and reliable logistics solutions." />
         <meta property="og:url" content="https://www.mojaf-sa.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ar_SA" />
-        <meta property="og:site_name" content="Mojaf SA" />
+        <meta property="og:site_name" content="MOJAF" />
         <link rel="canonical" href="https://www.mojaf-sa.com/services" />
         
         {/* Saudi Arabia specific tags */}
@@ -218,8 +218,8 @@ const ServicesSection = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Mojaf SA",
-            "image": "https://www.mojaf-sa.com/logo.png",
+            "name": "MOJAF",
+            "image": "https://mojaf-sa.com/MOJ.jpg",
             "@id": "https://www.mojaf-sa.com",
             "url": "https://www.mojaf-sa.com",
             "telephone": "+966XXXXXXXXX",

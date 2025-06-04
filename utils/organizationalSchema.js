@@ -2,7 +2,7 @@ export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Construction&BuildinMeterialsBusiness',
   '@id': 'https://www.mojaf-sa.com',
-  name: 'MOJAF SA',
+  name: 'MOJAF',
   image: 'https://mojaf-sa.com/MOJ.jpg',
   url: 'https://www.mojaf-sa.com',
   email: 'info@mojaf-sa.com',
@@ -112,7 +112,7 @@ export const organizationSchema = {
 export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'MOJAF SA',
+  name: 'MOJAF',
   alternateName: 'MOJAF',
   url: 'https://www.mojaf-sa.com'
 };

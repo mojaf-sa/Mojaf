@@ -14,7 +14,7 @@ function AboutUs() {
           name="keywords" 
           content="construction materials Saudi Arabia, building supplies, steel suppliers, timber suppliers, plumbing materials, electrical supplies, hardware Saudi Arabia" 
         />
-        <meta property="og:title" content="About Mojaf - Your Complete Construction Materials Solution" />
+        <meta property="og:title" content="About MOJAF - Your Complete Construction Materials Solution" />
         <meta 
           property="og:description" 
           content="Discover Mojaf's vision to be Saudi Arabia's top destination for all building & construction material needs with our extensive product range." 
@@ -31,7 +31,7 @@ function AboutUs() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Mojaf",
+            "name": "MOJAF",
             "url": "https://www.mojaf-sa.com",
             "logo": "https://www.mojaf-sa.com/logo.webp",
             "foundingDate": "2020",
@@ -66,7 +66,7 @@ function AboutUs() {
             <h1 className="main-heading elementor-heading-title">About MOJAF</h1>
             <h2 className="sub-heading elementor-heading-title">All Building & Construction Materials Under One Roof</h2>
             <p className="description">
-              Founded in 2020, Mojaf is the leading building & construction materials company in Saudi Arabia, 
+              Founded in 2020, MOJAF is the leading building & construction materials company in Saudi Arabia, 
               specializing in the distribution of all kinds of Steel, Timber, Insulation, Plumbing, Electrical, 
               Tools, Hardware, Chemicals & Fasteners, to support the construction needs in the Kingdom. With a 
               network of 5 Outlets, supported by advanced Logistics & Professional support.
