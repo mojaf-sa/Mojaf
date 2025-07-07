@@ -1,6 +1,6 @@
 export const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness', // Changed from "Construction&BuildinMeterialsBusiness" (invalid)
+  '@type': 'LocalBusiness',
   '@id': 'https://www.mojaf-sa.com',
   name: 'MOJAF',
   image: 'https://mojaf-sa.com/MOJ.jpg',
@@ -21,21 +21,13 @@ export const organizationSchema = {
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday'
-    ],
-    opens: '08:00', // Required field
-    closes: '18:00' // Required field
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '08:00',
+    closes: '18:00'
   },
   sameAs: [
-    'https://www.facebook.com/profile.php?id=61576350434274', // Removed #
-    'https://www.mojaf-sa.com' // Removed duplicates
+    'https://www.facebook.com/profile.php?id=61576350434274',
+    'https://www.mojaf-sa.com'
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -48,12 +40,24 @@ export const organizationSchema = {
           {
             '@type': 'Product',
             name: 'LVT Flooring',
-            description: 'Luxury Vinyl Tile flooring for commercial spaces'
+            description: 'Luxury Vinyl Tile flooring for commercial spaces',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           },
           {
             '@type': 'Product',
             name: 'SPC Flooring',
-            description: 'Stone Plastic Composite waterproof flooring'
+            description: 'Stone Plastic Composite waterproof flooring',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           }
         ]
       },
@@ -64,12 +68,24 @@ export const organizationSchema = {
           {
             '@type': 'Product',
             name: 'MDF Skirting Boards',
-            description: 'High-quality wall skirting solutions'
+            description: 'High-quality wall skirting solutions',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           },
           {
             '@type': 'Product',
             name: 'Acoustic Wall Panels',
-            description: 'Noise-reduction wall panels'
+            description: 'Noise-reduction wall panels',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           }
         ]
       },
@@ -80,12 +96,24 @@ export const organizationSchema = {
           {
             '@type': 'Product',
             name: 'Self-Drilling Screws',
-            description: 'Premium construction screws'
+            description: 'Premium construction screws',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           },
           {
             '@type': 'Product',
             name: 'Stainless Steel Fasteners',
-            description: 'Durable fastening solutions'
+            description: 'Durable fastening solutions',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           }
         ]
       },
@@ -96,12 +124,24 @@ export const organizationSchema = {
           {
             '@type': 'Product',
             name: 'LED Lighting Systems',
-            description: 'Energy-efficient lighting solutions'
+            description: 'Energy-efficient lighting solutions',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           },
           {
             '@type': 'Product',
             name: 'Circuit Breakers',
-            description: 'Electrical safety components'
+            description: 'Electrical safety components',
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'SAR',
+              availability: 'https://www.mojaf-sa.com/',
+              url: 'https://www.mojaf-sa.com/'
+            }
           }
         ]
       }
