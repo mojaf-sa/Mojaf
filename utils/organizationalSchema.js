@@ -1,6 +1,6 @@
 export const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Construction&BuildinMeterialsBusiness',
+  '@type': 'LocalBusiness', // Changed from "Construction&BuildinMeterialsBusiness" (invalid)
   '@id': 'https://www.mojaf-sa.com',
   name: 'MOJAF',
   image: 'https://mojaf-sa.com/MOJ.jpg',
@@ -22,20 +22,20 @@ export const organizationSchema = {
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: [
-      'https://schema.org/Monday',
-      'https://schema.org/Tuesday',
-      'https://schema.org/Wednesday',
-      'https://schema.org/Thursday',
-      'https://schema.org/Friday',
-      'https://schema.org/Saturday',
-      'https://schema.org/Sunday'
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
     ],
+    opens: '08:00', // Required field
+    closes: '18:00' // Required field
   },
   sameAs: [
-    'https://www.facebook.com/profile.php?id=61576350434274#',
-    'https://www.mojaf-sa.com',
-    'https://www.mojaf-as.com',
-    'https://mojaf-as.com',
+    'https://www.facebook.com/profile.php?id=61576350434274', // Removed #
+    'https://www.mojaf-sa.com' // Removed duplicates
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
