@@ -1,4 +1,5 @@
 User-agent: *
-Allow: /
+Disallow:
 
 Sitemap: https://mojaf-sa.com/sitemap.xml
+Host: mojaf-sa.com
