@@ -1,3 +1,13 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.mojaf-sa.com/sitemap.xml
+Sitemap: https://mojaf-sa.com/sitemap.xml
+
+# Extra crawl hints for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
