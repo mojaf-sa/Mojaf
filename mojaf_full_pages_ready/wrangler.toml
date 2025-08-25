@@ -1,0 +1,7 @@
+name="mojafrjs"
+compatibility_date="2025-05-07"
+assets = { directory = "dist"}
+routes = [
+  "mojaf-sa.com/*",
+  "www.mojaf-sa.com/*"
+]
