@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -33,7 +33,6 @@ jobs:
       - name: Build (Vite)
         run: npm run build
 
-      # Upload the *built* site (dist/) as Pages artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
