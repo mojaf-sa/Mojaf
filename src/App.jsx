@@ -1,8 +1,5 @@
-// src/App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-// ✅ import from the real locations (root of /src) and correct casing
 import Home from './Home.jsx';
 import AboutUs from './AboutUs.jsx';
 import Services from './Services.jsx';
