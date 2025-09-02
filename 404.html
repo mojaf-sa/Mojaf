@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Redirecting…</title>
+  <meta name="robots" content="noindex" />
   <script>
-    // This script redirects unknown routes back to index.html with a hash
-    (function() {
+    (function () {
       var l = window.location;
-      var redirect = l.protocol + '//' + l.host + '/#' + l.pathname + l.search + l.hash;
-      window.location.replace(redirect);
+      var to = l.protocol + '//' + l.host + '/#' + l.pathname + l.search + l.hash;
+      window.location.replace(to);
     })();
   </script>
 </head>
 <body>
-  <p>Redirecting…</p>
+  Redirecting…
 </body>
 </html>
