@@ -18,13 +18,11 @@ function Footer() {
             {/* Brand / About */}
             <div className="f-footer-col">
               <div className="f-logo" aria-label="MOJAF Trading">
-                {/* p instead of h1 to avoid duplicate H1s */}
                 <p className="f-brand">MOJAF</p>
                 <span>Your Procurement Partner</span>
               </div>
               <p>We deliver your promise with high-quality products and reliable service.</p>
 
-              {/* Legal name for Google cross-verification */}
               <p className="f-legal">
                 Legally registered as <strong>Establishment Mohamed Abdallah Mohamed Al-Jifri for Trading</strong>.
               </p>
@@ -80,7 +78,7 @@ function Footer() {
                 </li>
                 <li>
                   <FaMapMarkerAlt className="f-icon" />
-                  Jeddah, Riyadh, Dammam, Khobar, Madinah, Makkah
+                  Q3FW+2JG, Al Shera'a, Jeddah 23816, Saudi Arabia
                 </li>
                 <li>
                   <a
@@ -99,7 +97,7 @@ function Footer() {
           <div className="f-keywords">
             <p>
               Services: Fasteners • Wall &amp; Floor Skirting • Vinyl/SPC Flooring • Insulation • Electrical Components • Boards • Portacabin Materials
-              &nbsp;—&nbsp; Cities: Riyadh • Jeddah • Dammam • Khobar
+              &nbsp;—&nbsp; Address: Q3FW+2JG, Al Shera'a, Jeddah 23816, Saudi Arabia
             </p>
           </div>
 
