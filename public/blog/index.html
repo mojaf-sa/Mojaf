@@ -6,92 +6,121 @@
   <title>MOJAF Trading Blog | Construction & Materials KSA</title>
   <meta name="description" content="In-depth articles on fasteners, wall skirting, portacabin materials, and building supplies for Saudi Arabia.">
   <style>
+    /* Header styles copied to match your React header */
+    .header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:100}
+    .logo-container{display:flex;align-items:center;text-decoration:none;z-index:1001}
+    .logo{height:48px;width:auto;object-fit:cover;border-radius:5%}
+    .nav-links{display:flex;gap:1.5rem}
+    .nav-links a{text-decoration:none;color:#333;font-weight:500;transition:all .3s;padding:.5rem 0;position:relative}
+    .nav-links a:hover{color:#FFD700}
+    .nav-links a.active{color:#FFD700;border-bottom:2px dashed #FFD700}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background-color:#FFD700;transition:width .3s}
+    .nav-links a:hover::after{width:100%}
+    @media (max-width:768px){.nav-links{flex-wrap:wrap;gap:1rem}}
+
+    /* Page styles */
     body{margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;color:#0f172a;background:#f7f8fb}
-    header{background:#0f4458;color:#fff;padding:24px}
-    header .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-    header a{color:#ffcc00;text-decoration:none}
-    main{max-width:1100px;margin:24px auto;padding:0 16px}
+    .container{max-width:1100px;margin:24px auto;padding:0 16px}
+    .title{margin:8px 0 18px;font-size:28px;color:#0f172a}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-    .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 28px rgba(2,6,23,.12);display:flex;flex-direction:column;text-decoration:none;color:inherit}
-    .card img{width:100%;height:160px;object-fit:cover}
-    .card-body{padding:14px}
-    .card h3{margin:4px 0 6px;font-size:18px}
-    .card p{margin:0 0 8px;color:#374151;font-size:14px;line-height:1.5}
-    .meta{font-size:12px;color:#6b7280}
+    .card{display:block;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 28px rgba(2,6,23,.12);text-decoration:none;color:#111;padding-bottom:12px}
+    .card img{width:100%;height:160px;object-fit:cover;display:block}
+    .card h3{font-size:18px;margin:10px 12px 6px}
+    .card p{font-size:14px;line-height:1.5;margin:0 12px 6px;color:#374151}
+    .meta{font-size:12px;color:#6b7280;margin:0 12px}
     footer{padding:28px;color:#6b7280;text-align:center}
   </style>
 </head>
 <body>
-  <header><div class="wrap"><strong>MOJAF Trading</strong><nav><a href="/index.html">Home</a></nav></div></header>
-  <main>
-    <h1>Blog</h1>
-    <div class="grid">
-      
+
+  <!-- STATIC HEADER matching site -->
+  <header class="header">
+    <a href="/" class="logo-container">
+      <img src="/MOJ.jpg" alt="Company Logo" class="logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="/" data-path="/">Home</a>
+      <a href="/about" data-path="/about">About</a>
+      <a href="/services" data-path="/services">Services</a>
+      <a href="/all-products" data-path="/all-products">Products</a>
+      <a href="/catalogs" data-path="/catalogs">Catalogs</a>
+      <a href="/partners" data-path="/partners">Partners</a>
+      <a href="/blog.html" data-path="/blog" class="active">Blog</a>
+      <a href="/contact" data-path="/contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="title">Blog</h1>
+
+    <section class="grid">
       <a class="card" href="/blog/quality-fasteners-saudi-arabia.html">
-        <img src="/images/quality-fasteners-saudi-arabia_banner.png" alt="Quality Fasteners in Saudi Construction: What Really Matters banner">
-        <div class="card-body">
-          <h3>Quality Fasteners in Saudi Construction: What Really Matters</h3>
-          <p>Discover how selecting the correct fastener type, coating, and grade impacts safety, durability, and cost across Saudi projects in Jeddah, Riyadh, and Dammam.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/quality-fasteners-saudi-arabia_banner.png" alt="Quality fasteners in Saudi construction">
+        <h3>Quality Fasteners in Saudi Construction: What Really Matters</h3>
+        <p>How grade, coating, and climate affect safety, durability, and cost across Jeddah, Riyadh, and Dammam.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
+
       <a class="card" href="/blog/wall-skirting-trends-ksa.html">
-        <img src="/images/wall-skirting-trends-ksa_banner.png" alt="Wall Skirting in KSA: Types, Trends and Practical Specs banner">
-        <div class="card-body">
-          <h3>Wall Skirting in KSA: Types, Trends and Practical Specs</h3>
-          <p>A practical buyer’s guide to PVC, MDF, aluminum, and stainless skirting for residential, retail, and industrial spaces in the Kingdom.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/wall-skirting-trends-ksa_banner.png" alt="Wall skirting trends KSA">
+        <h3>Wall Skirting in KSA: Types, Trends and Practical Specs</h3>
+        <p>Practical buyer’s guide to PVC, MDF, aluminum, and stainless for homes, retail, and industry.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
+
       <a class="card" href="/blog/choose-building-materials-supplier-ksa.html">
-        <img src="/images/choose-building-materials-supplier-ksa_banner.png" alt="How to Choose a Reliable Building Materials Supplier in KSA banner">
-        <div class="card-body">
-          <h3>How to Choose a Reliable Building Materials Supplier in KSA</h3>
-          <p>Checklist to vet suppliers for stock depth, delivery timelines, QA, pricing transparency, and after‑sales support.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/choose-building-materials-supplier-ksa_banner.png" alt="Choose building materials supplier KSA">
+        <h3>How to Choose a Reliable Building Materials Supplier in KSA</h3>
+        <p>Checklist for stock depth, delivery, QA docs, and after-sales support.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
+
       <a class="card" href="/blog/supply-chain-challenges-ksa.html">
-        <img src="/images/supply-chain-challenges-ksa_banner.png" alt="Construction Supply Chains in KSA: Risks and Workarounds banner">
-        <div class="card-body">
-          <h3>Construction Supply Chains in KSA: Risks and Workarounds</h3>
-          <p>From port congestion to seasonal peaks, learn the practical steps contractors can use to keep projects on schedule.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/supply-chain-challenges-ksa_banner.png" alt="Supply chain challenges KSA">
+        <h3>Construction Supply Chains in KSA: Risks and Workarounds</h3>
+        <p>From port congestion to seasonal peaks, keep projects on schedule.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
+
       <a class="card" href="/blog/portacabin-materials-demand.html">
-        <img src="/images/portacabin-materials-demand_banner.png" alt="Why Portacabin Materials Are Surging in Jeddah and Dammam banner">
-        <div class="card-body">
-          <h3>Why Portacabin Materials Are Surging in Jeddah and Dammam</h3>
-          <p>Growth drivers, common materials list, and quality checks for modular cabins used on sites and remote offices.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/portacabin-materials-demand_banner.png" alt="Portacabin materials demand">
+        <h3>Why Portacabin Materials Are Surging in Jeddah and Dammam</h3>
+        <p>Drivers, materials list, and quality checks for modular cabins.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
+
       <a class="card" href="/blog/screw-types-riyadh.html">
-        <img src="/images/screw-types-riyadh_banner.png" alt="Screw Types Every Riyadh Contractor Should Know banner">
-        <div class="card-body">
-          <h3>Screw Types Every Riyadh Contractor Should Know</h3>
-          <p>From self‑drilling to concrete anchors, here’s when to use each screw and how to avoid common installation errors.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/screw-types-riyadh_banner.png" alt="Screw types Riyadh">
+        <h3>Screw Types Every Riyadh Contractor Should Know</h3>
+        <p>When to use self-drilling, concrete anchors, and more.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
+
       <a class="card" href="/blog/sustainable-materials-ksa.html">
-        <img src="/images/sustainable-materials-ksa_banner.png" alt="Sustainable Construction Materials in Saudi Arabia banner">
-        <div class="card-body">
-          <h3>Sustainable Construction Materials in Saudi Arabia</h3>
-          <p>Materials and methods that cut embodied carbon while staying practical for projects in the Kingdom.</p>
-          <span class="meta">2025-09-13</span>
-        </div>
+        <img src="/images/sustainable-materials-ksa_banner.png" alt="Sustainable materials KSA">
+        <h3>Sustainable Construction Materials in Saudi Arabia</h3>
+        <p>Cut embodied carbon with realistic, available options.</p>
+        <p class="meta">2025-09-13</p>
       </a>
-    
-    </div>
+    </section>
   </main>
-  <footer>© 2025 MOJAF Trading</footer>
+
+  <footer>
+    © 2025 MOJAF Trading
+    <p><a href="/blog.html">Blog</a> · <a href="/index.html">Home</a></p>
+  </footer>
+
+  <!-- Activate correct menu item on static pages -->
+  <script>
+    (function(){
+      var path = location.pathname;
+      document.querySelectorAll('.nav-links a').forEach(function(a){
+        var p = a.getAttribute('data-path');
+        var isBlog = (p === '/blog') && (path === '/blog.html' || path === '/blog' || path.indexOf('/blog/') === 0);
+        var match = (p !== '/blog') && (path === p);
+        if (isBlog || match) a.classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>
