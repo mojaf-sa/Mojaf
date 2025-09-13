@@ -1,0 +1,24 @@
+// Add to your router (e.g., src/App.jsx or src/main.jsx)
+import Fasteners from "./pages/Fasteners.jsx";
+import Skirting from "./pages/Skirting.jsx";
+import Flooring from "./pages/Flooring.jsx";
+import Boards from "./pages/Boards.jsx";
+import Insulation from "./pages/Insulation.jsx";
+import Electrical from "./pages/Electrical.jsx";
+import Portacabin from "./pages/Portacabin.jsx";
+import CityJeddah from "./pages/CityJeddah.jsx";
+import CityRiyadh from "./pages/CityRiyadh.jsx";
+import CityDammam from "./pages/CityDammam.jsx";
+
+/* Inside <Routes>:
+  <Route path="/fasteners" element={<Fasteners />} />
+  <Route path="/skirting" element={<Skirting />} />
+  <Route path="/flooring" element={<Flooring />} />
+  <Route path="/boards" element={<Boards />} />
+  <Route path="/insulation" element={<Insulation />} />
+  <Route path="/electrical" element={<Electrical />} />
+  <Route path="/portacabin" element={<Portacabin />} />
+  <Route path="/jeddah" element={<CityJeddah />} />
+  <Route path="/riyadh" element={<CityRiyadh />} />
+  <Route path="/dammam" element={<CityDammam />} />
+*/
