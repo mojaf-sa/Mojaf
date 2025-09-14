@@ -7,7 +7,9 @@ const Header = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleLinkClick = (path) => {
     setActiveLink(path);
@@ -22,23 +24,14 @@ const Header = () => {
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        isMenuOpen &&
-        !event.target.closest('.nav-links') &&
-        !event.target.closest('.hamburger')
-      ) {
+      if (isMenuOpen && !event.target.closest('.nav-links') && !event.target.closest('.hamburger')) {
         setIsMenuOpen(false);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
-
-  // Mark Blog active on /blog.html, /blog, or any /blog/*
-  const isBlogActive =
-    activeLink === '/blog' ||
-    activeLink === '/blog.html' ||
-    activeLink.startsWith('/blog/');
 
   return (
     <>
@@ -52,18 +45,75 @@ const Header = () => {
           align-items: center;
           position: relative;
           z-index: 100;
+          
         }
-        .logo-container { display: flex; align-items: center; text-decoration: none; z-index: 1001; }
-        .logo { height: 48px; width: auto; object-fit: cover; border-radius: 5%; }
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: all 0.3s; padding: 0.5rem 0; position: relative; }
-        .nav-links a:hover { color: #FFD700; }
-        .nav-links a.active { color: #FFD700; border-bottom: 2px dashed #FFD700; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #FFD700; transition: width 0.3s; }
-        .nav-links a:hover::after { width: 100%; }
-        .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; z-index: 1001; }
-        .close-icon { display: none; }
-
+        
+        .logo-container {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          z-index: 1001;
+        }
+        
+        .logo {
+          height: 48px;
+          width: auto;
+          object-fit: cover;
+          border-radius: 5%;
+        }
+        
+        .nav-links {
+          display: flex;
+          gap: 1.5rem;
+        }
+        
+        .nav-links a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          transition: all 0.3s;
+          padding: 0.5rem 0;
+          position: relative;
+        }
+        
+        .nav-links a:hover {
+          color: #FFD700;
+        }
+        
+        .nav-links a.active {
+          color: #FFD700;
+          border-bottom: 2px dashed #FFD700;
+        }
+        
+        .nav-links a::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: #FFD700;
+          transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+          width: 100%;
+        }
+        
+        .hamburger {
+          display: none;
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: #333;
+          z-index: 1001;
+        }
+        
+        .close-icon {
+          display: none;
+        }
+        
         @media (max-width: 768px) {
           .nav-links {
             position: fixed;
@@ -75,46 +125,101 @@ const Header = () => {
             flex-direction: column;
             gap: 1rem;
             padding: 6rem 2rem 2rem;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             transition: left 0.3s ease;
             z-index: 1000;
           }
-          .nav-links a { padding: 0.8rem; border-bottom: 1px solid #eee; }
-          .hamburger { display: ${isMenuOpen ? 'none' : 'block'}; }
+          
+          .nav-links a {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+          }
+          
+          .hamburger {
+            display: ${isMenuOpen ? 'none' : 'block'};
+          }
+          
           .close-icon {
             display: ${isMenuOpen ? 'block' : 'none'};
-            position: absolute; top: 1.5rem; right: 1.5rem;
-            font-size: 1.5rem; cursor: pointer; z-index: 1001;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
           }
         }
       `}</style>
 
       <header className="header">
         <Link to="/" className="logo-container" onClick={() => handleLinkClick('/')}>
-          <img src="/MOJ.jpg" alt="Company Logo" className="logo" />
+          <img 
+            src='/MOJ.jpg'
+            alt="Company Logo" 
+            className="logo" 
+          />
         </Link>
 
-        <button className="hamburger" onClick={toggleMenu}><FaBars /></button>
-        {isMenuOpen && <button className="close-icon" onClick={toggleMenu}><FaTimes /></button>}
+        <button className="hamburger" onClick={toggleMenu}>
+          <FaBars />
+        </button>
+        
+        {isMenuOpen && (
+          <button className="close-icon" onClick={toggleMenu}>
+            <FaTimes />
+          </button>
+        )}
 
         <nav className="nav-links">
-          <Link to="/" className={activeLink === '/' ? 'active' : ''} onClick={() => handleLinkClick('/')}>Home</Link>
-          <Link to="/about" className={activeLink === '/about' ? 'active' : ''} onClick={() => handleLinkClick('/about')}>About</Link>
-          <Link to="/services" className={activeLink === '/services' ? 'active' : ''} onClick={() => handleLinkClick('/services')}>Services</Link>
-          <Link to="/all-products" className={activeLink === '/all-products' ? 'active' : ''} onClick={() => handleLinkClick('/all-products')}>Products</Link>
-          <Link to="/catalogs" className={activeLink === '/catalogs' ? 'active' : ''} onClick={() => handleLinkClick('/catalogs')}>Catalogs</Link>
-          <Link to="/partners" className={activeLink === '/partners' ? 'active' : ''} onClick={() => handleLinkClick('/partners')}>Partners</Link>
-
-          {/* Blog goes to static file in /public. Use <a>, not <Link>. */}
-          <a
-            href="/blog.html"
-            className={isBlogActive ? 'active' : ''}
-            onClick={() => handleLinkClick('/blog.html')}
+          <Link 
+            to="/" 
+            className={activeLink === '/' ? 'active' : ''}
+            onClick={() => handleLinkClick('/')}
           >
-            Blog
-          </a>
-
-          <Link to="/contact" className={activeLink === '/contact' ? 'active' : ''} onClick={() => handleLinkClick('/contact')}>Contact</Link>
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className={activeLink === '/about' ? 'active' : ''}
+            onClick={() => handleLinkClick('/about')}
+          >
+            About
+          </Link>
+          <Link 
+            to="/services" 
+            className={activeLink === '/services' ? 'active' : ''}
+            onClick={() => handleLinkClick('/services')}
+          >
+            Services
+          </Link>
+          <Link 
+            to="/all-products" 
+            className={activeLink === '/all-products' ? 'active' : ''}
+            onClick={() => handleLinkClick('/all-products')}
+          >
+            Products
+          </Link>
+          <Link 
+            to="/catalogs" 
+            className={activeLink === '/catalogs' ? 'active' : ''}
+            onClick={() => handleLinkClick('/catalogs')}
+          >
+            Catalogs
+          </Link>
+          <Link 
+            to="/partners" 
+            className={activeLink === '/partners' ? 'active' : ''}
+            onClick={() => handleLinkClick('/partners')}
+          >
+            Partners
+          </Link>
+          <Link 
+            to="/contact" 
+            className={activeLink === '/contact' ? 'active' : ''}
+            onClick={() => handleLinkClick('/contact')}
+          >
+            Contact
+          </Link>
         </nav>
       </header>
     </>
