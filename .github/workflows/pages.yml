@@ -39,20 +39,12 @@ jobs:
           else
             npm install
           fi
-      - name: Show vite config
-        run: |
-          echo "--- vite.config.js ---"
-          if [ -f vite.config.js ]; then cat vite.config.js; else echo "vite.config.js missing"; fi
       - name: Build site
         run: npm run build
-      - name: Inspect dist
+      - name: Inspect dist (sanity)
         run: |
-          echo "=== dist tree ==="
-          ls -lah dist || true
-          echo "=== dist/assets ==="
-          ls -lah dist/assets || true
-          echo "=== first 30 lines of dist/index.html ==="
-          head -n 30 dist/index.html || true
+          echo "=== dist/ ==="; ls -lah dist || true
+          echo "=== dist/index.html head ==="; head -n 40 dist/index.html || true
       - name: Add 404 fallback (copy built index)
         run: cp dist/index.html dist/404.html
       - name: Upload artifact
