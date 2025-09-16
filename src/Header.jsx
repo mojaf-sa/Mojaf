@@ -99,6 +99,14 @@ const Header = () => {
         .nav-links a:hover::after {
           width: 100%;
         }
+
+        /* Dropdown (Blog) */
+        .dropdown{position:relative}
+        .dropdown > a, .dropdown > button{display:inline-block;padding:0.5rem 0.75rem;text-decoration:none;color:#333;position:relative}
+        .dropdown-menu{position:absolute;top:2.6rem;left:0;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:0.25rem;display:none;min-width:260px;z-index:1002}
+        .dropdown:hover .dropdown-menu{display:block}
+        .dropdown-menu a{display:block;padding:0.5rem 0.75rem;border-radius:8px;color:#111827;text-decoration:none}
+        .dropdown-menu a:hover{background:#f3f4f6}
         
         .hamburger {
           display: none;
@@ -213,6 +221,14 @@ const Header = () => {
           >
             Partners
           </Link>
+          <div className="dropdown">
+            <a href="/blog/">Blog</a>
+            <div className="dropdown-menu">
+              <a href="/construction-materials.html">Construction Materials</a>
+              <a href="/fasteners-screws.html">Fasteners & Screws</a>
+              <a href="/wall-skirting.html">Wall Skirting</a>
+            </div>
+          </div>
           <Link 
             to="/contact" 
             className={activeLink === '/contact' ? 'active' : ''}
