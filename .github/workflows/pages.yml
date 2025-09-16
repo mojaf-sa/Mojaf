@@ -1,4 +1,3 @@
-# .github/workflows/pages.yml
 name: Build and Deploy (Vite → GitHub Pages)
 
 on:
@@ -33,12 +32,8 @@ jobs:
           fi
       - name: Build site
         run: npm run build
-      - name: Add 404 fallback to dist
-        run: |
-          if [ -f public/404.html ]; then
-            mkdir -p dist
-            cp public/404.html dist/404.html
-          fi
+      - name: Add 404 fallback (copy built index)
+        run: cp dist/index.html dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
