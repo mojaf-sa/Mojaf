@@ -1,14 +1,12 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App.jsx';
-import './style.css';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './style.css'   // ensure CSS is bundled
 
-const rootEl = document.getElementById('root');
-createRoot(rootEl).render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/">
-      <App />
-    </BrowserRouter>
+    <BrowserRouter basename=="/"><App /></BrowserRouter>
+
   </React.StrictMode>
-);
+)
