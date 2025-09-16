@@ -1,60 +1,27 @@
-<?xml version='1.0' encoding='utf-8'?>
-<ns0:urlset xmlns:ns0="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>weekly</ns0:changefreq>
-    <ns0:priority>1.0</ns0:priority>
-  </ns0:url>
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/#/about</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>monthly</ns0:changefreq>
-    <ns0:priority>0.8</ns0:priority>
-  </ns0:url>
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/#/services</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>monthly</ns0:changefreq>
-    <ns0:priority>0.8</ns0:priority>
-  </ns0:url>
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/#/all-products</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>weekly</ns0:changefreq>
-    <ns0:priority>0.7</ns0:priority>
-  </ns0:url>
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/#/catalogs</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>weekly</ns0:changefreq>
-    <ns0:priority>0.7</ns0:priority>
-  </ns0:url>
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/#/partners</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>monthly</ns0:changefreq>
-    <ns0:priority>0.6</ns0:priority>
-  </ns0:url>
-
-  
-  <ns0:url>
-    <ns0:loc>https://mojaf-sa.com/#/contact</ns0:loc>
-    <ns0:lastmod>2023-10-26</ns0:lastmod>
-    <ns0:changefreq>monthly</ns0:changefreq>
-    <ns0:priority>0.5</ns0:priority>
-  </ns0:url>
-
-<ns0:url><ns0:loc>https://www.mojaf-sa.com/contact/</ns0:loc></ns0:url></ns0:urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.mojaf-sa.com/</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/building-material-distributors-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/choose-building-materials-supplier-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/construction-materials-riyadh-trends-2025.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/decorative-skirting-boards-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/fasteners-supplier-dammam.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/floor-skirting-dealer-riyadh.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/interior-finishing-materials-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/portacabin-materials-demand.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/portacabin-materials-khobar.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/quality-fasteners-saudi-arabia.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/screw-types-riyadh.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/supply-chain-challenges-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/sustainable-materials-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/sustainable-skirting-flooring-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/wall-skirting-supplier-jeddah.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/wall-skirting-trends-ksa.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/blog/wholesale-building-materials-jubail.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/construction-materials.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/contact/</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/fasteners-screws.html</loc></url>
+  <url><loc>https:/www.mojaf-sa.com/wall-skirting.html</loc></url>
+</urlset>
