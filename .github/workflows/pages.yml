@@ -34,7 +34,7 @@ jobs:
           rm -f public/{about,services,products,catalogs,partners,contact}/index.html
           rm -f public/blog.html
 
-      # Safe one-liner (no 'else:' issue)
+      # Safe one-liner (no else:)
       - name: Install dependencies (safe one-liner)
         shell: bash
         run: |
