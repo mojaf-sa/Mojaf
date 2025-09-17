@@ -1,49 +1,57 @@
 name: Build and Deploy (Vite → GitHub Pages)
+
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+
+      # Remove any static files that collide with React routes
       - name: Remove files that collide with React routes
+        shell: bash
         run: |
           rm -f public/index.html
-          rm -f public/about.html public/about/index.html
-          rm -f public/services.html public/services/index.html
-          rm -f public/products.html public/products/index.html
-          rm -f public/catalogs.html public/catalogs/index.html
-          rm -f public/partners.html public/partners/index.html
-          rm -f public/contact.html public/contact/index.html
+          rm -f public/{about,services,products,catalogs,partners,contact}.html
+          rm -f public/{about,services,products,catalogs,partners,contact}/index.html
           rm -f public/blog.html
-      - name: Install dependencies
+
+      # Safe one-liner (no 'else:' issue)
+      - name: Install dependencies (safe one-liner)
+        shell: bash
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else:
-            npm install
-          fi
+          test -f package-lock.json && npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+
       - name: Build site
         run: npm run build
+
+      # Deep-link fallback for BrowserRouter
       - name: Add 404 fallback (copy built index)
         run: cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
