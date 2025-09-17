@@ -34,13 +34,12 @@ jobs:
           rm -f public/{about,services,products,catalogs,partners,contact}/index.html
           rm -f public/blog.html
 
-      # 🔧 Auto-fix main.jsx if a bad "basename==\"/\"" slipped in
-      - name: Sanitize src/main.jsx (no hash, no typo)
+      # ALWAYS write a clean main.jsx (prevents any pasted typo)
+      - name: Write clean src/main.jsx
         shell: bash
         run: |
-          if [ -f src/main.jsx ] && grep -q 'basename==' src/main.jsx; then
-            echo "Fixing src/main.jsx (removing bad basename==)"
-            cat > src/main.jsx <<'EOF'
+          mkdir -p src
+          cat > src/main.jsx <<'EOF'
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -55,19 +54,10 @@ createRoot(document.getElementById('root')).render(
   </React.StrictMode>
 );
 EOF
-          fi
-          # Ensure we don't have HashRouter anywhere
-          if [ -f src/main.jsx ]; then
-            sed -i 's/HashRouter/BrowserRouter/g' src/main.jsx || true
-          fi
-          # Show the first 60 lines for debugging
-          if [ -f src/main.jsx ]; then
-            echo "----- src/main.jsx (head) -----"
-            nl -ba src/main.jsx | sed -n '1,60p'
-            echo "--------------------------------"
-          fi
+          echo "----- src/main.jsx (head) -----"
+          nl -ba src/main.jsx | sed -n '1,60p'
+          echo "--------------------------------"
 
-      # Install dependencies (safe one-liner)
       - name: Install dependencies
         shell: bash
         run: |
