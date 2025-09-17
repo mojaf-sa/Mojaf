@@ -1,19 +1,15 @@
 name: Build and Deploy (Vite → GitHub Pages)
-
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,27 +27,23 @@ jobs:
           rm -f public/products.html public/products/index.html
           rm -f public/catalogs.html public/catalogs/index.html
           rm -f public/partners.html public/partners/index.html
+          rm -f public/contact.html public/contact/index.html
           rm -f public/blog.html
       - name: Install dependencies
         run: |
           if [ -f package-lock.json ]; then
             npm ci
-          else
+          else:
             npm install
           fi
       - name: Build site
         run: npm run build
-      - name: Inspect dist (sanity)
-        run: |
-          echo "=== dist/ ==="; ls -lah dist || true
-          echo "=== dist/index.html head ==="; head -n 40 dist/index.html || true
       - name: Add 404 fallback (copy built index)
         run: cp dist/index.html dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
