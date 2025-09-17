@@ -11,69 +11,32 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      # Remove static files that shadow React routes
-      - name: Remove files that collide with React routes
-        shell: bash
-        run: |
-          rm -f public/index.html
-          rm -f public/{about,services,products,catalogs,partners,contact}.html
-          rm -f public/{about,services,products,catalogs,partners,contact}/index.html
-          rm -f public/blog.html
+      - name: Install deps
+        run: npm ci
 
-      # ALWAYS write a clean main.jsx (prevents any pasted typo)
-      - name: Write clean src/main.jsx
-        shell: bash
-        run: |
-          mkdir -p src
-          cat > src/main.jsx <<'EOF'
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App.jsx';
-import './style.css';
-
-createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
-EOF
-          echo "----- src/main.jsx (head) -----"
-          nl -ba src/main.jsx | sed -n '1,60p'
-          echo "--------------------------------"
-
-      - name: Install dependencies
-        shell: bash
-        run: |
-          test -f package-lock.json && npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-
-      - name: Build site
+      - name: Build (Vite)
         run: npm run build
-
-      # Deep-link fallback for BrowserRouter
-      - name: Add 404 fallback (copy built index)
-        run: cp dist/index.html dist/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist
 
   deploy:
     needs: build
@@ -82,5 +45,6 @@ EOF
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
