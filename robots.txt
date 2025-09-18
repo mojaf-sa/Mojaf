@@ -1,4 +1,6 @@
 User-agent: *
-Disallow:
-
+Allow: /
 Sitemap: https://mojaf-sa.com/sitemap.xml
+
+# Optional: keep Cloudflare Managed Content blocks if you want to restrict certain AI scrapers.
+# If you re-add them, place the 'Sitemap:' line ABOVE so it's always seen.
