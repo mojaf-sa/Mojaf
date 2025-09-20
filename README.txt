@@ -1,25 +1,19 @@
-MOJAF – FINAL Drag & Drop Pack (keywords injected, no layout changes)
+MOJAF — Blog Pack (15 detailed posts) + Blog link injector
 
-What changed
-------------
-• Updated <head> only: <title>, meta description, meta keywords (from your Keywords.docx).
-• Added robots.txt, sitemap.xml, .nojekyll, 404.html, and CNAME (mojaf-sa.com).
-• No body/layout/scripts were modified.
-
-How to use (GitHub web)
------------------------
-1) Open your repository → “Add file” → “Upload files”.
-2) Upload ALL of these files/folders to the ROOT of your repo (replace existing files when asked).
-3) Commit changes.
-
-After upload (recommended)
---------------------------
-• In Google Search Console → URL Inspection → https://mojaf-sa.com/ → Request indexing.
-• In Sitemaps → submit https://mojaf-sa.com/sitemap.xml (if not already added).
-• Share your homepage link once on your GBP or social to create a crawl path.
-
-Notes
+Files
 -----
-• Meta keywords are included because you requested them; Google ignores this tag, but it's harmless.
-• Rankings depend on competition and links; this pack focuses on fast discoverability and relevance.
-• Date: 2025-09-17
+• blog.html — index
+• /blog/*.html — 15 detailed posts
+• sitemap.xml — includes blog + posts
+• blog-link-inject.js — adds a "Blog" link to your header/footer at runtime (no layout changes)
+
+How to use
+----------
+1) GitHub repo → Add file → Upload files → drag the CONTENTS of this ZIP to the ROOT (same place as index.html) → Commit.
+2) Visit https://mojaf-sa.com/blog.html to check the index and open a few posts.
+3) In Search Console: request indexing for blog.html + 3–5 key posts, then submit https://mojaf-sa.com/sitemap.xml again.
+
+Optional (if you want a static menu item instead of JS):
+• Open your existing index.html and footer file later and add a simple <a href="/blog.html">Blog</a> link to your nav/footer.
+
+Date: 2025-09-20
