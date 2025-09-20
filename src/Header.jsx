@@ -220,6 +220,7 @@ const Header = () => {
           >
             Contact
           </Link>
+          <a href="/blog.html">Blog</a>
         </nav>
       </header>
     </>

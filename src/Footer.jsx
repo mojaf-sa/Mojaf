@@ -29,6 +29,7 @@ function Footer() {
                 <li><a onClick={() => handleNavigation('/services')}>Services</a></li>
                 <li><a onClick={() => handleNavigation('/all-products')}>Products</a></li>
                 <li><a onClick={() => handleNavigation('/contact')}>Contact</a></li>
+                <li><a href="/blog.html">Blog</a></li>
               </ul>
             </div>
             <div className="f-footer-col">
@@ -40,6 +41,7 @@ function Footer() {
                 <li><a onClick={() => handleNavigation('/all-products')}>Doors</a></li>
                 <li><a onClick={() => handleNavigation('/all-products')}>Electrical Items</a></li>
                 <li><a onClick={() => handleNavigation('/all-products')}>Flooring</a></li>
+                <li><a href="/blog.html">Blog</a></li>
               </ul>
             </div>
             <div className="f-footer-col">
@@ -49,6 +51,7 @@ function Footer() {
                 <li><a onClick={() => handleNavigation('/services')}>Logistics Coordination & Management</a></li>
                 <li><a onClick={() => handleNavigation('/services')}>Warehousing Services</a></li>
                 <li><a onClick={() => handleNavigation('/services')}>After Sales Services Support</a></li>
+                <li><a href="/blog.html">Blog</a></li>
               </ul>
             </div>
             <div className="f-footer-col">
@@ -67,6 +70,7 @@ function Footer() {
                     <FaFacebook className="f-icon" /> Facebook
                   </a>
                 </li>
+                <li><a href="/blog.html">Blog</a></li>
               </ul>
             </div>
           </div>
