@@ -10,60 +10,15 @@ import { useNavigate } from 'react-router-dom';
 function Services() {
   const navigate = useNavigate();
   const productCategories = [
-    {
-      id: 1,
-      name: 'Flooring',
-      icon: <FaHome />,
-      description: 'Premium quality flooring solutions for residential and commercial spaces'
-    },
-    {
-      id: 2,
-      name: 'Skirting Board',
-      icon: <FaBorderStyle />,
-      description: 'Elegant and durable skirting boards to complete your interior design'
-    },
-    {
-      id: 3,
-      name: 'Wall Panels/Wallpapers',
-      icon: <FaVectorSquare />,
-      description: 'Stylish wall coverings to transform any space with texture and pattern'
-    },
-    {
-      id: 4,
-      name: 'Insulation',
-      icon: <FaSnowflake />,
-      description: 'Energy-efficient insulation materials for temperature and sound control'
-    },
-    {
-      id: 5,
-      name: 'Boards',
-      icon: <FaThLarge />,
-      description: 'High-quality construction boards for various building applications'
-    },
-    {
-      id: 6,
-      name: 'Doors',
-      icon: <FaDoorOpen />,
-      description: 'Durable and secure door solutions for all types of properties'
-    },
-    {
-      id: 7,
-      name: 'Safety Products',
-      icon: <FaShieldAlt />,
-      description: 'Reliable safety equipment to protect workers and comply with regulations'
-    },
-    {
-      id: 8,
-      name: 'Electrical Items',
-      icon: <FaBolt />,
-      description: 'Comprehensive range of electrical components for construction needs'
-    },
-    {
-      id: 9,
-      name: 'Screws/Fasteners',
-      icon: <FaScrewdriver />,
-      description: 'High-performance fastening solutions for all construction projects'
-    }
+    { id: 1, name: 'Flooring', icon: <FaHome />, description: 'Premium quality flooring solutions for residential and commercial spaces' },
+    { id: 2, name: 'Skirting Board', icon: <FaBorderStyle />, description: 'Elegant and durable skirting boards to complete your interior design' },
+    { id: 3, name: 'Wall Panels/Wallpapers', icon: <FaVectorSquare />, description: 'Stylish wall coverings to transform any space with texture and pattern' },
+    { id: 4, name: 'Insulation', icon: <FaSnowflake />, description: 'Energy-efficient insulation materials for temperature and sound control' },
+    { id: 5, name: 'Boards', icon: <FaThLarge />, description: 'High-quality construction boards for various building applications' },
+    { id: 6, name: 'Doors', icon: <FaDoorOpen />, description: 'Durable and secure door solutions for all types of properties' },
+    { id: 7, name: 'Safety Products', icon: <FaShieldAlt />, description: 'Reliable safety equipment to protect workers and comply with regulations' },
+    { id: 8, name: 'Electrical Items', icon: <FaBolt />, description: 'Comprehensive range of electrical components for construction needs' },
+    { id: 9, name: 'Screws/Fasteners', icon: <FaScrewdriver />, description: 'High-performance fastening solutions for all construction projects' }
   ];
 
   const handleQuoteClick = () => {
@@ -91,6 +46,7 @@ function Services() {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Helmet>
 
+        {/* HERO */}
         <section className="s-hero" id="home" style={{backgroundImage: "url('/herobg.avif')" }}>
           <div className="s-container">
             <div className="s-hero-content" data-aos="fade-up">
@@ -101,6 +57,7 @@ function Services() {
           </div>
         </section>
 
+        {/* FEATURES */}
         <section className="s-why-choose-us">
           <div className="s-container">
             <h2 className="s-section-title" data-aos="fade-up">Why Choose MOJAF</h2>
@@ -136,196 +93,97 @@ function Services() {
           </div>
         </section>
 
+        {/* --- INTERNAL LINKS (SEO discovery boost) --- */}
+        <section className="s-guides">
+          <div className="s-container">
+            <h2 className="s-section-title" style={{marginTop: 0}}>Popular Guides by City</h2>
+
+            <div className="s-guides-grid">
+              {/* SPC */}
+              <div className="s-guide-card">
+                <h3>SPC Flooring — city guides</h3>
+                <ul>
+                  <li><a href="/blog/riyadh-spc-flooring-supplier.html">SPC flooring supplier in <strong>Riyadh</strong> — stock, specs & delivery</a></li>
+                  <li><a href="/blog/jeddah-spc-flooring-supplier.html">SPC flooring supplier in <strong>Jeddah</strong> — coastal projects</a></li>
+                  <li><a href="/blog/dammam-spc-flooring-supplier.html">SPC flooring supplier in <strong>Dammam/Khobar</strong> — industrial & retail</a></li>
+                </ul>
+              </div>
+
+              {/* Skirting */}
+              <div className="s-guide-card">
+                <h3>Wall Skirting — city guides</h3>
+                <ul>
+                  <li><a href="/blog/riyadh-wall-skirting-supplier.html">Wall skirting supplier in <strong>Riyadh</strong> — MDF & PS profiles</a></li>
+                  <li><a href="/blog/jeddah-wall-skirting-supplier.html">Wall skirting supplier in <strong>Jeddah</strong> — MDF & PS</a></li>
+                  <li><a href="/blog/dammam-wall-skirting-supplier.html">Wall skirting supplier in <strong>Dammam/Khobar</strong> — MDF & PS</a></li>
+                </ul>
+              </div>
+
+              {/* Fasteners */}
+              <div className="s-guide-card">
+                <h3>Screws & Fasteners — city guides</h3>
+                <ul>
+                  <li><a href="/blog/riyadh-screws-fasteners-supplier.html">Screws / fasteners supplier in <strong>Riyadh</strong> — get the spec right</a></li>
+                  <li><a href="/blog/jeddah-screws-fasteners-supplier.html">Screws / fasteners supplier in <strong>Jeddah</strong> — coastal protection</a></li>
+                  <li><a href="/blog/dammam-screws-fasteners-supplier.html">Screws / fasteners supplier in <strong>Dammam</strong> — MEP & fit-out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div style={{marginTop: 40}} />
 
         <style jsx>{`
           /* Services Component Styles */
-          .s-services-container {
-            font-family: 'Poppins', sans-serif;
-            color: #555555;
-            line-height: 1.6;
-          }
-          
-          .s-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-          }
-          
+          .s-services-container { font-family: 'Poppins', sans-serif; color: #555; line-height: 1.6; }
+          .s-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
           /* Hero Section */
-          .s-hero {
-            height: 100vh;
-            min-height: 700px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            position: relative;
-            margin-top: 80px;
-          }
-          
-          .s-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 37, 64, 0.7);
-          }
-          
-          .s-hero-content {
-            position: relative;
-            z-index: 1;
-            color: #ffffff;
-            max-width: 600px;
-          }
-          
-          .s-hero-content h1 {
-            font-size: 3.5rem;
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-weight: 600;
-            line-height: 1.2;
-          }
-          
-          .s-hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.9);
-          }
-          
-          .s-btn {
-            display: inline-block;
-            background-color: #d4af37;
-            color: #ffffff;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-          }
-          
-          .s-btn:hover {
-            background-color: #c19b2c;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-          }
-          
-          /* Why Choose Us Section */
-          .s-why-choose-us {
-            padding: 100px 0;
-            background-color: #f5f5f5;
-          }
-          
-          .s-section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-            color: #333333;
-            font-weight: 600;
-          }
-          
-          .s-section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #d4af37;
-          }
-          
-          .s-features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-          }
-          
-          .s-feature {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-          }
-          
-          .s-feature:hover {
-            transform: translateY(-10px);
-          }
-          
-          .s-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(212, 175, 55, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: #d4af37;
-            font-size: 1.8rem;
-          }
-          
-          .s-feature h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            color: #333333;
-            font-weight: 600;
-          }
-          
-          /* Responsive Styles */
+          .s-hero { height: 100vh; min-height: 700px; background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; position: relative; margin-top: 80px; }
+          .s-hero::before { content: ''; position: absolute; inset: 0; background-color: rgba(10, 37, 64, 0.7); }
+          .s-hero-content { position: relative; z-index: 1; color: #fff; max-width: 600px; }
+          .s-hero-content h1 { font-size: 3.5rem; color: #fff; margin-bottom: 20px; font-weight: 600; line-height: 1.2; }
+          .s-hero-content p { font-size: 1.2rem; margin-bottom: 30px; color: rgba(255,255,255,0.9); }
+          .s-btn { display: inline-block; background-color: #d4af37; color: #fff; padding: 12px 30px; border-radius: 8px; font-weight: 500; transition: all .3s ease; border: none; cursor: pointer; }
+          .s-btn:hover { background-color: #c19b2c; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+
+          /* Why Choose Us */
+          .s-why-choose-us { padding: 100px 0; background-color: #f5f5f5; }
+          .s-section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; position: relative; color: #333; font-weight: 600; }
+          .s-section-title::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background-color: #d4af37; }
+          .s-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+          .s-feature { background-color: #fff; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,.1); transition: all .3s ease; }
+          .s-feature:hover { transform: translateY(-10px); }
+          .s-icon { width: 70px; height: 70px; background-color: rgba(212,175,55,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #d4af37; font-size: 1.8rem; }
+          .s-feature h3 { margin-bottom: 15px; font-size: 1.3rem; color: #333; font-weight: 600; }
+
+          /* Guides (internal links) */
+          .s-guides { padding: 60px 0; background: #fff; }
+          .s-guides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+          .s-guide-card { background: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 20px 22px; box-shadow: 0 6px 10px rgba(0,0,0,.04); }
+          .s-guide-card h3 { margin: 0 0 10px; font-size: 1.15rem; color: #1f2937; }
+          .s-guide-card ul { margin: 0; padding-left: 18px; }
+          .s-guide-card li { margin: 6px 0; }
+          .s-guide-card a { text-decoration: none; color: #0a4a7a; }
+          .s-guide-card a:hover { text-decoration: underline; }
+
+          /* Responsive */
           @media (max-width: 992px) {
-            .s-section-title {
-              font-size: 2rem;
-            }
-            
-            .s-hero-content h1 {
-              font-size: 3rem;
-            }
+            .s-section-title { font-size: 2rem; }
+            .s-hero-content h1 { font-size: 3rem; }
           }
-          
           @media (max-width: 768px) {
-            .s-hero {
-              min-height: 600px;
-            }
-            
-            .s-hero-content h1 {
-              font-size: 2.5rem;
-            }
-            
-            .s-hero-content p {
-              font-size: 1rem;
-            }
-            
-            .s-section-title {
-              font-size: 1.8rem;
-              margin-bottom: 40px;
-            }
+            .s-hero { min-height: 600px; }
+            .s-hero-content h1 { font-size: 2.5rem; }
+            .s-hero-content p { font-size: 1rem; }
+            .s-section-title { font-size: 1.8rem; margin-bottom: 40px; }
           }
-          
           @media (max-width: 576px) {
-            .s-section-title {
-              font-size: 1.6rem;
-            }
-            
-            .s-hero-content h1 {
-              font-size: 2rem;
-            }
-            
-            .s-btn {
-              padding: 10px 25px;
-            }
-            
-            .s-features-grid {
-              grid-template-columns: 1fr;
-            }
+            .s-section-title { font-size: 1.6rem; }
+            .s-hero-content h1 { font-size: 2rem; }
+            .s-btn { padding: 10px 25px; }
+            .s-features-grid { grid-template-columns: 1fr; }
           }
         `}</style>
       </div>
