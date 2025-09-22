@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import Info from './Info'
-import Hero from './Hero'
+import React, { useEffect } from 'react';
+import Info from './Info';
+import Hero from './Hero';
 import Header from './Header';
 import Services from './Services';
 import { useLocation } from 'react-router-dom';
@@ -20,11 +20,19 @@ function Home() {
       }
     }
   }, [location]);
-  
+
   return (
     <>
-     <Header />
+      <Header />
       <Hero />
+
+      {/* SEO: internal link to Blog (simple, non-intrusive) */}
+      <div style={{ maxWidth: '1200px', margin: '16px auto', padding: '0 20px' }}>
+        <p style={{ marginTop: 12 }}>
+          Read our <a href="/blog/">Blog</a> for city-specific guides on SPC flooring, wall skirting, and fasteners in Riyadh, Jeddah, and Dammam.
+        </p>
+      </div>
+
       <AboutUs />
       {/* <Info /> */}
       {/* <Services /> */}
@@ -32,7 +40,7 @@ function Home() {
       <Contact />
       <Footer />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
