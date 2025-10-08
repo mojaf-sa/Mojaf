@@ -1,152 +1,53 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <title>MOJAF Trading - Fasteners, Wall Skirting & Construction Materials Saudi Arabia</title>
+  <meta name="description" content="MOJAF Trading — Your procurement partner for fasteners, screws, wall skirting and construction materials across Saudi Arabia. Based in Jeddah.">
+  <meta name="robots" content="index, follow">
 
-  <!-- Primary Meta Tags for SEO -->
-  <title>MOJAF – Building Materials in Saudi Arabia</title>
-  <meta name="description" content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes.">
-  <meta name="robots" content="index,follow">
-
-  <!-- SEO Keywords (optional but safe) -->
-  <meta name="keywords" content="building materials supplier saudi arabia, spc flooring supplier riyadh, spc flooring supplier jeddah, vinyl flooring distributor ksa, lvt flooring supplier jeddah, wall skirting supplier riyadh, wall skirting supplier jeddah, mdf skirting boards saudi arabia, ps skirting supplier ksa, fasteners supplier jeddah, screws supplier riyadh, rock wool insulation supplier ksa, cement board supplier ksa, gypsum board supplier dammam, portacabin materials supplier saudi arabia">
-
-  <!-- Canonical (use non-www as your chosen host) -->
-  <link rel="canonical" href="https://mojaf-sa.com/">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/MOJ.jpg" type="image/jpeg">
-  <link rel="apple-touch-icon" href="/MOJ.jpg">
-  <meta name="msapplication-TileImage" content="/MOJ.jpg">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="MOJAF">
-  <meta property="og:title" content="MOJAF – Building Materials in Saudi Arabia">
-  <meta property="og:description" content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes.">
-  <meta property="og:url" content="https://mojaf-sa.com/">
-  <meta property="og:image" content="https://mojaf-sa.com/MOJ.jpg">
-  <meta property="og:locale" content="en_SA">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MOJAF – Building Materials in Saudi Arabia">
-  <meta name="twitter:description" content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes.">
-  <meta name="twitter:image" content="https://mojaf-sa.com/MOJ.jpg">
-
-  <!-- Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ConstructionMaterialBusiness",
-    "name": "MOJAF",
-    "url": "https://mojaf-sa.com",
-    "logo": "https://mojaf-sa.com/MOJ.jpg",
-    "image": "https://mojaf-sa.com/MOJ.jpg",
-    "description": "MOJAF is a leading construction materials supplier in Saudi Arabia, offering high-quality flooring, wall systems, fasteners, and electrical components across multiple cities.",
-    "telephone": "+966 56 840 1900",
-    "email": "info@mojaf-sa.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Multiple Locations Across KSA",
-      "addressLocality": "Jeddah, Riyadh, Dammam, Khobar, Makkah, Madinah",
-      "addressRegion": "Saudi Arabia",
-      "addressCountry": "SA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "21.543333",
-      "longitude": "39.172778"
-    },
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=61576350434274",
-      "https://mojaf-sa.com"
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "MOJAF Trading",
+  "telephone": "+966568401900",
+  "url": "https://mojaf-sa.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "JHYE3207، 3207 موسي الرازي، 7951, Al Shera'a",
+    "addressLocality": "Jeddah",
+    "postalCode": "23816",
+    "addressCountry": "SA"
+  },
+  "openingHours": "Mo-Fr 08:00-17:00",
+  "sameAs": [
+    "https://www.facebook.com/mojaf-trading",
+    "https://www.linkedin.com/company/mojaf-trading"
+  ]
+}
   </script>
 
-  <!-- Preload -->
-  <link rel="preload" href="/src/main.jsx" as="script" crossorigin>
-  <link rel="preload" href="https://mojaf-sa.com/MOJ.jpg" as="image">
-
-  <!-- ✅ Inline Blog-link injector (no external file, robust for React/SPA) -->
-  <script>
-  (function () {
-    const BLOG_HREF = "/blog.html";
-    const LINK_TEXT = "Blog";
-    const CANDIDATE_SELECTORS = [
-      "header", "nav", ".navbar", ".nav", ".header",
-      "footer", ".footer",
-      "#root header", "#root nav", "#root .navbar", "#root .footer"
-    ];
-    function hasBlogLink(root) {
-      return !!root.querySelector('a[href$="/blog.html"], a[href*="/blog.html"], a[data-mojaf-blog-link="1"]');
-    }
-    function makeLink() {
-      const a = document.createElement("a");
-      a.href = BLOG_HREF;
-      a.textContent = LINK_TEXT;
-      a.setAttribute("data-mojaf-blog-link", "1");
-      a.style.marginLeft = "12px";
-      a.style.cursor = "pointer";
-      return a;
-    }
-    function injectInto(container) {
-      if (!container || hasBlogLink(container)) return false;
-      const list = container.querySelector("ul, ol, .menu, .nav");
-      if (list && !hasBlogLink(list)) {
-        const li = document.createElement("li");
-        li.style.listStyle = "none";
-        li.appendChild(makeLink());
-        list.appendChild(li);
-        return true;
-      }
-      container.appendChild(makeLink());
-      return true;
-    }
-    function tryOnce() {
-      for (const sel of CANDIDATE_SELECTORS) {
-        const node = document.querySelector(sel);
-        if (node && injectInto(node)) return true;
-      }
-      return false;
-    }
-    const run = () => {
-      tryOnce();
-      const observer = new MutationObserver(() => {
-        if (!document.querySelector('[data-mojaf-blog-link="1"]')) {
-          tryOnce();
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-      setTimeout(() => {
-        if (!document.querySelector('[data-mojaf-blog-link="1"]')) {
-          const root = document.querySelector("#root") || document.body;
-          injectInto(root);
-        }
-      }, 1500);
-    };
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", run);
-    } else {
-      run();
-    }
-  })();
-  </script>
+  <link rel="alternate" href="https://mojaf-sa.com/" hreflang="en" />
+  <link rel="alternate" href="https://mojaf-sa.com/ar/" hreflang="ar" />
+  <link rel="alternate" href="https://mojaf-sa.com/" hreflang="x-default" />
 </head>
 <body>
-  <div id="root"></div>
-
-  <!-- Correct Vite entry (this loads your React app) -->
-  <script type="module" src="/src/main.jsx"></script>
-
-  <!-- SEO Content for Crawlers (kept minimal and clean) -->
-  <div style="position:absolute; left:-9999px; top:-9999px;">
-    <h1>MOJAF - Construction & Building Materials Supplier Saudi Arabia</h1>
-    <h2>Construction & Building Materials in Riyadh, Jeddah, Dammam</h2>
-    <p>Leading supplier of <strong>LVT flooring</strong>, <strong>wall skirting</strong>, <strong>construction fasteners</strong>, and <strong>electrical components</strong> in Saudi Arabia. Specialists in <em>portacabin materials</em>, <em>rockwool insulation</em>, and <em>MEP supplies</em> with nationwide delivery to Jeddah, Riyadh, Dammam, Khobar, Makkah, and Madinah.</p>
-  </div>
+  <header><h1>MOJAF Trading - Fasteners, Wall Skirting & Construction Materials Saudi Arabia</h1></header>
+  <main>
+    <p>MOJAF Trading — Your procurement partner for fasteners, screws, wall skirting and construction materials across Saudi Arabia. Based in Jeddah.</p>
+    <section>
+      <h2>Our Products</h2>
+      <ul>
+        <li>Fasteners & Screws</li>
+        <li>Wall Skirting</li>
+        <li>Construction Materials</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <!-- Footer code is provided separately as Footer.jsx -->
+    <p>MOJAF Trading — Procurement Partner</p>
+  </footer>
 </body>
 </html>
