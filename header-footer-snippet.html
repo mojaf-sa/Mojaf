@@ -1,5 +1,29 @@
-<!-- Crawlable Footer (EN-only) -->
-<footer class="footer-links" style="padding:16px 0;">
+<!-- Header + Footer snippet (EN-only, interlinked, logo visible) -->
+<!-- ======== HEADER ======== -->
+<header style="padding:12px 0; display:flex; justify-content:space-between; align-items:center;">
+  <a href="/" aria-label="MOJAF" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+    <!-- Uses the existing file at repo root -->
+    <img src="/MOJ.jpg" alt="MOJAF" height="32" style="display:block;border-radius:4px;">
+    <span style="font-weight:700;color:#111;">MOJAF</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="/" style="margin-right:12px;">Home</a>
+    <a href="/about-m.webp" style="margin-right:12px;">About</a>
+    <a href="/services/" style="margin-right:12px;">Services</a>
+    <a href="/products/" style="margin-right:12px;">Products</a>
+    <a href="/catalogs/" style="margin-right:12px;">Catalogs</a>
+    <a href="/partners/" style="margin-right:12px;">Partners</a>
+    <a href="/blog/" style="margin-right:12px;">Blog</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+</header>
+
+<!-- Hreflang (EN-only; removes AR site-wide) -->
+<link rel="alternate" href="https://mojaf-sa.com/" hreflang="en">
+<link rel="alternate" href="https://mojaf-sa.com/" hreflang="x-default">
+
+<!-- ======== FOOTER (crawlable, EN-only) ======== -->
+<footer class="footer-links" style="padding:24px 0;">
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
     <!-- Company -->
     <section>
@@ -17,18 +41,17 @@
         <li><a href="/about-m.webp">About</a></li>
         <li><a href="/services/">Services</a></li>
         <li><a href="/products/">Products</a></li>
-        <li><a href="/partners/">Partners</a></li>
         <li><a href="/catalogs/">Catalogs</a></li>
-        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/partners/">Partners</a></li>
         <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </section>
 
-    <!-- Landing pages -->
+    <!-- Landing pages (real, working paths) -->
     <section>
       <h3 style="margin:0 0 8px;">Landing pages</h3>
       <ul style="list-style:none;padding:0;margin:0;">
-        <!-- use real files that exist in repo root -->
         <li><a href="/fasteners-screws.html">Fasteners & Screws (KSA)</a></li>
         <li><a href="/wall-skirting.html">Wall Skirting (KSA)</a></li>
         <li><a href="/riyadh.html">Riyadh – Construction Materials</a></li>
@@ -37,5 +60,5 @@
       </ul>
     </section>
   </div>
-  <p style="margin-top:24px;">© 2025 MOJAF. All rights reserved.</p>
+  <p style="margin-top:24px;">© 2020 MOJAF. All rights reserved.</p>
 </footer>
