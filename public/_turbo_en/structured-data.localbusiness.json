@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "MOJAF Trading",
+  "image": "https://mojaf-sa.com/logo.png",
+  "url": "https://mojaf-sa.com/",
+  "telephone": "+966568401900",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "JHYE3207، 3207 موسي الرازي، 7951, Al Shera'a",
+    "addressLocality": "Jeddah",
+    "postalCode": "23816",
+    "addressCountry": "SA"
+  },
+  "areaServed": [
+    "Jeddah",
+    "Riyadh",
+    "Dammam"
+  ],
+  "sameAs": [
+    "https://maps.google.com/?q=MOJAF+Trading"
+  ]
+}
