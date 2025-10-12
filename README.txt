@@ -1,19 +1,17 @@
-MOJAF — Blog Pack (15 detailed posts) + Blog link injector
+MOJAF Turbo SEO FULL — English Only
 
-Files
------
-• blog.html — index
-• /blog/*.html — 15 detailed posts
-• sitemap.xml — includes blog + posts
-• blog-link-inject.js — adds a "Blog" link to your header/footer at runtime (no layout changes)
+Domain: https://mojaf-sa.com
+URLs: pretty (no .html), non-www
+Pages: 21 (home, products, services, blog, materials, city pages)
 
-How to use
-----------
-1) GitHub repo → Add file → Upload files → drag the CONTENTS of this ZIP to the ROOT (same place as index.html) → Commit.
-2) Visit https://mojaf-sa.com/blog.html to check the index and open a few posts.
-3) In Search Console: request indexing for blog.html + 3–5 key posts, then submit https://mojaf-sa.com/sitemap.xml again.
+Files:
+- robots.txt — allows crawl; points to sitemap
+- sitemap.xml — 21 URLs with priority & changefreq
+- meta-tags/ — 21 HTML head snippets (canonical + title + description + OG/Twitter + embedded JSON-LD)
+- redirects-map.txt — old /landing/*.html to clean slugs
 
-Optional (if you want a static menu item instead of JS):
-• Open your existing index.html and footer file later and add a simple <a href="/blog.html">Blog</a> link to your nav/footer.
-
-Date: 2025-09-20
+How to use (non-technical):
+1) Upload robots.txt and sitemap.xml to your site root (or repo root).
+2) For each page, open its HTML or template -> paste the matching file from meta-tags/ right before </head>.
+3) Commit/publish, then submit https://mojaf-sa.com/sitemap.xml in Google Search Console.
+4) If /landing/*.html exist, implement the 301 redirects in redirects-map.txt.

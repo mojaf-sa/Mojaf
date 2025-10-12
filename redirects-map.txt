@@ -1,0 +1,6 @@
+/landing/fasteners-supplier-riyadh.html    /fasteners-screws
+/landing/wall-skirting-riyadh.html         /wall-skirting
+/landing/fasteners-supplier-jeddah.html    /fasteners-screws
+/landing/fasteners-supplier-dammam.html    /fasteners-screws
+/landing/wall-skirting-jeddah.html         /wall-skirting
+/landing/wall-skirting-dammam.html         /wall-skirting
