@@ -1,34 +1,41 @@
-import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import React from "react";
+import { Helmet } from "react-helmet-async";
+
 export default function Blog() {
-  return (<>
-    <Helmet>
-      <link rel="canonical" href="https://mojaf-sa.com/blog" />
-      <title>Blog | MOJAF Trading Saudi Arabia</title>
-      <meta name="description" content="Insights on fasteners, flooring, and construction materials for projects across KSA." />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <meta property="og:site_name" content="MOJAF Trading" />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Blog | MOJAF Trading Saudi Arabia" />
-      <meta property="og:description" content="Insights on fasteners, flooring, and construction materials for projects across KSA." />
-      <meta property="og:url" content="https://mojaf-sa.com/blog" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Blog | MOJAF Trading Saudi Arabia" />
-      <meta name="twitter:description" content="Insights on fasteners, flooring, and construction materials for projects across KSA." />
-    </Helmet>
-    <h1>Blog | MOJAF Trading Saudi Arabia</h1>
-    
-    <img src="https://mojaf-sa.com/assets/images/blog.webp" loading="lazy" alt="Blog | MOJAF Trading Saudi Arabia - MOJAF Trading" style={marginBottom: '12px', borderRadius: '6px'} />
-    <p>Blog | MOJAF Trading Saudi Arabia — MOJAF Trading supports contractors, consultants and procurement teams with dependable availability, technical documentation and city-wide delivery. Our team helps engineers match materials to specification while protecting the schedule for sites in Riyadh, Jeddah and Dammam.</p>
-    <p><strong>Professional & technical:</strong> We source project-grade brands, provide data sheets on request, and coordinate closely with site teams. From fasteners and wall skirting to flooring systems and insulation, we help you select the right SKU for your load, fire, moisture and acoustic requirements.</p>
-    <p><strong>Friendly & persuasive:</strong> If you’re purchasing for maintenance, retrofit or a new fit‑out, we keep it simple — quick quotes over WhatsApp, clear pricing, and fast dispatch. Share your quantities and delivery window; we’ll confirm availability and alternates where needed.</p>
-    <p><strong>Local coverage:</strong> Jeddah, Riyadh, Dammam, plus Makkah, Medina, Tabuk and Khobar — consistent lead times and after‑sales support.</p>
-    <p><strong>Next steps:</strong> Request a same‑day quote. Tell us the location, quantities and any brand preferences; we’ll respond quickly with options and delivery ETA.</p>
-    <ul>
-      <li>Coverage: Riyadh · Jeddah · Dammam · Makkah · Medina · Tabuk · Khobar</li>
-      <li>Contact: +966 56 840 1900 · WhatsApp available</li>
-      <li>Email: sales@mojaf-sa.com</li>
-    </ul>
-    
-  </>)
+  return (
+    <>
+      <Helmet>
+        <title>Blog | MOJAF Trading Saudi Arabia</title>
+        <meta name="description" content="Insights on fasteners, wall skirting, flooring and construction materials for projects across Saudi Arabia." />
+        <link rel="canonical" href="https://mojaf-sa.com/blog" />
+      </Helmet>
+
+      <main style={{ maxWidth: "860px", margin: "0 auto", padding: "16px" }}>
+        <h1>Blog</h1>
+
+        <section style={{ marginTop: "24px" }}>
+          <h2>Latest Articles</h2>
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            <li style={{ marginBottom: "18px" }}>
+              <a href="/blog/choosing-right-fasteners-wall-skirting" style={{ fontWeight: "bold", color: "#004aad", textDecoration: "none" }}>
+                Choosing the Right Fasteners and Wall Skirting for Saudi Construction Projects
+              </a>
+              <p style={{ margin: "4px 0", color: "#555" }}>A 2025 guide for engineers and contractors — selecting durable fasteners and modern wall skirting for Saudi conditions.</p>
+              <p style={{ margin: "0", color: "#777", fontStyle: "italic" }} dir="rtl">ملخص عربي: دليل عملي لاختيار المثبتات وشرائح الحائط المناسبة لمشروعات البناء في السعودية.</p>
+              <small>Published recently by MOJAF Trading</small>
+            </li>
+
+            <li style={{ marginBottom: "18px" }}>
+              <a href="/blog/top-5-construction-materials-2025" style={{ fontWeight: "bold", color: "#004aad", textDecoration: "none" }}>
+                Top 5 Construction Materials Every Saudi Contractor Needs in 2025
+              </a>
+              <p style={{ margin: "4px 0", color: "#555" }}>Five essentials for KSA sites: fasteners, gypsum boards, cement boards, vinyl/SPC flooring, and rock wool insulation.</p>
+              <p style={{ margin: "0", color: "#777", fontStyle: "italic" }} dir="rtl">ملخص عربي: أفضل خمس مواد بناء يعتمد عليها المقاولون في السعودية لعام 2025.</p>
+              <small>Published recently by MOJAF Trading</small>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </>
+  );
 }
