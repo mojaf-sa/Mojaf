@@ -18,7 +18,12 @@ export default function Home() {
     </Helmet>
     <h1>MOJAF Trading – Fasteners, Wall Skirting & Building Materials Saudi Arabia</h1>
     
-    <img src="https://mojaf-sa.com/assets/images/home-hero.webp" loading="lazy" alt="MOJAF Trading – Fasteners, Wall Skirting & Building Materials Saudi Arabia - MOJAF Trading" style={marginBottom: '12px', borderRadius: '6px'} />
+   <img
+  src="https://mojaf-sa.com/assets/images/home-hero.webp"
+  loading="lazy"
+  alt="MOJAF Trading – Fasteners, Wall Skirting & Building Materials Saudi Arabia - MOJAF Trading"
+  style={{ marginBottom: '12px', borderRadius: '6px' }}
+/>
     <p>MOJAF Trading – Fasteners, Wall Skirting & Building Materials Saudi Arabia — MOJAF Trading supports contractors, consultants and procurement teams with dependable availability, technical documentation and city-wide delivery. Our team helps engineers match materials to specification while protecting the schedule for sites in Riyadh, Jeddah and Dammam.</p>
     <p><strong>Professional & technical:</strong> We source project-grade brands, provide data sheets on request, and coordinate closely with site teams. From fasteners and wall skirting to flooring systems and insulation, we help you select the right SKU for your load, fire, moisture and acoustic requirements.</p>
     <p><strong>Friendly & persuasive:</strong> If you’re purchasing for maintenance, retrofit or a new fit‑out, we keep it simple — quick quotes over WhatsApp, clear pricing, and fast dispatch. Share your quantities and delivery window; we’ll confirm availability and alternates where needed.</p>
