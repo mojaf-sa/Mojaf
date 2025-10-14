@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Debug tree
         run: |
@@ -33,24 +35,36 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: package-lock.json
 
-      # Use npm ci only if a lockfile exists; otherwise fallback to npm install
-      - name: Install deps
+      # Lockfile-safe install: try npm ci, fall back to npm install if lock & package.json are out of sync
+      - name: Install deps (lockfile-safe)
         run: |
           if [ -f package-lock.json ]; then
+            set +e
             npm ci
+            code=$?
+            set -e
+            if [ $code -ne 0 ]; then
+              echo "npm ci failed (likely lock mismatch). Falling back to npm install to regenerate lockfile."
+              npm install --no-audit --no-fund
+            fi
           else
             npm install --no-audit --no-fund
           fi
 
-      # If "build" script is missing, run Vite directly
+      # Build (use script if present; otherwise call Vite directly)
       - name: Build site
         run: |
-          if npm run | grep -q " build"; then
+          if npm pkg get scripts.build | grep -qv 'undefined'; then
             npm run build
           else
             npx vite build
           fi
+          test -d dist && echo "dist/ ready" || (echo "dist/ missing" && exit 1)
+
+      # REQUIRED for GitHub Pages
+      - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
