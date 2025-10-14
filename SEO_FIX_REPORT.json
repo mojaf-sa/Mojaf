@@ -1,0 +1,38 @@
+{
+  "react_detected": {
+    "index_html": "Mojaf-main/public/services/index.html",
+    "package_json": "Mojaf-main/package.json",
+    "vite_config": "Mojaf-main/vite.config.js",
+    "src_main_jsx": "Mojaf-main/src/src/main.jsx",
+    "src_main_js": null,
+    "app_jsx": "Mojaf-main/src/App.jsx"
+  },
+  "index_fix": " + inserted #root",
+  "changed_files": [
+    "Mojaf-main/src/Header.jsx",
+    "Mojaf-main/src/Footer.jsx"
+  ],
+  "duplicate_groups_count": 21,
+  "duplicate_samples": [
+    [
+      "Mojaf-main/MOJ.jpg",
+      "Mojaf-main/public/MOJ.jpg"
+    ],
+    [
+      "Mojaf-main/_routes.json",
+      "Mojaf-main/public/_routes.json"
+    ],
+    [
+      "Mojaf-main/about-m.webp",
+      "Mojaf-main/public/about-m.webp"
+    ],
+    [
+      "Mojaf-main/about2.webp",
+      "Mojaf-main/public/about2.webp"
+    ],
+    [
+      "Mojaf-main/door2th.png",
+      "Mojaf-main/public/door2th.png"
+    ]
+  ]
+}
