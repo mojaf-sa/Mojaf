@@ -1,0 +1,50 @@
+name: Repo Health (SEO & HTML)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      SITE_URL: https://mojaf-sa.com
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm i; fi
+
+      - name: Run audit (report only)
+        run: npm run audit:seo
+
+      - name: Apply fixes
+        run: |
+          npm run fix:seo
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git checkout -b repo-health/fixes
+            git add -A
+            git commit -m "chore(repo-health): canonical normalization & dup-page report"
+            git push --force --set-upstream origin repo-health/fixes
+          fi
+
+      - name: Open PR if branch exists
+        if: always()
+        run: |
+          if git ls-remote --exit-code --heads origin repo-health/fixes; then
+            gh pr create --title "Repo Health: canonical fixes & duplicate-page report" \
+              --body "Automated canonical tag normalization and duplicate-page report." \
+              --base main --head repo-health/fixes || true
+          fi
