@@ -1,0 +1,121 @@
+name: Generate sitemap & robots
+
+on:
+  workflow_dispatch:
+
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Build sitemap.xml and robots.txt from repo files
+        run: |
+          node - <<'NODE'
+          const fs = require('fs'), path = require('path');
+          const BASE = 'https://mojaf-sa.com';
+
+          // Walk all files
+          function walk(dir, out=[]) {
+            for (const ent of fs.readdirSync(dir)) {
+              if (['.git','.github','node_modules'].includes(ent)) continue;
+              const p = path.join(dir, ent);
+              const s = fs.statSync(p);
+              if (s.isDirectory()) walk(p, out);
+              else out.push(p);
+            }
+            return out;
+          }
+          const files = walk('.');
+
+          // Helpers
+          const toPosix = p => p.replace(/\\/g,'/');
+          const rel = p => toPosix(path.relative('.', p));
+          const isHTML = p => p.toLowerCase().endsWith('.html');
+          const isIndex = p => path.basename(p).toLowerCase() === 'index.html';
+
+          // Ignore junk/non-indexable
+          const IGNORE = new Set([
+            '404.html',
+            'header-footer-snippet.html'
+          ]);
+
+          function shouldIgnore(r) {
+            const rp = r.toLowerCase();
+            if (rp.startsWith('_turbo_en/')) return true;
+            if (rp.startsWith('blogs/')) return true; // old multi-page blog folder
+            if (IGNORE.has(path.basename(r))) return true;
+            return false;
+          }
+
+          // Build URL set
+          const urls = new Set();
+          for (const f of files) {
+            if (!isHTML(f)) continue;
+            const r = rel(f);
+            if (shouldIgnore(r)) continue;
+
+            if (isIndex(r)) {
+              const dir = path.dirname(r);
+              // For root index.html → "/"
+              const u = dir === '.' ? `${BASE}/` : `${BASE}/${dir}/`;
+              urls.add(u);
+            } else {
+              // file-route, e.g., about.html, city pages, landing/*.html
+              urls.add(`${BASE}/${r}`);
+            }
+          }
+
+          // Prefer /blog/ over /blog and /blog.html
+          const normalized = new Set();
+          for (let u of urls) {
+            if (u.endsWith('/blog')) u = u + '/';
+            if (u.endsWith('/blog.html')) u = u.replace('/blog.html','/blog/');
+            normalized.add(u.replace(/\/+/g,'/').replace(':/','://'));
+          }
+
+          const final = Array.from(normalized).sort((a,b)=>a.localeCompare(b));
+          const today = new Date().toISOString().slice(0,10);
+
+          // Write sitemap
+          const xml = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+          ];
+          for (const u of final) {
+            xml.push('  <url>');
+            xml.push(`    <loc>${u}</loc>`);
+            xml.push(`    <lastmod>${today}</lastmod>`);
+            xml.push('  </url>');
+          }
+          xml.push('</urlset>');
+          fs.writeFileSync('sitemap.xml', xml.join('\n'));
+
+          // Write robots with absolute sitemap
+          const robots = `User-agent: *
+Allow: /
+
+Sitemap: ${BASE}/sitemap.xml
+`;
+          fs.writeFileSync('robots.txt', robots);
+
+          console.log(`Wrote sitemap.xml with ${final.length} URLs`);
+          NODE
+
+      - name: Commit & push
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml robots.txt
+            git commit -m "chore: regenerate sitemap & robots from repo structure"
+            git push
+          else
+            echo "No changes to commit"
+          fi
