@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check & Build (only if package.json + build script)
+        run: |
+          if [ -f package.json ] && node -e "const p=require('./package.json'); process.exit(p.scripts && p.scripts.build ? 0:1)"; then
+            if [ -f package-lock.json ]; then npm ci; else npm i; fi
+            npm run build
+          else
+            echo 'No package.json or build script found. Skipping build.'
+          fi
