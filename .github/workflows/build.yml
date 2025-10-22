@@ -1,25 +1,54 @@
-name: Build
+name: build
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Check & Build (only if package.json + build script)
+      - name: Detect Node project
+        id: detect
         run: |
-          if [ -f package.json ] && node -e "const p=require('./package.json'); process.exit(p.scripts && p.scripts.build ? 0:1)"; then
-            if [ -f package-lock.json ]; then npm ci; else npm i; fi
-            npm run build
+          if [ -f package.json ]; then
+            echo "has_pkg=true" >> $GITHUB_OUTPUT
+            # does package.json have a build script?
+            if node -e "try{const p=require('./package.json');process.stdout.write(p.scripts&&p.scripts.build?'yes':'no')}catch(e){process.stdout.write('no')}" | grep -q yes; then
+              echo "has_build=true" >> $GITHUB_OUTPUT
+            else
+              echo "has_build=false" >> $GITHUB_OUTPUT
+            fi
+            if [ -f package-lock.json ]; then echo "has_lock=true" >> $GITHUB_OUTPUT; else echo "has_lock=false" >> $GITHUB_OUTPUT; fi
           else
-            echo 'No package.json or build script found. Skipping build.'
+            echo "has_pkg=false" >> $GITHUB_OUTPUT
+            echo "has_build=false" >> $GITHUB_OUTPUT
+            echo "has_lock=false" >> $GITHUB_OUTPUT
           fi
+
+      - uses: actions/setup-node@v4
+        if: ${{ steps.detect.outputs.has_pkg == 'true' && steps.detect.outputs.has_build == 'true' }}
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install deps (ci or install)
+        if: ${{ steps.detect.outputs.has_pkg == 'true' && steps.detect.outputs.has_build == 'true' }}
+        run: |
+          if [ "${{ steps.detect.outputs.has_lock }}" = "true" ]; then
+            npm ci || npm install --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Build
+        if: ${{ steps.detect.outputs.has_pkg == 'true' && steps.detect.outputs.has_build == 'true' }}
+        run: npm run build
+
+      - name: No-op (skip)
+        if: ${{ steps.detect.outputs.has_pkg != 'true' || steps.detect.outputs.has_build != 'true' }}
+        run: echo "No package.json with build script; skipping build."
