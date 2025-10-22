@@ -1,0 +1,11 @@
+
+MOJAF Blog Upgrade – Non-Technical Steps
+
+1) Upload this ZIP to your repo and extract over your current files.
+2) Commit all changes. Wait for GitHub Pages/Vite deploy to finish.
+3) Test:
+   - /blog.html and /blog/ should open the card grid.
+   - /blog/... articles should open with banners.
+4) In Google Search Console, submit sitemap.xml again and request indexing for a couple of article URLs.
+5) If your header/footer is custom, add this link where you keep menu items:
+   <a href="/blog.html">Blog</a>
