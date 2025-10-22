@@ -26,23 +26,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install deps (robust)
+      - name: Install deps
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          elif [ -f package.json ]; then
-            npm i
-          else
-            npm init -y >/dev/null 2>&1
-            npm i jsdom@^24 --no-audit --no-fund
-          fi
+          if [ -f package-lock.json ]; then npm ci; else npm i; fi
 
       - name: Run audit (report only)
-        run: npm run audit:seo || node scripts/audit-and-fix.mjs || true
+        run: npm run audit:seo
 
       - name: Apply fixes
         run: |
-          npm run fix:seo || node scripts/audit-and-fix.mjs --fix || true
+          npm run fix:seo
           if [[ -n "$(git status --porcelain)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"

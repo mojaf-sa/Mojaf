@@ -15,11 +15,9 @@ jobs:
         with:
           node-version: 20
 
-      - name: Check & Build (only if package.json + build script)
+      - name: Install
         run: |
-          if [ -f package.json ] && node -e "const p=require('./package.json'); process.exit(p.scripts && p.scripts.build ? 0:1)"; then
-            if [ -f package-lock.json ]; then npm ci; else npm i; fi
-            npm run build
-          else
-            echo 'No package.json or build script found. Skipping build.'
-          fi
+          if [ -f package-lock.json ]; then npm ci; else npm i; fi
+
+      - name: Build
+        run: npm run build
