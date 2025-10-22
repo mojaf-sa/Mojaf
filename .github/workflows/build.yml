@@ -14,10 +14,10 @@ jobs:
 
       - name: Detect Node project
         id: detect
+        shell: bash
         run: |
           if [ -f package.json ]; then
             echo "has_pkg=true" >> $GITHUB_OUTPUT
-            # does package.json have a build script?
             if node -e "try{const p=require('./package.json');process.stdout.write(p.scripts&&p.scripts.build?'yes':'no')}catch(e){process.stdout.write('no')}" | grep -q yes; then
               echo "has_build=true" >> $GITHUB_OUTPUT
             else
@@ -36,19 +36,29 @@ jobs:
           node-version: 18
           cache: npm
 
-      - name: Install deps (ci or install)
+      - name: Install deps with safe fallback
         if: ${{ steps.detect.outputs.has_pkg == 'true' && steps.detect.outputs.has_build == 'true' }}
+        shell: bash
         run: |
+          set +e
           if [ "${{ steps.detect.outputs.has_lock }}" = "true" ]; then
-            npm ci || npm install --no-audit --no-fund
+            echo "Trying npm ci (lockfile present)..."
+            npm ci
+            CI_STATUS=$?
+            if [ "$CI_STATUS" -ne 0 ]; then
+              echo "npm ci failed (lockfile mismatch). Falling back to npm install..."
+              npm install --no-audit --no-fund
+            fi
           else
+            echo "No lockfile found. Running npm install..."
             npm install --no-audit --no-fund
           fi
+          set -e
 
       - name: Build
         if: ${{ steps.detect.outputs.has_pkg == 'true' && steps.detect.outputs.has_build == 'true' }}
         run: npm run build
 
-      - name: No-op (skip)
+      - name: Skip (no Node build here)
         if: ${{ steps.detect.outputs.has_pkg != 'true' || steps.detect.outputs.has_build != 'true' }}
         run: echo "No package.json with build script; skipping build."
