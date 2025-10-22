@@ -2,6 +2,11 @@ name: Repo Health (SEO & HTML)
 
 on:
   workflow_dispatch:
+    inputs:
+      site_url:
+        description: 'Canonical base URL (e.g., https://example.com)'
+        required: false
+        default: 'https://mojaf-sa.com'
   push:
     branches: [ main ]
   pull_request:
@@ -13,7 +18,7 @@ jobs:
       contents: write
       pull-requests: write
     env:
-      SITE_URL: https://mojaf-sa.com
+      SITE_URL: ${{ inputs.site_url || 'https://mojaf-sa.com' }}
     steps:
       - uses: actions/checkout@v4
 
