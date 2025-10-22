@@ -11,73 +11,77 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate files
+      - name: Build sitemap.xml and robots.txt
         shell: bash
         run: |
           set -euo pipefail
           BASE="https://mojaf-sa.com"
           TODAY="$(date +%F)"
 
-          # Collect HTML files but exclude non-indexable stuff
-          mapfile -t FILES < <(find . -type f -name '*.html' \
-            -not -path './.git/*' \
-            -not -path './.github/*' \
-            -not -path './node_modules/*' \
-            -not -path './_turbo_en/*' \
-            -not -path './blogs/*' \
-            -not -name '404.html' \
-            -not -name 'header-footer-snippet.html' \
-            | sed 's|^\./||')
+          TMP_URLS="$(mktemp)"
 
-          URLS=()
-          for f in "${FILES[@]}"; do
-            bn="$(basename "$f")"
-            if [[ "$bn" == "index.html" ]]; then
-              d="$(dirname "$f")"
-              if [[ "$d" == "." ]]; then
-                u="$BASE/"
-              else
-                u="$BASE/$d/"
+          # Find all .html files, skip non-indexable folders/files
+          find . \
+            -type d \( -path './.git' -o -path './.github' -o -path './node_modules' -o -path './_turbo_en' -o -path './blogs' \) -prune -false -o \
+            -type f -name '*.html' | while read -r f; do
+              f="${f#./}"
+              bn="$(basename "$f")"
+
+              # Skip junk pages
+              if [ "$f" = "404.html" ] || [ "$f" = "header-footer-snippet.html" ]; then
+                continue
               fi
-            else
-              u="$BASE/$f"
-            fi
-            # Normalize blog routes to a single canonical: /blog/
-            if [[ "$u" == "$BASE/blog" || "$u" == "$BASE/blog.html" ]]; then
-              u="$BASE/blog/"
-            fi
-            URLS+=("$u")
-          done
 
-          # Unique + sort + tiny normalization
-          mapfile -t URLS < <(printf "%s\n" "${URLS[@]}" \
-            | sed 's|//|/|g; s|:/|://|g' \
-            | sort -u)
+              # Route style: folder index → /dir/, file page → /file.html
+              if [ "$bn" = "index.html" ]; then
+                d="$(dirname "$f")"
+                if [ "$d" = "." ]; then
+                  u="$BASE/"
+                else
+                  u="$BASE/$d/"
+                fi
+              else
+                u="$BASE/$f"
+              fi
+
+              # Normalize blog URL to one canonical: /blog/
+              if [ "$u" = "$BASE/blog" ] || [ "$u" = "$BASE/blog.html" ]; then
+                u="$BASE/blog/"
+              fi
+
+              # Normalize accidental double slashes
+              u="${u//\/\//\/}"; u="${u/:\//:\/\/}"
+
+              echo "$u" >> "$TMP_URLS"
+            done
+
+          sort -u "$TMP_URLS" > "$TMP_URLS.sorted"
 
           # Write sitemap.xml
           {
             echo '<?xml version="1.0" encoding="UTF-8"?>'
             echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-            for u in "${URLS[@]}"; do
-              echo "  <url>"
+            while read -r u; do
+              echo '  <url>'
               echo "    <loc>${u}</loc>"
               echo "    <lastmod>${TODAY}</lastmod>"
-              echo "  </url>"
-            done
+              echo '  </url>'
+            done < "$TMP_URLS.sorted"
             echo '</urlset>'
           } > sitemap.xml
 
-          # Write robots.txt (absolute sitemap URL)
-          cat > robots.txt <<EOF
-User-agent: *
-Allow: /
-
-Sitemap: ${BASE}/sitemap.xml
-EOF
+          # Write robots.txt with absolute Sitemap
+          {
+            echo 'User-agent: *'
+            echo 'Allow: /'
+            echo
+            echo "Sitemap: ${BASE}/sitemap.xml"
+          } > robots.txt
 
       - name: Commit & push
+        shell: bash
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
+          if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add sitemap.xml robots.txt
