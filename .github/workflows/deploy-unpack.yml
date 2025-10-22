@@ -1,0 +1,63 @@
+name: Deploy Site from ZIP
+
+on:
+  workflow_dispatch:
+    inputs:
+      zip_path:
+        description: "Path to ZIP in repo (e.g., Mojaf_FINAL_single_blog_upload.zip or deploy/site.zip)"
+        required: true
+        default: "Mojaf_FINAL_single_blog_upload.zip"
+      subdir:
+        description: "Top-level folder inside ZIP (leave blank to auto-detect)"
+        required: false
+        default: ""
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install unzip and rsync
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip rsync
+
+      - name: Extract ZIP into repo root (preserve .github)
+        run: |
+          ZIP="${{ github.event.inputs.zip_path }}"
+          if [ ! -f "$ZIP" ]; then
+            echo "Zip not found: $ZIP"
+            echo "Files in repo root:" && ls -la
+            exit 1
+          fi
+          TMPDIR=$(mktemp -d)
+          unzip -q "$ZIP" -d "$TMPDIR"
+          SRC="$TMPDIR"
+          SUB="${{ github.event.inputs.subdir }}"
+          if [ -n "$SUB" ] && [ -d "$TMPDIR/$SUB" ]; then
+            SRC="$TMPDIR/$SUB"
+          else
+            COUNT=$(ls -1 "$TMPDIR" | wc -l)
+            if [ "$COUNT" -eq 1 ]; then
+              ONLY=$(ls -1 "$TMPDIR")
+              SRC="$TMPDIR/$ONLY"
+            fi
+          fi
+          rsync -a --delete --exclude '.github' "$SRC/" .
+
+      - name: Commit & push
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "deploy: unpack site zip into repo root"
+            git push
+          else
+            echo "No changes to commit"
+          fi
