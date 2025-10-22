@@ -40,16 +40,21 @@ jobs:
       - name: Run audit (report only)
         run: npm run audit:seo || node scripts/audit-and-fix.mjs || true
 
-      - name: Apply fixes
+      - name: Apply fixes and open clean PR
         run: |
           npm run fix:seo || node scripts/audit-and-fix.mjs --fix || true
-          if [[ -n "$(git status --porcelain)" ]]; then
+          # Stage only HTML changes, never node_modules or other junk
+          changed_files=$(git status --porcelain | awk '{print $2}' | grep -E '\.(html|htm)$' || true)
+          if [ -n "$changed_files" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git checkout -b repo-health/fixes
-            git add -A
-            git commit -m "chore(repo-health): canonical normalization & dup-page report"
+            git checkout -B repo-health/fixes
+            git reset
+            git add $changed_files
+            git commit -m "chore(repo-health): canonical normalization"
             git push --force --set-upstream origin repo-health/fixes
+          else
+            echo 'No HTML changes to commit.'
           fi
 
       - name: Open PR if branch exists
