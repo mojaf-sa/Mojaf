@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 1) Make the homepage the real one (copy from public/index.html if needed)
+      # 1) Ensure a real homepage at repo root
       - name: Ensure root index.html matches site homepage
         shell: bash
         run: |
@@ -22,21 +22,37 @@ jobs:
             cp public/index.html index.html
           fi
 
-      # 2) Fix blank-page causes (Perl-only, no sed)
-      - name: Rewrite HTML paths (Perl only)
-        shell: bash
+      # 2) Fix paths using Python (no shell quoting issues)
+      - name: Rewrite HTML paths (Python)
         run: |
-          set -euo pipefail
-          shopt -s globstar nullglob
-          for f in **/*.html; do
-            perl -0777 -i -pe '
-              s/<base[^>]*href=["\']\/?public\/?["\'][^>]*>\s*//ig;                             # remove <base href="/public/">
-              s/(href|src)=["\']\/?public\/([^"\']*)/$1="\/$2/ig;                               # /public/... -> /...
-              s/(href|src)=["\'](assets|css|js|images|img)\/([^"\']*)/$1="\/$2\/$3/ig;          # assets -> /assets
-              s/href=["\']\/?blog(?:\.html)?["\']/href="\/blog\/"/ig;                           # blog(.html) -> /blog/
-            ' "$f"
-          done
-          echo "Rewrites done."
+          python3 - <<'PY'
+          import os, re
+          SKIP_PREFIXES = ('./.git','./.github','./node_modules','./public','./meta-tags','./_turbo_en','./blogs')
+          def should_skip(root):
+              rp = './' + os.path.relpath(root, '.').replace('\\','/')
+              return any(rp.startswith(p) for p in SKIP_PREFIXES)
+          for root, _, files in os.walk('.'):
+              if should_skip(root): 
+                  continue
+              for fn in files:
+                  if not fn.endswith('.html'): 
+                      continue
+                  p = os.path.join(root, fn)
+                  try:
+                      s = open(p,'r',encoding='utf-8',errors='ignore').read()
+                  except Exception:
+                      continue
+                  # remove <base href="/public/">
+                  s = re.sub(r'<base[^>]*href=["\']/?public/?["\'][^>]*>\s*','',s, flags=re.I)
+                  # /public/... -> /...
+                  s = re.sub(r'(href|src)=["\']/?public/([^"\']*)', r'\1="/\2', s, flags=re.I)
+                  # assets|css|js|images|img -> absolute
+                  s = re.sub(r'(href|src)=["\'](assets|css|js|images|img)/([^"\']*)', r'\1="/\2/\3', s, flags=re.I)
+                  # blog & blog.html -> /blog/
+                  s = re.sub(r'href=["\']/?blog(?:\.html)?["\']', 'href="/blog/"', s, flags=re.I)
+                  open(p,'w',encoding='utf-8').write(s)
+          print("Rewrites done.")
+          PY
 
       # 3) Remove duplicate sources that confuse the site
       - name: Remove duplicate folders
@@ -45,7 +61,7 @@ jobs:
           set -euo pipefail
           rm -rf public meta-tags _turbo_en blogs || true
 
-      # 4) Rebuild sitemap.xml & robots.txt (clean)
+      # 4) Rebuild sitemap.xml & robots.txt
       - name: Generate sitemap & robots
         shell: bash
         run: |
@@ -94,7 +110,7 @@ jobs:
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add -A
-            git commit -m "fix: homepage, asset paths, remove duplicates, rebuild sitemap/robots (perl-only)"
+            git commit -m "fix: homepage, path rewrites (python), remove duplicates, rebuild sitemap/robots"
             git push
           else
             echo "No changes to commit"
