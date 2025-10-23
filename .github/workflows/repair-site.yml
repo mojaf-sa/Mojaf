@@ -1,13 +1,17 @@
 name: Repair Site Paths, Cleanup & Rebuild
 on:
   workflow_dispatch:
+
 jobs:
   repair:
     runs-on: ubuntu-latest
-    permissions: { contents: write }
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+        with:
+          fetch-depth: 0
 
       # 1) Make the homepage the real one (copy from public/index.html if needed)
       - name: Ensure root index.html matches site homepage
@@ -18,7 +22,7 @@ jobs:
             cp public/index.html index.html
           fi
 
-      # 2) Fix blank-page causes: remove <base href="/public/"> and /public/ prefixes
+      # 2) Fix blank-page causes (use Perl for robust rewrites)
       - name: Rewrite HTML paths
         shell: bash
         run: |
@@ -26,11 +30,13 @@ jobs:
           shopt -s globstar nullglob
           for f in **/*.html; do
             # remove any <base href="/public/">
-            sed -i -E '/<base[^>]*href=["'\''"]\/?public\/?["'\''"][^>]*>/I d' "$f"
-            # /public/...  ->  /...
-            sed -i -E 's/(href|src)=["'\'']\/?public\//\1="\/'/g' "$f"
-            # blog.html -> /blog/
-            sed -i -E 's#href=["'\'']/?blog(\.html)?["'\'']#href="/blog/"#g' "$f"
+            perl -0777 -i -pe 's/<base[^>]*href=["\']\/?public\/?["\'][^>]*>\s*//ig' "$f"
+            # /public/... → /...
+            perl -0777 -i -pe 's/(href|src)=["\']\/?public\/([^"\']*)/$1="\/$2/ig' "$f"
+            # make bare asset paths absolute
+            perl -0777 -i -pe 's/(href|src)=["\'](assets|css|js|images|img)\/([^"\']*)/$1="\/$2\/$3/ig' "$f"
+            # blog & blog.html → /blog/
+            perl -0777 -i -pe 's/href=["\']\/?blog(?:\.html)?["\']/href="\/blog\/"/ig' "$f"
           done
 
       # 3) Remove duplicate sources that confuse the site
@@ -48,20 +54,27 @@ jobs:
           BASE="https://mojaf-sa.com"
           TODAY="$(date +%F)"
           TMP="$(mktemp)"
-          find . -type d \( -path './.git' -o -path './.github' -o -path './node_modules' -o -path './public' -o -path './meta-tags' -o -path './_turbo_en' -o -path './blogs' \) -prune -false -o -type f -name '*.html' \
+
+          find . \
+            -type d \( -path './.git' -o -path './.github' -o -path './node_modules' -o -path './public' -o -path './meta-tags' -o -path './_turbo_en' -o -path './blogs' \) -prune -false -o \
+            -type f -name '*.html' \
           | while read -r f; do
               f="${f#./}"; bn="$(basename "$f")"
               case "$f" in 404.html|header-footer-snippet.html|blog.html) continue;; esac
+
               if [ "$bn" = "index.html" ]; then
                 d="$(dirname "$f")"; [ "$d" = "." ] && url="$BASE/" || url="$BASE/$d/"
               else
                 url="$BASE/$f"
               fi
+
               [ "$url" = "$BASE/blog" ] || [ "$url" = "$BASE/blog.html" ] && url="$BASE/blog/"
               url="${url//\/\//\/}"; url="${url/:\//:\/\/}"
               echo "$url" >> "$TMP"
             done
+
           sort -u "$TMP" > "$TMP.sorted"
+
           {
             echo '<?xml version="1.0" encoding="UTF-8"?>'
             echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -70,6 +83,7 @@ jobs:
             done < "$TMP.sorted"
             echo '</urlset>'
           } > sitemap.xml
+
           {
             echo 'User-agent: *'
             echo 'Allow: /'
