@@ -22,22 +22,21 @@ jobs:
             cp public/index.html index.html
           fi
 
-      # 2) Fix blank-page causes (use Perl for robust rewrites)
-      - name: Rewrite HTML paths
+      # 2) Fix blank-page causes (Perl-only, no sed)
+      - name: Rewrite HTML paths (Perl only)
         shell: bash
         run: |
           set -euo pipefail
           shopt -s globstar nullglob
           for f in **/*.html; do
-            # remove any <base href="/public/">
-            perl -0777 -i -pe 's/<base[^>]*href=["\']\/?public\/?["\'][^>]*>\s*//ig' "$f"
-            # /public/... → /...
-            perl -0777 -i -pe 's/(href|src)=["\']\/?public\/([^"\']*)/$1="\/$2/ig' "$f"
-            # make bare asset paths absolute
-            perl -0777 -i -pe 's/(href|src)=["\'](assets|css|js|images|img)\/([^"\']*)/$1="\/$2\/$3/ig' "$f"
-            # blog & blog.html → /blog/
-            perl -0777 -i -pe 's/href=["\']\/?blog(?:\.html)?["\']/href="\/blog\/"/ig' "$f"
+            perl -0777 -i -pe '
+              s/<base[^>]*href=["\']\/?public\/?["\'][^>]*>\s*//ig;                             # remove <base href="/public/">
+              s/(href|src)=["\']\/?public\/([^"\']*)/$1="\/$2/ig;                               # /public/... -> /...
+              s/(href|src)=["\'](assets|css|js|images|img)\/([^"\']*)/$1="\/$2\/$3/ig;          # assets -> /assets
+              s/href=["\']\/?blog(?:\.html)?["\']/href="\/blog\/"/ig;                           # blog(.html) -> /blog/
+            ' "$f"
           done
+          echo "Rewrites done."
 
       # 3) Remove duplicate sources that confuse the site
       - name: Remove duplicate folders
@@ -61,20 +60,17 @@ jobs:
           | while read -r f; do
               f="${f#./}"; bn="$(basename "$f")"
               case "$f" in 404.html|header-footer-snippet.html|blog.html) continue;; esac
-
               if [ "$bn" = "index.html" ]; then
                 d="$(dirname "$f")"; [ "$d" = "." ] && url="$BASE/" || url="$BASE/$d/"
               else
                 url="$BASE/$f"
               fi
-
               [ "$url" = "$BASE/blog" ] || [ "$url" = "$BASE/blog.html" ] && url="$BASE/blog/"
               url="${url//\/\//\/}"; url="${url/:\//:\/\/}"
               echo "$url" >> "$TMP"
             done
 
           sort -u "$TMP" > "$TMP.sorted"
-
           {
             echo '<?xml version="1.0" encoding="UTF-8"?>'
             echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -98,7 +94,7 @@ jobs:
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add -A
-            git commit -m "fix: homepage, asset paths, remove duplicates, rebuild sitemap/robots"
+            git commit -m "fix: homepage, asset paths, remove duplicates, rebuild sitemap/robots (perl-only)"
             git push
           else
             echo "No changes to commit"
