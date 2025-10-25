@@ -9,11 +9,16 @@
     <link rel="alternate" hreflang="en" href="https://mojaf-sa.com/" />
     <link rel="alternate" hreflang="ar" href="https://mojaf-sa.com/" />
     <link rel="alternate" hreflang="x-default" href="https://mojaf-sa.com/" />
-    <meta name="description" content="MOJAF Trading - Fasteners, Wall Skirting, SPC Flooring & Construction Materials across Saudi Arabia." />
+    <meta
+      name="description"
+      content="MOJAF Trading - Fasteners, Wall Skirting, SPC Flooring & Construction Materials across Saudi Arabia."
+    />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/assets/js/i18n.js"></script>
+    <!-- Public asset from app/public — load as a classic script -->
+    <script src="/assets/js/i18n.js"></script>
+    <!-- Vite entry stays a module -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
