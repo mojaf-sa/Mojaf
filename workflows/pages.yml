@@ -1,0 +1,62 @@
+name: Build and Deploy (Vite → GitHub Pages)
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Remove files that collide with React routes
+        run: |
+          rm -f public/index.html
+          rm -f public/about.html public/about/index.html
+          rm -f public/services.html public/services/index.html
+          rm -f public/products.html public/products/index.html
+          rm -f public/catalogs.html public/catalogs/index.html
+          rm -f public/partners.html public/partners/index.html
+          rm -f public/contact.html public/contact/index.html
+          rm -f public/blog.html
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          if test -f package-lock.json; then
+            npm ci --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Build site
+        run: npm run build
+
+      - name: Add 404 fallback (copy built index)
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
