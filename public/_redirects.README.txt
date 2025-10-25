@@ -1,0 +1,9 @@
+Cloudflare Pages (SPA)
+
+This file makes Cloudflare Pages send *all* routes to `/index.html` so deep-links work.
+
+Content:
+```
+/* /index.html 200
+```
+Place this file in the **build output** (e.g. `dist/`) or in a `public/` folder so your build copies it to the output.
