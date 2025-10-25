@@ -1,0 +1,125 @@
+name: Build & Deploy (SEO-injected)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm i; fi
+      - name: Build (Vite/React)
+        run: |
+          npm run build
+      - name: Inject SEO head snippet
+        shell: bash
+        run: |
+          mkdir -p dist
+          cat > __head_snippet.html <<'SNIP'
+<!-- ===== MOJAF SEO/Indexing + Canonical + EN/AR Hreflang ===== -->
+<link rel="canonical" href="https://mojaf-sa.com/" />
+<link rel="alternate" hreflang="en" href="https://mojaf-sa.com/" />
+<link rel="alternate" hreflang="ar" href="https://mojaf-sa.com/ar/" />
+<link rel="alternate" hreflang="x-default" href="https://mojaf-sa.com/" />
+
+<meta name="description" content="MOJAF Trading - Fasteners, Wall Skirting, SPC Flooring & Construction Materials across Saudi Arabia. Quick quotes, reliable supply, and nationwide delivery." />
+<meta name="keywords" content="Fasteners Saudi Arabia, Wall Skirting Jeddah, SPC Flooring Dammam, Construction Materials Riyadh, Building Materials Supplier KSA" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="MOJAF Trading - Construction Materials in Saudi Arabia" />
+<meta property="og:description" content="Fasteners, Wall Skirting, SPC Flooring & more - quick quotes and delivery across KSA." />
+<meta property="og:url" content="https://mojaf-sa.com/" />
+<meta property="og:image" content="https://mojaf-sa.com/assets/img/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MOJAF Trading - Construction Materials in Saudi Arabia" />
+<meta name="twitter:description" content="Fasteners, Wall Skirting, SPC Flooring & more." />
+<meta name="twitter:image" content="https://mojaf-sa.com/assets/img/og-cover.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "MOJAF Trading",
+  "image": "https://mojaf-sa.com/assets/img/og-cover.jpg",
+  "url": "https://mojaf-sa.com/",
+  "telephone": "+966568401900",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "JHYE3207، 3207 موسي الرازي، 7951, Al Shera'a",
+    "addressLocality": "Jeddah",
+    "postalCode": "23816",
+    "addressCountry": "SA"
+  },
+  "areaServed": ["Jeddah","Riyadh","Dammam","Saudi Arabia"],
+  "sameAs": []
+}
+</script>
+SNIP
+          python3 - <<'PY'
+import pathlib
+p = pathlib.Path('dist/index.html')
+s = p.read_text(encoding='utf-8')
+head_snip = pathlib.Path('__head_snippet.html').read_text(encoding='utf-8')
+if '</head>' in s:
+    s = s.replace('</head>', head_snip + '
+</head>')
+p.write_text(s, encoding='utf-8')
+PY
+      - name: Add i18n script and fallback button
+        shell: bash
+        run: |
+          python3 - <<'PY'
+import pathlib
+p = pathlib.Path('dist/index.html')
+s = p.read_text(encoding='utf-8')
+# Add script before </body> if missing
+if 'assets/js/i18n.js' not in s:
+    s = s.replace('</body>', '<script type="module" src="/assets/js/i18n.js"></script>
+</body>')
+# Add fallback floating button if missing
+if 'id="lang-toggle"' not in s:
+    btn = '<button id="lang-toggle" style="position:fixed;top:10px;right:10px;padding:.4rem .7rem;border:1px solid #ddd;border-radius:8px;background:#fff;z-index:9999">العربية</button>'
+    if '<body>' in s:
+        s = s.replace('<body>', '<body>' + btn)
+    elif '<body ' in s:
+        # insert after first closing '>' of <body ...>
+        idx = s.find('>')
+        s = s[:idx+1] + btn + s[idx+1:]
+pathlib.Path('dist/index.html').write_text(s, encoding='utf-8')
+PY
+      - name: SPA 404 + .nojekyll
+        run: |
+          cp dist/index.html dist/404.html || true
+          touch dist/.nojekyll
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
