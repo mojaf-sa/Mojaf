@@ -1,0 +1,19 @@
+
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;line-height:1.65}
+a{color:#0a58ca;text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:10}
+nav{display:flex;gap:14px;flex-wrap:wrap}
+nav a{padding:8px 10px;border-radius:8px;border:1px solid #e6e6e6;background:#fff}
+nav a:hover{background:#f6f6f6}
+.hero{padding:60px 0;background:linear-gradient(180deg,#f8f8fb,#ffffff)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{border:1px solid #eee;border-radius:12px;padding:16px;background:#fff}
+footer{margin-top:40px;border-top:1px solid #eee;padding:20px 0;color:#555}
+.badge{display:inline-block;padding:4px 8px;border:1px solid #eee;border-radius:999px;font-size:.85rem;color:#555}
+.mojaf-fab{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:9999}
+.mojaf-fab a{display:inline-block;padding:12px 14px;border-radius:999px;border:1px solid #ddd;background:#fff;color:#111;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+img{max-width:100%;height:auto;border-radius:10px;border:1px solid #eaeaea}
+.breadcrumbs{font-size:.9rem;color:#666;margin:12px 0}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #eee;padding:8px;text-align:left}
+small, time { color:#666 }
