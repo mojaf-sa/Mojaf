@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://mojaf-sa.com/sitemap.xml
+Sitemap: https://mojaf-sa.com/ar/sitemap.xml
