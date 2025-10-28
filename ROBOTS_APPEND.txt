@@ -1,2 +1,0 @@
-## If you retired an old blog folder, add this to robots.txt to avoid crawling duplicates:
-Disallow: /blog-old/
