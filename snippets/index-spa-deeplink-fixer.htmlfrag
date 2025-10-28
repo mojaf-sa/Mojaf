@@ -1,2 +1,0 @@
-<!-- Just before </body> -->
-<script>(function(){var u=new URLSearchParams(location.search),p=u.get('p');if(p)history.replaceState({},'', '/' + p.replace(/^\//,''));})();</script>
