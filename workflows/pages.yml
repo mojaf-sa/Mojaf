@@ -1,55 +1,66 @@
-name: Build and Deploy (Vite → GitHub Pages)
+name: Build and Deploy (Vite + Static)
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: "pages"
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Remove files that collide with React routes
+      - name: Build (skip if no package.json)
         run: |
-          rm -f public/index.html
-          rm -f public/about.html public/about/index.html
-          rm -f public/services.html public/services/index.html
-          rm -f public/products.html public/products/index.html
-          rm -f public/catalogs.html public/catalogs/index.html
-          rm -f public/partners.html public/partners/index.html
-          rm -f public/contact.html public/contact/index.html
-          rm -f public/blog.html
-
-      - name: Install dependencies
-        shell: bash
-        run: |
-          if test -f package-lock.json; then
-            npm ci --no-audit --no-fund
+          if [ -f package.json ]; then
+            npm ci
+            npm run build
           else
-            npm install --no-audit --no-fund
+            echo "No package.json found — skipping Vite build"
           fi
 
-      - name: Build site
-        run: npm run build
-
-      - name: Add 404 fallback (copy built index)
-        run: cp dist/index.html dist/404.html
+      - name: Prepare publish folder
+        run: |
+          mkdir -p out
+          # If Vite produced /dist, use it as the base
+          if [ -d dist ]; then
+            cp -r dist/* out/
+          fi
+          # Always include these static assets/pages
+          cp -r blog out/ || true
+          cp -r assets out/ || true
+          cp -r ar out/ || true
+          cp blog.html out/ || true
+          cp 404.html out/ || true
+          cp sitemap.xml out/ || true
+          cp robots.txt out/ || true
+          cp CNAME out/ || true
+          cp MOJ.jpg out/ || true
+          # Fallback: ensure index.html exists (from repo root if dist didn't create one)
+          if [ ! -f out/index.html ] && [ -f index.html ]; then
+            cp index.html out/
+          fi
+          echo "Publish folder contents:"
+          ls -la out
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: out
 
   deploy:
     needs: build
