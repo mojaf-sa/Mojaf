@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Build (skip if no package.json)
+      - name: Build (handles peer-deps safely)
         run: |
           if [ -f package.json ]; then
-            npm ci
+            npm ci --legacy-peer-deps || npm i --legacy-peer-deps
             npm run build
           else
             echo "No package.json found — skipping Vite build"
@@ -36,9 +36,11 @@ jobs:
       - name: Prepare publish folder
         run: |
           mkdir -p out
+          # If Vite produced /dist, use it
           if [ -d dist ]; then
             cp -r dist/* out/
           fi
+          # Always include static content
           cp -r blog out/ || true
           cp -r assets out/ || true
           cp -r ar out/ || true
@@ -48,6 +50,7 @@ jobs:
           cp robots.txt out/ || true
           cp CNAME out/ || true
           cp MOJ.jpg out/ || true
+          # Fallback: ensure index.html exists
           if [ ! -f out/index.html ] && [ -f index.html ]; then
             cp index.html out/
           fi
