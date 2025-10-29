@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<!-- Primary Meta Tags for SEO -->
+<title>MOJAF – Building Materials in Saudi Arabia</title>
+<meta content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes." name="description"/>
+<meta content="index,follow" name="robots"/>
+<!-- SEO Keywords (optional but safe) -->
+<meta content="screw supplier in Jeddah, screw supplier in Riyadh, screw supplier in Dammam, fastener supplier in Jeddah, fasteners supplier in Riyadh, fasteners supplier in Dammam, screw supplier in Saudi arabia, fastener supplier in Saudi Arabia, wall skirting supplier in Riyadh, wall skirting supplier in Jeddah, wall skirting supplier in Dammam, wall skirting supplier in Saudi Arabia, Floor skirting supplier in Riyadh, Floor skirting supplier in Jeddah, Floor skirting supplier in Dammam, Floor skirting supplier in Saudi Arabia, Floor skirting, Wall Skirting, Screws, Screw, Fasteners, Fastener, Flooring, Vinyl Flooring, SPC Flooring, LVT Flooring, Home Decoration, Portacabin Material Supplier, Luxury Vinyl Tiles, PVC Flooring, Stone Plastic Composite Flooring Suppliers, Wall Panels Suppliers, Cement Boards, Fiber Boards, Gypsum Boards, Electrical Appliances Suppliers, Building materials supplier in S" name="keywords"/>
+<!-- Canonical (use non-www as your chosen host) -->
+<link href="https://mojaf-sa.com/" rel="canonical"/>
+<!-- Favicon -->
+<link href="/MOJ.jpg" rel="icon" type="image/jpeg"/>
+<link href="/MOJ.jpg" rel="apple-touch-icon"/>
+<meta content="/MOJ.jpg" name="msapplication-TileImage"/>
+<!-- Open Graph -->
+<meta content="website" property="og:type"/>
+<meta content="MOJAF" property="og:site_name"/>
+<meta content="MOJAF – Building Materials in Saudi Arabia" property="og:title"/>
+<meta content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes." property="og:description"/>
+<meta content="https://mojaf-sa.com/" property="og:url"/>
+<meta content="https://mojaf-sa.com/MOJ.jpg" property="og:image"/>
+<meta content="en_SA" property="og:locale"/>
+<!-- Twitter -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="MOJAF – Building Materials in Saudi Arabia" name="twitter:title"/>
+<meta content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes." name="twitter:description"/>
+<meta content="https://mojaf-sa.com/MOJ.jpg" name="twitter:image"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ConstructionMaterialBusiness",
+    "name": "MOJAF",
+    "url": "https://mojaf-sa.com",
+    "logo": "https://mojaf-sa.com/MOJ.jpg",
+    "image": "https://mojaf-sa.com/MOJ.jpg",
+    "description": "MOJAF is a leading construction materials supplier in Saudi Arabia, offering high-quality flooring, wall systems, fasteners, and electrical components across multiple cities.",
+    "telephone": "+966 56 840 1900",
+    "email": "info@mojaf-sa.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Multiple Locations Across KSA",
+      "addressLocality": "Jeddah, Riyadh, Dammam, Khobar, Makkah, Madinah",
+      "addressRegion": "Saudi Arabia",
+      "addressCountry": "SA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "21.543333",
+      "longitude": "39.172778"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61576350434274",
+      "https://mojaf-sa.com"
+    ]
+  }
+  </script>
+<!-- Preload -->
+<link as="script" crossorigin="" href="/src/main.jsx" rel="preload"/>
+<link as="image" href="https://mojaf-sa.com/MOJ.jpg" rel="preload"/>
+<!-- ✅ Inline Blog-link injector (no external file, robust for React/SPA) -->
+<script>
+  (function () {
+    const BLOG_HREF = "/blog.html";
+    const LINK_TEXT = "Blog";
+    const CANDIDATE_SELECTORS = [
+      "header", "nav", ".navbar", ".nav", ".header",
+      "footer", ".footer",
+      "#root header", "#root nav", "#root .navbar", "#root .footer"
+    ];
+    function hasBlogLink(root) {
+      return !!root.querySelector('a[href$="/blog.html"], a[href*="/blog.html"], a[data-mojaf-blog-link="1"]');
+    }
+    function makeLink() {
+      const a = document.createElement("a");
+      a.href = BLOG_HREF;
+      a.textContent = LINK_TEXT;
+      a.setAttribute("data-mojaf-blog-link", "1");
+      a.style.marginLeft = "12px";
+      a.style.cursor = "pointer";
+      return a;
+    }
+    function injectInto(container) {
+      if (!container || hasBlogLink(container)) return false;
+      const list = container.querySelector("ul, ol, .menu, .nav");
+      if (list && !hasBlogLink(list)) {
+        const li = document.createElement("li");
+        li.style.listStyle = "none";
+        li.appendChild(makeLink());
+        list.appendChild(li);
+        return true;
+      }
+      container.appendChild(makeLink());
+      return true;
+    }
+    function tryOnce() {
+      for (const sel of CANDIDATE_SELECTORS) {
+        const node = document.querySelector(sel);
+        if (node && injectInto(node)) return true;
+      }
+      return false;
+    }
+    const run = () => {
+      tryOnce();
+      const observer = new MutationObserver(() => {
+        if (!document.querySelector('[data-mojaf-blog-link="1"]')) {
+          tryOnce();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(() => {
+        if (!document.querySelector('[data-mojaf-blog-link="1"]')) {
+          const root = document.querySelector("#root") || document.body;
+          injectInto(root);
+        }
+      }, 1500);
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", run);
+    } else {
+      run();
+    }
+  })();
+  </script>
+</head>
+<body><span data-lang-toggle="1" style="float:right; font-size:14px; margin:4px 0 0 8px;"><a href="/index.html">EN</a> | <a href="/ar/index.html">العربية</a></span>
+<div id="root"></div>
+<!-- Correct Vite entry (this loads your React app) -->
+<script src="/src/main.jsx" type="module"></script>
+<!-- SEO Content for Crawlers (kept minimal and clean) -->
+<div style="position:absolute; left:-9999px; top:-9999px;">
+<h1>MOJAF - Construction &amp; Building Materials Supplier Saudi Arabia</h1>
+<h2>Construction &amp; Building Materials in Riyadh, Jeddah, Dammam</h2>
+<p>Leading supplier of <strong>LVT flooring</strong>, <strong>wall skirting</strong>, <strong>construction fasteners</strong>, and <strong>electrical components</strong> in Saudi Arabia. Specialists in <em>portacabin materials</em>, <em>rockwool insulation</em>, and <em>MEP supplies</em> with nationwide delivery to Jeddah, Riyadh, Dammam, Khobar, Makkah, and Madinah.</p>
+</div>
+</body>
+</html>
