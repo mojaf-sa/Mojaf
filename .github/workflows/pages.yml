@@ -18,15 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare publish folder
-        shell: bash
+
+      - name: Prepare publish folder (exclude CI folders)
         run: |
           mkdir -p out
-          shopt -s dotglob
-          cp -r * out/
-          # keep CNAME; remove CI files so they don’t get published
-          rm -rf out/.git out/.github
-          echo "Publish folder contents:" && ls -la out
+          rsync -av --delete \
+            --exclude 'out' \
+            --exclude '.git' \
+            --exclude '.github' \
+            ./ out/
+          echo "Publish folder contents:"; ls -la out
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
