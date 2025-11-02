@@ -1,8 +1,13 @@
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// IMPORTANT: custom domain at the root should use base: '/'
 export default defineConfig({
+  base: '/',             // << fix broken asset URLs
   plugins: [react()],
-  base: '/', 
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+  },
 })
