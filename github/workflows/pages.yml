@@ -1,4 +1,4 @@
-name: Build and Deploy (React + Blog + AR)
+name: Build and Deploy (React only, no dev index)
 
 on:
   push:
@@ -31,32 +31,34 @@ jobs:
           npm config set legacy-peer-deps true
           npm ci || npm i
 
-      - name: Build React app
+      - name: Build React app (Vite)
         env:
           CI: false
         run: npm run build
 
-      - name: Prepare publish folder
+      - name: Prepare publish folder (use ONLY the build)
         shell: bash
         run: |
+          rm -rf out
           mkdir -p out
-          # React build
+
+          # ✅ Only use the built files from dist (never copy repo root index.html)
           cp -r dist/* out/
 
-          # Bring along static content if present
-          for p in blog assets public ar blog.html robots.txt sitemap.xml CNAME MOJ.jpg; do
+          # Optional static folders/files (safe to copy)
+          for p in blog assets ar public images img css js robots.txt sitemap.xml CNAME MOJ.jpg; do
             [ -e "$p" ] && cp -r "$p" out/ || true
           done
 
-          # SPA fallback for clean URLs
+          # SPA fallback so clean URLs work
           [ -f out/index.html ] && cp out/index.html out/404.html || true
 
-          # ✅ ensure .nojekyll even if hidden in repo
+          # Ensure Jekyll doesn't interfere
           echo > out/.nojekyll
 
           echo "---- OUT LISTING ----"
           ls -la out
-          echo "---- ASSETS ----"
+          echo "---- JS BUNDLE ----"
           ls -la out/assets || true
 
       - name: Upload artifact
