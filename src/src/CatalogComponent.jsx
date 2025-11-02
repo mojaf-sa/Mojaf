@@ -79,6 +79,11 @@ const CatalogComponent = () => {
   ];
 
   const handleDownload = (pdfUrl) => {
+    if (typeof document === 'undefined' || !pdfUrl) {
+      console.warn('Catalog download attempted outside the browser.');
+      return;
+    }
+
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.download = pdfUrl.split('/').pop();
@@ -88,6 +93,11 @@ const CatalogComponent = () => {
   };
 
   const handlePreview = (pdfUrl) => {
+    if (typeof window === 'undefined' || !pdfUrl) {
+      console.warn('Catalog preview attempted outside the browser.');
+      return;
+    }
+
     window.open(pdfUrl, '_blank');
   };
 
