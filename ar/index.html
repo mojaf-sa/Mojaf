@@ -3,25 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MOJAF — Arabic</title>
+    <!-- Same base fix so assets load from root even under /ar/ -->
+    <base href="/" />
 
-    <!-- As requested: canonical to root (no www) -->
-    <link rel="canonical" href="https://mojaf-sa.com/">
+    <link rel="icon" href="/MOJ.jpg" />
+    <title>MOJAF – مواد البناء في السعودية</title>
+    <meta name="description" content="مواد وتشطيبات البناء في المملكة: أرضيات SPC/Vinyl، وزرات الجدران، مسامير وتثبيت، ألواح وعوازل وكهرباء. تواصل مع MOJAF.">
 
-    <!-- Hreflang pair still present -->
+    <link rel="canonical" href="https://mojaf-sa.com/ar/">
     <link rel="alternate" hreflang="en-SA" href="https://mojaf-sa.com/">
     <link rel="alternate" hreflang="ar-SA" href="https://mojaf-sa.com/ar/">
 
-    <!-- Instant redirect to the working React homepage -->
-    <meta http-equiv="refresh" content="0; url=/" />
-    <script>
-      // JS fallback (faster than meta on many browsers)
-      window.location.replace("/");
-    </script>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MOJAF – مواد البناء في السعودية">
+    <meta property="og:description" content="مواد وتشطيبات البناء في المملكة العربية السعودية.">
+    <meta property="og:url" content="https://mojaf-sa.com/ar/">
+    <meta property="og:image" content="https://mojaf-sa.com/MOJ.jpg">
+
+    <link rel="preload" href="/src/main.jsx" as="script" crossorigin>
   </head>
   <body>
+    <span data-lang-toggle="1" style="position:fixed;right:12px;top:10px;font-size:14px;z-index:9999;">
+      <a href="/">EN</a> | <a href="/ar/">العربية</a>
+    </span>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
     <noscript>
-      تتم إعادة التوجيه… <a href="/">اضغط هنا</a>
+      يتطلب هذا الموقع تفعيل الجافاسكربت. يمكنك زيارة
+      <a href="/blog.html">المدونة</a>.
     </noscript>
   </body>
 </html>
