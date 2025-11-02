@@ -45,6 +45,7 @@ jobs:
 
           # 1) React build → root
           cp -r dist/* out/
+          cp style.css out/
 
           # 2) Static files (if present)
           cp -r blog out/ || true
