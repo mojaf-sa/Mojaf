@@ -13,11 +13,9 @@ function Home() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.hash === '#contact') {
+    if (location.hash === '#contact' && typeof document !== 'undefined') {
       const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      contactSection?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [location]);
   

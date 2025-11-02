@@ -171,7 +171,13 @@ const ProductShowcase = () => {
   };
 
   const handleQuoteClick = (productId) => {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    if (typeof document === 'undefined') {
+      console.warn('Quote scroll attempted outside the browser.');
+      return;
+    }
+
+    const contactSection = document.getElementById('contact');
+    contactSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const openProductModal = (product) => {

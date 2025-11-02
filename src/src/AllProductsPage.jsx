@@ -13,13 +13,22 @@ const AllProductsPage = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [canonicalUrl, setCanonicalUrl] = useState(
+    typeof window !== 'undefined'
+      ? window.location.href.split('?')[0]
+      : 'https://www.mojaf-sa.com/all-products'
+  );
+
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://www.mojaf-sa.com';
 
   // Generate meta description based on products
-  const metaDescription = `Browse our extensive collection of ${allProducts.length} high-quality products. 
+  const metaDescription = `Browse our extensive collection of ${allProducts.length} high-quality products.
   Find the perfect materials for your project across ${productCategories.length} categories.`;
 
-  // Generate canonical URL
-  const canonicalUrl = window.location.href.split('?')[0];
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setCanonicalUrl(window.location.href.split('?')[0]);
+  }, []);
 
   useEffect(() => {
     let results = allProducts;
@@ -74,7 +83,7 @@ const AllProductsPage = () => {
         "name": product.name,
         "description": product.description || `${product.category} product - ${product.name}`,
         "category": product.category,
-        "url": `${window.location.origin}/products/${product.id}`,
+        "url": `${siteOrigin}/products/${product.id}`,
         ...(product.images && product.images.length > 0 ? {
           "image": product.images[0]
         } : {})
@@ -95,13 +104,13 @@ const AllProductsPage = () => {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content="Our Product Collection | High-Quality Materials" />
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={allProducts[0]?.images?.[0] || `${window.location.origin}/default-product-image.jpg`} />
+        <meta property="og:image" content={allProducts[0]?.images?.[0] || `${siteOrigin}/default-product-image.jpg`} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Our Product Collection | High-Quality Materials" />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={allProducts[0]?.images?.[0] || `${window.location.origin}/default-product-image.jpg`} />
+        <meta name="twitter:image" content={allProducts[0]?.images?.[0] || `${siteOrigin}/default-product-image.jpg`} />
         
         {/* Schema.org markup */}
         <script type="application/ld+json">
