@@ -34,38 +34,30 @@ jobs:
       - name: Build React app
         env:
           CI: false
-        run: |
-          # Prefer your script; fall back to vite if script missing
-          if npm run | grep -q "build"; then
-            npm run build
-          else
-            npx vite build
-          fi
+        run: npm run build
 
       - name: Prepare publish folder
         shell: bash
         run: |
           mkdir -p out
-          # Copy built React app
-          if [ -d "dist" ]; then
-            cp -r dist/* out/
-          elif [ -d "build" ]; then
-            cp -r build/* out/
-          fi
+          # React build
+          cp -r dist/* out/
 
           # Bring along static content if present
           for p in blog assets public ar blog.html robots.txt sitemap.xml CNAME MOJ.jpg; do
             [ -e "$p" ] && cp -r "$p" out/ || true
           done
 
-          # SPA fallback so clean URLs work
+          # SPA fallback for clean URLs
           [ -f out/index.html ] && cp out/index.html out/404.html || true
 
-          # ✅ FORCE CREATE .nojekyll (even if it isn't in your repo)
+          # ✅ ensure .nojekyll even if hidden in repo
           echo > out/.nojekyll
 
-          echo "Publish folder listing:"
+          echo "---- OUT LISTING ----"
           ls -la out
+          echo "---- ASSETS ----"
+          ls -la out/assets || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
