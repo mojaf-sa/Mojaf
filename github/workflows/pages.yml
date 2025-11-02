@@ -1,4 +1,4 @@
-name: Build and Deploy (React + Static Blog + AR 404 + Assets)
+name: Build and Deploy (React + Static + AR redirects)
 
 on:
   push:
@@ -37,52 +37,55 @@ jobs:
           CI: false
         run: npm run build
 
-      - name: Prepare publish folder (React + static + Arabic mirrors)
+      - name: Prepare publish folder (React + static + AR redirects)
         run: |
           set -e
           mkdir -p out
 
-          # 1) React build output -> root
+          # 1) React build → root
           cp -r dist/* out/
 
           # 2) Static content
           cp -r blog out/ || true
           cp -r assets out/ || true
-          cp -r ar out/ || true
           cp blog.html out/ || true
           cp robots.txt out/ || true
           cp sitemap.xml out/ || true
           cp CNAME out/ || true
           cp MOJ.jpg out/ || true
 
-          # 3) Root SPA fallback (clean URLs)
+          # 3) SPA fallback for clean URLs
           cp out/index.html out/404.html || true
 
-          # 4) Arabic mirrors
-          mkdir -p out/ar
-          # use the same built homepage
-          cp out/index.html out/ar/index.html
-          # create AR-local 404 so GitHub Pages fallback inside /ar/ works
-          cp out/index.html out/ar/404.html
-          # mirror assets so relative "assets/..." works at /ar/*
-          if [ -d out/assets ]; then
-            cp -r out/assets out/ar/
-          fi
+          # 4) AR REDIRECTS (no assets, instant)
+          mkdir -p out/ar out/ar/blog
 
-          # 5) Arabic blog: copy pages and assets under /ar/blog/
+          # /ar/ → /
+          cat > out/ar/index.html <<'HTML'
+          <!doctype html><meta charset="utf-8">
+          <meta http-equiv="refresh" content="0;url=/">
+          <script>location.replace("/");</script>
+          <title>Redirecting…</title>
+          HTML
+
+          # /ar/404.html → /
+          cp out/ar/index.html out/ar/404.html
+
+          # /ar/blog/*.html → /blog/*.html
           if [ -d out/blog ]; then
-            mkdir -p out/ar
-            cp -r out/blog out/ar/
-            if [ -d out/assets ]; then
-              cp -r out/assets out/ar/blog/
-            fi
+            find out/blog -maxdepth 1 -type f -name "*.html" -printf "%f\n" | while read f; do
+              cat > "out/ar/blog/$f" <<HTML
+              <!doctype html><meta charset="utf-8">
+              <meta http-equiv="refresh" content="0;url=/blog/$f">
+              <script>location.replace("/blog/$f");</script>
+              <title>Redirecting…</title>
+              HTML
+            done
           fi
 
           echo "—— out/ ——"; ls -la out
           echo "—— out/ar/ ——"; ls -la out/ar || true
           echo "—— out/ar/blog/ ——"; ls -la out/ar/blog || true
-          echo "—— head of out/ar/index.html ——"
-          head -n 15 out/ar/index.html || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
