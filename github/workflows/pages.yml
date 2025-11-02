@@ -1,4 +1,5 @@
-name: Build and Deploy (React + Static Blog)
+name: Build and Deploy (React + Static Blog + AR mirror)
+
 on:
   push:
     branches: [ main ]
@@ -16,8 +17,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -25,7 +28,7 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Fixes your earlier peer-dependency error automatically
+      # Safe install fixes peer-dependency conflicts you saw earlier
       - name: Install (safe)
         run: |
           npm config set legacy-peer-deps true
@@ -36,10 +39,15 @@ jobs:
           CI: false
         run: npm run build
 
-      - name: Prepare publish folder (add static blog + SEO files)
+      - name: Prepare publish folder (React + static blog/SEO + AR mirror)
         run: |
+          # Base publish dir
           mkdir -p out
+
+          # 1) React build output
           cp -r dist/* out/
+
+          # 2) Static content
           cp -r blog out/ || true
           cp -r assets out/ || true
           cp -r ar out/ || true
@@ -48,9 +56,18 @@ jobs:
           cp sitemap.xml out/ || true
           cp CNAME out/ || true
           cp MOJ.jpg out/ || true
-          # Single-page-app fallback so clean URLs work
+
+          # 3) SPA fallback so clean URLs work (GitHub Pages)
           cp out/index.html out/404.html || true
-          echo "Publish folder contents:"; ls -la out
+
+          # 4) Make /ar/ use the same built homepage (fixes blank page)
+          mkdir -p out/ar
+          cp out/index.html out/ar/index.html
+
+          echo "—— Listing out/ ——"
+          ls -la out
+          echo "—— First lines of out/ar/index.html ——"
+          head -n 20 out/ar/index.html || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
