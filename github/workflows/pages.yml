@@ -1,4 +1,4 @@
-name: Build and Deploy (React + Arabic fix)
+name: Build and Deploy (React + Blog + AR)
 
 on:
   push:
@@ -11,15 +11,14 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -27,7 +26,6 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Safe install avoids the peer-deps error you saw earlier
       - name: Install (safe)
         run: |
           npm config set legacy-peer-deps true
@@ -36,43 +34,38 @@ jobs:
       - name: Build React app
         env:
           CI: false
-        run: npm run build
-
-      - name: Prepare publish folder
         run: |
-          set -e
-          mkdir -p out
-
-          # 1) React build → root
-          cp -r dist/* out/
-          cp style.css out/
-
-          # 2) Static files (if present)
-          cp -r blog out/ || true
-          cp -r assets out/ || true
-          cp robots.txt out/ || true
-          cp sitemap.xml out/ || true
-          cp CNAME out/ || true
-          cp MOJ.jpg out/ || true
-          cp blog.html out/ || true
-
-          # 3) SPA fallback so clean URLs work
-          cp out/index.html out/404.html || true
-
-          # 4) Arabic: same homepage under /ar/ + local 404 + assets mirrored
-          mkdir -p out/ar
-          cp out/index.html out/ar/index.html
-          cp out/index.html out/ar/404.html
-          if [ -d out/assets ]; then cp -r out/assets out/ar/; fi
-
-          # 5) Arabic blog: copy pages and assets so /ar/blog/... works
-          if [ -d out/blog ]; then
-            cp -r out/blog out/ar/
-            if [ -d out/assets ]; then cp -r out/assets out/ar/blog/; fi
+          # Prefer your script; fall back to vite if script missing
+          if npm run | grep -q "build"; then
+            npm run build
+          else
+            npx vite build
           fi
 
-          echo "Publish folder:"
-          find out -maxdepth 2 -type f | sort | sed 's#^out/##'
+      - name: Prepare publish folder
+        shell: bash
+        run: |
+          mkdir -p out
+          # Copy built React app
+          if [ -d "dist" ]; then
+            cp -r dist/* out/
+          elif [ -d "build" ]; then
+            cp -r build/* out/
+          fi
+
+          # Bring along static content if present
+          for p in blog assets public ar blog.html robots.txt sitemap.xml CNAME MOJ.jpg; do
+            [ -e "$p" ] && cp -r "$p" out/ || true
+          done
+
+          # SPA fallback so clean URLs work
+          [ -f out/index.html ] && cp out/index.html out/404.html || true
+
+          # ✅ FORCE CREATE .nojekyll (even if it isn't in your repo)
+          echo > out/.nojekyll
+
+          echo "Publish folder listing:"
+          ls -la out
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
