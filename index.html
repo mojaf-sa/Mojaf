@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Force all relative URLs (assets, JS, CSS, images) to load from site root -->
+    <base href="/" />
+
     <link rel="icon" href="/MOJ.jpg" />
     <title>MOJAF – Building Materials in Saudi Arabia</title>
     <meta name="description" content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes.">
 
-    <!-- Canonical + hreflang (no escaping; correct root URL) -->
+    <!-- Canonical + hreflang -->
     <link rel="canonical" href="https://mojaf-sa.com/">
     <link rel="alternate" hreflang="en-SA" href="https://mojaf-sa.com/">
     <link rel="alternate" hreflang="ar-SA" href="https://mojaf-sa.com/ar/">
@@ -43,9 +46,9 @@
     <!-- Preload React entry so the page starts fast -->
     <link rel="preload" href="/src/main.jsx" as="script" crossorigin>
     <meta name="keywords" content="building materials Saudi Arabia, construction materials KSA, fasteners supplier Riyadh, screws Jeddah, wall skirting Riyadh, SPC flooring Saudi Arabia, LVT flooring KSA, rock wool insulation, cement boards supplier, electrical supplies KSA, MOJAF Trading">
-</head>
+  </head>
   <body>
-    <!-- Language toggle (doesn’t change your layout) -->
+    <!-- Language toggle (kept outside React) -->
     <span data-lang-toggle="1" style="position:fixed;right:12px;top:10px;font-size:14px;z-index:9999;">
       <a href="/">EN</a> | <a href="/ar/">العربية</a>
     </span>
@@ -56,7 +59,6 @@
     <!-- Vite + React entry -->
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Fallback if JS is off -->
     <noscript>
       This site needs JavaScript to load the homepage. You can still visit the
       <a href="/blog.html">Blog</a>.
