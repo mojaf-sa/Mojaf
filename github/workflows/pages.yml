@@ -1,4 +1,4 @@
-name: Build and Deploy (React + Static Blog + AR mirror)
+name: Build and Deploy (React + Static Blog + AR fixes)
 
 on:
   push:
@@ -17,7 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,7 +27,7 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Safe install fixes peer-dependency conflicts you saw earlier
+      # safe install for your previous peer-deps error
       - name: Install (safe)
         run: |
           npm config set legacy-peer-deps true
@@ -39,12 +38,12 @@ jobs:
           CI: false
         run: npm run build
 
-      - name: Prepare publish folder (React + static blog/SEO + AR mirror)
+      - name: Prepare publish folder (React + static + Arabic fixes)
         run: |
-          # Base publish dir
+          set -e
           mkdir -p out
 
-          # 1) React build output
+          # 1) React build
           cp -r dist/* out/
 
           # 2) Static content
@@ -57,15 +56,37 @@ jobs:
           cp CNAME out/ || true
           cp MOJ.jpg out/ || true
 
-          # 3) SPA fallback so clean URLs work (GitHub Pages)
+          # 3) SPA fallback so clean URLs work on GitHub Pages
           cp out/index.html out/404.html || true
 
-          # 4) Make /ar/ use the same built homepage (fixes blank page)
+          # 4) Arabic fixes
+          # 4a) Make /ar/ redirect to / (no blank page even if router lacks /ar)
           mkdir -p out/ar
-          cp out/index.html out/ar/index.html
+          cat > out/ar/index.html <<'HTML'
+          <!doctype html>
+          <html lang="ar" dir="rtl">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>MOJAF — Arabic</title>
+              <link rel="canonical" href="https://mojaf-sa.com/">
+              <meta http-equiv="refresh" content="0; url=/" />
+              <script>location.replace("/");</script>
+            </head>
+            <body>Redirecting… <a href="/">الصفحة الرئيسية</a></body>
+          </html>
+          HTML
+
+          # 4b) Mirror blog under /ar/blog/ so Arabic blog URLs work
+          if [ -d out/blog ]; then
+            mkdir -p out/ar
+            cp -r out/blog out/ar/
+          fi
 
           echo "—— Listing out/ ——"
           ls -la out
+          echo "—— Listing out/ar/ ——"
+          ls -la out/ar || true
           echo "—— First lines of out/ar/index.html ——"
           head -n 20 out/ar/index.html || true
 
