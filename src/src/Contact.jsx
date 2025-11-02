@@ -17,7 +17,9 @@ function Contact() {
     const params = new URLSearchParams(location.search);
     if (params.get('submitted') === 'true') {
       alert('Your request has been submitted successfully!');
-      window.history.replaceState({}, document.title, location.pathname);
+      if (typeof window !== 'undefined') {
+        window.history.replaceState({}, document.title, location.pathname);
+      }
     }
   }, [location]);
 
