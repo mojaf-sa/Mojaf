@@ -1,4 +1,4 @@
-name: Build and Deploy (React + Static + AR redirects)
+name: Build and Deploy (React + Arabic fix)
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -27,6 +27,7 @@ jobs:
           node-version: 20
           cache: npm
 
+      # Safe install avoids the peer-deps error you saw earlier
       - name: Install (safe)
         run: |
           npm config set legacy-peer-deps true
@@ -37,7 +38,7 @@ jobs:
           CI: false
         run: npm run build
 
-      - name: Prepare publish folder (React + static + AR redirects)
+      - name: Prepare publish folder
         run: |
           set -e
           mkdir -p out
@@ -45,47 +46,32 @@ jobs:
           # 1) React build → root
           cp -r dist/* out/
 
-          # 2) Static content
+          # 2) Static files (if present)
           cp -r blog out/ || true
           cp -r assets out/ || true
-          cp blog.html out/ || true
           cp robots.txt out/ || true
           cp sitemap.xml out/ || true
           cp CNAME out/ || true
           cp MOJ.jpg out/ || true
+          cp blog.html out/ || true
 
-          # 3) SPA fallback for clean URLs
+          # 3) SPA fallback so clean URLs work
           cp out/index.html out/404.html || true
 
-          # 4) AR REDIRECTS (no assets, instant)
-          mkdir -p out/ar out/ar/blog
+          # 4) Arabic: same homepage under /ar/ + local 404 + assets mirrored
+          mkdir -p out/ar
+          cp out/index.html out/ar/index.html
+          cp out/index.html out/ar/404.html
+          if [ -d out/assets ]; then cp -r out/assets out/ar/; fi
 
-          # /ar/ → /
-          cat > out/ar/index.html <<'HTML'
-          <!doctype html><meta charset="utf-8">
-          <meta http-equiv="refresh" content="0;url=/">
-          <script>location.replace("/");</script>
-          <title>Redirecting…</title>
-          HTML
-
-          # /ar/404.html → /
-          cp out/ar/index.html out/ar/404.html
-
-          # /ar/blog/*.html → /blog/*.html
+          # 5) Arabic blog: copy pages and assets so /ar/blog/... works
           if [ -d out/blog ]; then
-            find out/blog -maxdepth 1 -type f -name "*.html" -printf "%f\n" | while read f; do
-              cat > "out/ar/blog/$f" <<HTML
-              <!doctype html><meta charset="utf-8">
-              <meta http-equiv="refresh" content="0;url=/blog/$f">
-              <script>location.replace("/blog/$f");</script>
-              <title>Redirecting…</title>
-              HTML
-            done
+            cp -r out/blog out/ar/
+            if [ -d out/assets ]; then cp -r out/assets out/ar/blog/; fi
           fi
 
-          echo "—— out/ ——"; ls -la out
-          echo "—— out/ar/ ——"; ls -la out/ar || true
-          echo "—— out/ar/blog/ ——"; ls -la out/ar/blog || true
+          echo "Publish folder:"
+          find out -maxdepth 2 -type f | sort | sed 's#^out/##'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
