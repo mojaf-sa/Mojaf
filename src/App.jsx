@@ -1,52 +1,9 @@
-import { useEffect, useState } from 'react';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import AllProductsPage from './AllProductsPage';
-import ThankYou from './ThankYou';
-import ProductDetailPage from './ProductDetailPage';
-import AboutScreen from './AboutScreen';
-import ServicesScreen from './ServicesScreen';
-import ContactScreen from './ContactScreen';
-import PartnersScreen from './PartnersScreen';
-import CatalogsScreen from './CatalogsScreen';
-import { useLocation } from 'react-router-dom';
-import FloatingContactButtons from './FloatingContactButtons';
-import { HelmetProvider} from 'react-helmet-async';
-import SEO from '../utils/SEO';
-
-const ScrollToTop = () => {
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // or 'auto'
-    }, [pathname]);
-
-    return null;
-};
-
-function App() {
+import React from 'react'
+export default function App() {
   return (
-    <HelmetProvider>
-      {/* <SEO /> */}
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/all-products" element={<AllProductsPage />} />
-          <Route path="/products/:id" element={<ProductDetailPage />} />
-          <Route path="/thanks" element={<ThankYou />} />
-          <Route path="/about" element={<AboutScreen />} />
-          <Route path="/services" element={<ServicesScreen />} />
-          <Route path="/contact" element={<ContactScreen />} />
-          <Route path="/partners" element={<PartnersScreen />} />
-          <Route path="/catalogs" element={<CatalogsScreen />} />
-        </Routes>
-      </Router>
-      <FloatingContactButtons />
-    </HelmetProvider>
-  );
+    <div style={{padding:'24px'}}>
+      <h1>MOJAF React App</h1>
+      <p>If you see this, React mounted correctly. Replace App.jsx with your real layout and routes.</p>
+    </div>
+  )
 }
-
-export default App;

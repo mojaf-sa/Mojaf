@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 
-const root = createRoot(document.getElementById('root'))
-root.render(
+const el = document.getElementById('root')
+if (!el) throw new Error('#root not found')
+createRoot(el).render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
