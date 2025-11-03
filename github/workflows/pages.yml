@@ -1,4 +1,5 @@
-name: Build and Deploy (React + Static Blog)
+name: Build & Deploy Vite (React) to GitHub Pages
+
 on:
   push:
     branches: [ main ]
@@ -17,7 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -25,37 +27,29 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Fixes your earlier peer-dependency error automatically
-      - name: Install (safe)
+      - name: Install deps
         run: |
           npm config set legacy-peer-deps true
           npm ci || npm i
 
-      - name: Build React app
+      - name: Build
         env:
           CI: false
         run: npm run build
 
-      - name: Prepare publish folder (add static blog + SEO files)
+      - name: SPA fallback (copy index.html -> 404.html)
         run: |
-          mkdir -p out
-          cp -r dist/* out/
-          cp -r blog out/ || true
-          cp -r assets out/ || true
-          cp -r ar out/ || true
-          cp blog.html out/ || true
-          cp robots.txt out/ || true
-          cp sitemap.xml out/ || true
-          cp CNAME out/ || true
-          cp MOJ.jpg out/ || true
-          # Single-page-app fallback so clean URLs work
-          cp out/index.html out/404.html || true
-          echo "Publish folder contents:"; ls -la out
+          cp dist/index.html dist/404.html || true
+
+      - name: Add .nojekyll and CNAME
+        run: |
+          echo > dist/.nojekyll
+          echo "mojaf-sa.com" > dist/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: dist
 
   deploy:
     needs: build
