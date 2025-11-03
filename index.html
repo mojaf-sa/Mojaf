@@ -6,9 +6,13 @@
     <link rel="icon" href="/MOJ.jpg" />
     <title>MOJAF – Building Materials in Saudi Arabia</title>
     <meta name="description" content="Building and finishing materials in KSA: SPC/Vinyl flooring, wall skirting, fasteners, boards, insulation and electrical supplies. Contact MOJAF for quotes.">
+
+    <!-- Canonical + hreflang (no escaping; correct root URL) -->
     <link rel="canonical" href="https://mojaf-sa.com/">
     <link rel="alternate" hreflang="en-SA" href="https://mojaf-sa.com/">
     <link rel="alternate" hreflang="ar-SA" href="https://mojaf-sa.com/ar/">
+
+    <!-- Social previews -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MOJAF">
     <meta property="og:title" content="MOJAF – Building Materials in Saudi Arabia">
@@ -16,6 +20,8 @@
     <meta property="og:url" content="https://mojaf-sa.com/">
     <meta property="og:image" content="https://mojaf-sa.com/MOJ.jpg">
     <meta name="twitter:card" content="summary_large_image">
+
+    <!-- LocalBusiness structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,16 +32,33 @@
       "image": "https://mojaf-sa.com/MOJ.jpg",
       "telephone": "+966 56 840 1900",
       "email": "info@mojaf-sa.com",
-      "address": { "@type": "PostalAddress", "addressCountry": "SA", "addressLocality": "Jeddah" }
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "SA",
+        "addressLocality": "Jeddah"
+      }
     }
     </script>
+
+    <!-- Preload React entry so the page starts fast -->
+    <link rel="preload" href="/src/main.jsx" as="script" crossorigin>
   </head>
   <body>
+    <!-- Language toggle (doesn’t change your layout) -->
     <span data-lang-toggle="1" style="position:fixed;right:12px;top:10px;font-size:14px;z-index:9999;">
       <a href="/">EN</a> | <a href="/ar/">العربية</a>
     </span>
+
+    <!-- React mounts here -->
     <div id="root"></div>
+
+    <!-- Vite + React entry -->
     <script type="module" src="/src/main.jsx"></script>
-    <noscript>This site needs JavaScript to load the app.</noscript>
+
+    <!-- Fallback if JS is off -->
+    <noscript>
+      This site needs JavaScript to load the homepage. You can still visit the
+      <a href="/blog.html">Blog</a>.
+    </noscript>
   </body>
 </html>
