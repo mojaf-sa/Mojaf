@@ -1,19 +1,11 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Not Found</title>
-  </head>
+  <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
   <body>
-    <div id="root"></div>
     <script>
-      // GitHub Pages SPA fallback: redirect all deep links back to / with path saved
-      // so React Router can render the correct route
-      (function() {
+      (function () {
         var l = window.location;
         if (l.pathname !== "/" && !l.pathname.endsWith(".html")) {
-          // Save path to sessionStorage and go to root
           sessionStorage.setItem("__ghspa_path", l.pathname + l.search + l.hash);
           l.replace("/");
         }
