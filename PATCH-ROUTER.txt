@@ -1,0 +1,11 @@
+PATCH — Clean URLs (remove #) and enable SPA 404
+
+1) Use BrowserRouter in src/main.jsx (not HashRouter).
+2) Ensure Pages/Cloudflare serves 404.html that mirrors index.html (SPA fallback).
+3) Plug routes:
+   import { blogRoutes } from "./src/blog/routes";
+   <Routes>
+     {/* your routes */}
+     {blogRoutes.map(r => <Route key={r.path} path={r.path} element={r.element} />)}
+   </Routes>
+4) Header toggle (manual): EN → "/", AR → "/ar/", Blog EN → "/blog", Blog AR → "/ar/blog".
