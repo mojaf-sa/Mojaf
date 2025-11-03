@@ -4,9 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 
 const rootEl = document.getElementById("root");
-if (!rootEl) {
-  console.error("Root element #root not found in index.html");
-} else {
+if (rootEl) {
   createRoot(rootEl).render(
     <React.StrictMode>
       <BrowserRouter basename="/">
@@ -14,4 +12,6 @@ if (!rootEl) {
       </BrowserRouter>
     </React.StrictMode>
   );
+} else {
+  console.error("#root not found in index.html");
 }
