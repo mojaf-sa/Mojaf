@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
+# Block build/dev sources
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /drafts/
+Disallow: /temp/
+# Optional: avoid crawling parameterized URLs
+Disallow: /*?*
 
 Sitemap: https://mojaf-sa.com/sitemap.xml
