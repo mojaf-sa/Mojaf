@@ -198,8 +198,23 @@
       <h3><a href="/blog/spc-vinyl-flooring-supplier-saudi-arabia.html">SPC & Vinyl Flooring Supplier Saudi Arabia</a></h3>
       <p>SPC & Vinyl Flooring Supplier Saudi Arabia — supplier info, specs, installation guidance and rapid delivery across Saudi Arabia.</p>
     </article>
-    
-    </div>
+
+  </div>
   </main>
+  <script>
+    (function () {
+      const fallbacks = ['/floorth.png', '/screwsth.png', '/psSkirting.png']
+      document.querySelectorAll('.card .thumb img').forEach((img, idx) => {
+        if (!img.getAttribute('data-has-fallback')) {
+          img.setAttribute('data-has-fallback', '1')
+          img.addEventListener('error', () => {
+            const fallback = fallbacks[idx % fallbacks.length] || fallbacks[0]
+            if (img.src.endsWith(fallback)) return
+            img.src = fallback
+          })
+        }
+      })
+    })()
+  </script>
 </body>
 </html>
