@@ -1,5 +1,25 @@
 <!-- Merge these inside your sitemap.xml <urlset> -->
   <url>
+    <loc>https://mojaf-sa.com/blog/vinyl-flooring-buyers-guide-ksa.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://mojaf-sa.com/blog/pvc-flooring-project-guide-ksa.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://mojaf-sa.com/blog/screws-selection-guide-ksa.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://mojaf-sa.com/blog/wall-skirting-installation-guide-ksa.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://mojaf-sa.com/blog/fasteners-saudi-arabia.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
