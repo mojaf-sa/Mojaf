@@ -534,8 +534,15 @@ a:hover {
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  min-height: 420px;
+  min-height: clamp(500px, 62vh, 640px);
+  padding-block: clamp(2.5rem, 4vw, 3.75rem);
   box-shadow: 0 24px 64px rgba(15, 23, 42, 0.18);
+}
+
+.hero-slider-track {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .hero-slide {
@@ -562,9 +569,12 @@ a:hover {
   position: relative;
   z-index: 1;
   height: 100%;
-  display: grid;
-  align-items: center;
-  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: clamp(2.25rem, 4.5vw, 3.5rem);
+  max-width: min(640px, 90%);
   color: var(--white);
 }
 
@@ -637,8 +647,14 @@ section + section {
     min-height: 60vh;
   }
 
+  .hero-slider {
+    min-height: clamp(440px, 70vh, 560px);
+    padding-block: clamp(2rem, 6vw, 3rem);
+  }
+
   .hero-slide-content {
-    padding: 2.5rem 1.75rem;
+    padding: clamp(2rem, 6vw, 3rem);
+    max-width: 100%;
   }
 
   .contact-section {
@@ -649,6 +665,11 @@ section + section {
 @media (max-width: 600px) {
   .hero-content {
     padding-top: calc(var(--nav-height) + 1rem);
+  }
+
+  .hero-slider {
+    min-height: auto;
+    padding-block: 2rem 2.5rem;
   }
 
   .hero-title {

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <rect width="800" height="420" fill="#0f3c5d"/>
+  <rect x="0" y="260" width="800" height="160" fill="#1c7c8c" opacity="0.85"/>
+  <g fill="#fff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+    <text font-size="50" font-weight="600" x="60" y="150">PVC FLOORING</text>
+    <text font-size="34" font-weight="500" x="60" y="210">Healthcare &amp; Modular Guide</text>
+    <text font-size="22" x="60" y="300">Specs • Hygiene • Logistics</text>
+    <text font-size="20" x="60" y="340">MOJAF — Saudi Arabia</text>
+  </g>
+</svg>
