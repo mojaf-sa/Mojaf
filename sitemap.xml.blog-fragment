@@ -1,146 +1,72 @@
-<!-- Merge these inside your sitemap.xml <urlset> -->
+  <url>
+    <loc>https://mojaf-sa.com/blog/</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
   <url>
     <loc>https://mojaf-sa.com/blog/vinyl-flooring-buyers-guide-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://mojaf-sa.com/blog/pvc-flooring-project-guide-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://mojaf-sa.com/blog/screws-selection-guide-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://mojaf-sa.com/blog/wall-skirting-installation-guide-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/fasteners-saudi-arabia.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://mojaf-sa.com/blog/riyadh-spc-flooring-supplier.html</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/fasteners-jeddah.html</loc>
+    <loc>https://mojaf-sa.com/ar/blog/</loc>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/fasteners-riyadh.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://mojaf-sa.com/ar/blog/vinyl-flooring-buyers-guide-ksa.html</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/fasteners-dammam.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://mojaf-sa.com/ar/blog/pvc-flooring-project-guide-ksa.html</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/construction-fasteners-dammam.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://mojaf-sa.com/ar/blog/screws-selection-guide-ksa.html</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/industrial-screws-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://mojaf-sa.com/ar/blog/wall-skirting-installation-guide-ksa.html</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://mojaf-sa.com/blog/hex-bolts-supplier-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/washers-nuts-supplier-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/building-materials-supplier-saudi-arabia.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/building-materials-supplier-jeddah.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/building-materials-supplier-riyadh.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/building-materials-supplier-dammam.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/construction-materials-riyadh.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/construction-materials-jeddah.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/construction-materials-dammam.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/wall-skirting-jeddah.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/wall-skirting-riyadh.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/wall-skirting-dammam.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/pvc-skirting-boards-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/mdf-skirting-supplier-ksa.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/aluminum-skirting-supplier-saudi-arabia.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/spc-flooring-dammam.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/spc-flooring-jeddah.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/spc-flooring-riyadh.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://mojaf-sa.com/blog/spc-vinyl-flooring-supplier-saudi-arabia.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://mojaf-sa.com/ar/blog/riyadh-spc-flooring-supplier.html</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
   </url>
