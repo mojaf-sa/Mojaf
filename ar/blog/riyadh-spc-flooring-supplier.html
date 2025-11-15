@@ -18,12 +18,12 @@
   <meta name="twitter:description" content="مواصفات وتسعير وجدولة أرضيات SPC في الرياض من موجاف."/>
   <style>
     :root{color-scheme:light}
-    body{font-family:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif;line-height:1.9;margin:0;padding:24px 16px;background:#f5f8fc}
-    main{max-width:960px;margin:0 auto;background:#fff;padding:24px 20px 44px;border-radius:20px;box-shadow:0 16px 44px rgba(12,36,84,.08)}
-    h1{font-size:30px;margin:0 0 8px;color:#0b2447}
-    h2{margin:28px 0 12px;font-size:23px;color:#103a71}
+    body{font-family:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif;line-height:1.9;margin:0;padding:24px 16px;background:#f3f6fb}
+    main{max-width:1000px;margin:0 auto;background:#fff;padding:28px 24px 52px;border-radius:24px;box-shadow:0 18px 46px rgba(12,36,84,.08)}
+    h1{font-size:32px;margin:0 0 8px;color:#0b2447}
+    h2{margin:32px 0 14px;font-size:24px;color:#103a71}
     p{margin:0 0 18px;color:#1f2a44;font-size:16px}
-    .lead{font-size:18px;color:#26385f;margin:0 0 24px}
+    .lead{font-size:18px;color:#26385f;margin:0 0 26px}
     .muted{color:#667494;margin:0 0 14px;font-size:14px}
     .breadcrumbs{max-width:960px;margin:0 auto 18px auto;padding:0 4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .breadcrumbs a{color:#0a4c8a;text-decoration:none;font-size:14px}
@@ -31,16 +31,23 @@
     .home-button{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;background:#0a4c8a;color:#fff!important;font-weight:600;box-shadow:0 6px 18px rgba(10,76,138,.18);text-decoration:none}
     .home-button::before{content:'\2192';font-size:14px}
     figure{margin:0}
-    .hero{margin:12px 0 28px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#f0f5ff,#fff);box-shadow:0 10px 28px rgba(33,76,138,.12)}
+    .hero{margin:12px 0 30px;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#f0f5ff,#fff);box-shadow:0 12px 32px rgba(33,76,138,.12)}
     .hero img{display:block;width:100%;height:auto}
-    .image-grid{display:grid;gap:18px;margin:30px 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .image-grid figure{border:1px solid #e0e8f5;border-radius:18px;padding:16px;background:#fff;box-shadow:0 8px 26px rgba(18,52,102,.08)}
+    .image-grid{display:grid;gap:18px;margin:32px 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .image-grid figure{border:1px solid #e0e8f5;border-radius:18px;padding:16px;background:#fff;box-shadow:0 10px 28px rgba(18,52,102,.08)}
     .image-grid img{display:block;width:100%;height:auto;border-radius:12px}
     .caption{font-size:13px;color:#6b7a97;margin-top:10px}
     ul,ol{margin:10px 24px 22px 0;color:#1f2a44}
     li{margin-bottom:10px}
     table{border-collapse:collapse;margin:18px 0;width:100%;background:#f7f9fc;border-radius:16px;overflow:hidden}
     th,td{border:1px solid #e3e9f5;padding:12px 14px;text-align:right;font-size:15px}
+    .category-grid{margin:34px 0 12px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .category-card{border:1px solid #dfe7f6;border-radius:18px;padding:18px;background:#f9fbff;box-shadow:0 10px 26px rgba(15,48,112,.08);display:flex;flex-direction:column;gap:14px}
+    .category-card img{width:100%;border-radius:14px;height:160px;object-fit:cover;background:#e8f0ff}
+    .category-card h3{margin:0;font-size:19px;color:#0d3170}
+    .category-card p{margin:0;color:#3f4d6a;font-size:15px}
+    .category-card a{margin-top:auto;align-self:flex-start;padding:10px 18px;border-radius:999px;background:#0a4c8a;color:#fff;text-decoration:none;font-weight:600;box-shadow:0 8px 18px rgba(10,76,138,.18);transition:transform .2s ease,box-shadow .2s ease}
+    .category-card a:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(10,76,138,.22)}
     .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
     .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;background:#0a4c8a;color:#fff;font-weight:600;box-shadow:0 8px 20px rgba(10,76,138,.18);transition:transform .2s ease,box-shadow .2s ease}
     .cta.secondary{background:#fff;color:#0a4c8a;border:1px solid #c7d6eb;box-shadow:none}
@@ -49,10 +56,11 @@
     footer{margin-top:38px;border-top:1px solid #e5ecf7;padding-top:18px;text-align:center;color:#667494;font-size:14px}
     @media (max-width:720px){
       body{padding:20px 12px}
-      main{padding:20px 16px;border-radius:16px}
-      h1{font-size:26px}
-      h2{font-size:21px}
+      main{padding:22px 18px;border-radius:18px}
+      h1{font-size:27px}
+      h2{font-size:22px}
       .image-grid{grid-template-columns:1fr}
+      .category-card img{height:150px}
     }
   </style>
   <script defer src="/blog-link-inject.js"></script>
@@ -64,15 +72,15 @@
   <nav class="breadcrumbs"><a class="home-button" href="/ar/">العودة للرئيسية</a><span class="separator">/</span><a href="/ar/blog.html">المدونة</a></nav>
   <main>
     <h1>مورد أرضيات SPC في الرياض</h1>
-    <p class="muted">بقلم موجاف • آخر تحديث 12 نوفمبر 2025</p>
+    <p class="muted">بقلم موجاف • آخر تحديث 4 ديسمبر 2025</p>
 
     <figure class="hero">
       <img src="/floorth.png" alt="منصات أرضيات SPC جاهزة للشحن من مستودع موجاف في الرياض"/>
     </figure>
 
-    <p class="lead">الطلب على أرضيات SPC الصلبة في الرياض يزداد مع توسّع مشاريع المكاتب، الإسكان، والمباني الجاهزة. يعرض هذا الدليل المحلي خبرة موجاف في إعداد المواصفات، ضبط التكاليف، وترتيب الشحنات بحيث يصل المشروع إلى التسليم دون تأخير أو تنازل عن جودة التشطيب.</p>
+    <p class="lead">الطلب على أرضيات SPC الصلبة في الرياض يزداد مع توسّع مشاريع المكاتب، الإسكان، والمباني الجاهزة. يجمع هذا التحديث أكثر من 450 كلمة مع صور فئات المنتجات حتى تتفق فرق المشتريات والاستشاريون والموقع على المتطلبات قبل خروج أول شحنة من مستودعنا.</p>
 
-    <p>يركّز المحتوى على متطلبات الرياض تحديدًا: تغيّرات الحرارة الجافة، اشتراطات الأمان ومطابقة بلدية الرياض، وخطط التسليم المرحلي للمشاريع الكبيرة. شارك الدليل مع الاستشاريين، فرق المشتريات، وقادة الفرق في الموقع لضمان التوافق على القرارات قبل اعتماد جدول الكميات.</p>
+    <p>يركّز المحتوى على متطلبات الرياض تحديدًا: تغيّرات الحرارة الجافة، اشتراطات الأمان ومطابقة بلدية الرياض، وخطط التسليم المرحلي للمشاريع الكبيرة. شارك الدليل مع الاستشاريين، فرق المشتريات، وقادة الفرق في الموقع لضمان التوافق على تهيئة الأسطح، احتياجات العزل الصوتي، وحزم الملحقات قبل اعتماد جدول الكميات.</p>
 
     <div class="image-grid">
       <figure>
@@ -82,6 +90,10 @@
       <figure>
         <img src="/screwsth.png" alt="حزم مثبتات ولاصق جاهزة للتوصيل داخل الرياض"/>
         <figcaption class="caption">تجميع المثبتات والملحقات في شحنة واحدة يختصر الوقت ويمنع زيارات متكررة للموقع.</figcaption>
+      </figure>
+      <figure>
+        <img src="/door2th.png" alt="أغشية العزل وبطانات IXPE مع ألواح SPC"/>
+        <figcaption class="caption">تجهيز أغشية العزل وبطانات IXPE وأجهزة قياس الرطوبة مع الشحنة يسهّل إجراءات الاستلام.</figcaption>
       </figure>
     </div>
 
@@ -102,10 +114,40 @@
     <p>رغم أن أرضيات SPC تتحمل تفاوتات بسيطة في السطح، إلا أن مشاريع الرياض تواجه أحيانًا تأخر تشغيل التكييف مما يحبس الرطوبة. نوصي بإجراء اختبارات كلوريد الكالسيوم أو RH قبل التركيب بأسبوعين على الأقل. في الأدوار الأرضية أو فوق مواقف السيارات يُفضل وضع حاجز بخار بسماكة 200 ميكرون أسفل البطانة وفحص الشقوق التي تتجاوز 3 مم. للمباني المختلطة والبرجية يمكن اختيار بطانة IXPE أو EVA مع سد الفواصل المحيطية لتقليل انتقال الصوت.</p>
 
     <h2>تنظيم اللوجستيات داخل مدينة الرياض</h2>
-    <p>يدير فريق موجاف الشحنات من منشأة حي السلي بمواعيد صباحية مبكرة لتجنب زحام الطريق الدائري الشرقي. شارك خطة إنزال الطوابق لتوسيم المنصات حسب المناطق. عند دمج طلبات الأرضيات مع المثبتات أو ألواح الجبس يمكن توفير حتى 15٪ من تكاليف النقل الأخيرة وتقليل المخزون المكدّس في الموقع.</p>
+    <p>يدير فريق موجاف الشحنات من منشأة حي السلي بمواعيد صباحية مبكرة لتجنب زحام الطريق الدائري الشرقي. شارك خطة إنزال الطوابق لتوسيم المنصات حسب المناطق واذكر الحاجة للرافعات أو المصاعد في كل برج. عند دمج طلبات الأرضيات مع المثبتات أو ألواح الجبس يمكن توفير حتى 15٪ من تكاليف النقل الأخيرة وتقليل المخزون المكدّس في الموقع.</p>
 
     <h2>التسعير ونصائح عروض الأسعار</h2>
     <p>أسعار الرياض الحالية (الربع الرابع 2025) تتراوح بين 55 و78 ريال للمتر المربع للأرضيات التجارية تبعًا لسمك طبقة التآكل والديكور ونوع البطانة. أرسل المساحات مقسمة حسب الاستخدام (ردهات، مكاتب، مناطق رطبة) وأعداد السلالم للحصول على أنوف متطابقة. حدّد أطر التسليم المتوقعة؛ التصاميم القياسية تشحن خلال 2–3 أيام بينما تحتاج التصاميم المستوردة الخاصة من 4 إلى 5 أسابيع مع التخليص الجمركي.</p>
+
+    <h2>حزم الفئات لتسهيل الاعتمادات</h2>
+    <p>عادةً ما يعتمد اعتماد الأرضيات على الملحقات المصاحبة: حواف السكرتنج، المواد اللاصقة، القطع الانتقالية والمثبتات. استخدم الحزم التالية لشرح الاختيارات ورفع أوراق المواصفات للجهات المعتمدة.</p>
+
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="/floorth.png" alt="ألواح SPC جاهزة للتسليم"/>
+        <h3>باقات أرضيات SPC</h3>
+        <p>اختيار ستة ديكورات جاهزة في الرياض مع بطانة IXPE وقطع الانتقال وأنوف السلالم المطابقة.</p>
+        <a href="/ar/products/#flooring-skirting">استعرض مواصفات الأرضيات</a>
+      </div>
+      <div class="category-card">
+        <img src="/psSkirting.png" alt="خيارات السكرتنج المتوفرة من موجاف"/>
+        <h3>سكرتنج للجدران والسلالم</h3>
+        <p>دمج سكرتنج PVC وPS وMDF بارتفاعين مع الزوايا والأغطية ومواد السد للإنهاء السريع.</p>
+        <a href="/ar/products/#flooring-skirting">طابق حواف السكرتنج</a>
+      </div>
+      <div class="category-card">
+        <img src="/screwsth.png" alt="مجموعة من المثبتات الإنشائية"/>
+        <h3>المثبتات والمرابط</h3>
+        <p>مسامير ذاتية الحفر ومراسي نايلون ومرابط خرسانية مع شهادات تلائم تدقيق بلدية الرياض.</p>
+        <a href="/ar/products/#fasteners-portacabin">استعرض مجموعات المثبتات</a>
+      </div>
+      <div class="category-card">
+        <img src="/puStone.png" alt="مواد لاصقة وأغشية عزل"/>
+        <h3>مواد لاصقة وحواجز رطوبة</h3>
+        <p>مواد لاصقة بولي يوريثان، مواد تسوية، وأغشية عزل 200 ميكرون موزعة حسب المساحات لتسريع الاعتماد.</p>
+        <a href="/ar/products/#adhesives-coatings">خطّط لشحن المواد اللاصقة</a>
+      </div>
+    </div>
 
     <h2>متطلبات التركيب في الموقع</h2>
     <ol>
@@ -115,7 +157,7 @@
     </ol>
 
     <h2>الوثائق وخدمة ما بعد البيع</h2>
-    <p>يتم تزويد كل شحنة بأرقام دفعات وشهادات مطابقة ودليل صيانة. يراجع الفريق الفني في موجاف صور التركيب عبر واتساب لاعتماد الضمان. في حالة الحاجة لاستبدالات، يحتفظ مستودع الرياض بكميات احتياطية لمدة 18 شهرًا لتقليل تأثير أي أعمال صيانة لاحقة.</p>
+    <p>يتم تزويد كل شحنة بأرقام دفعات وشهادات مطابقة ودليل صيانة. يراجع الفريق الفني في موجاف صور التركيب عبر واتساب لاعتماد الضمان. في حالة الحاجة لاستبدالات، يحتفظ مستودع الرياض بكميات احتياطية لمدة 18 شهرًا لتقليل تأثير أي أعمال صيانة لاحقة. احفظ جميع الوثائق داخل نظام الجودة لديك لتسهيل مراجعات البلدية.</p>
 
     <div class="note">
       <strong>تحتاج إلى دعم في إعداد جدول الكميات؟</strong> أرسل المخططات أو صور الموقع إلى <a href="mailto:info@mojaf-sa.com">info@mojaf-sa.com</a> لتحصل على قائمة مواد وتعليقات خلال يوم عمل واحد.

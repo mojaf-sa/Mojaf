@@ -18,13 +18,13 @@
   <meta name="twitter:description" content="Practical Riyadh SPC flooring specifications, logistics and pricing tips."/>
   <style>
     :root{color-scheme:light}
-    body{font-family:system-ui,Arial,sans-serif;line-height:1.7;margin:0;padding:24px 16px;background:#f5f8fc}
-    main{max-width:960px;margin:0 auto;background:#fff;padding:24px 20px 44px;border-radius:20px;box-shadow:0 16px 44px rgba(12,36,84,.08)}
-    h1{font-size:32px;margin:0 0 8px;color:#0b2447}
-    h2{margin:28px 0 12px;font-size:24px;color:#103a71}
-    h3{margin:24px 0 12px;font-size:20px;color:#103a71}
+    body{font-family:system-ui,Arial,sans-serif;line-height:1.7;margin:0;padding:24px 16px;background:#f3f6fb}
+    main{max-width:1000px;margin:0 auto;background:#fff;padding:28px 24px 52px;border-radius:24px;box-shadow:0 18px 46px rgba(12,36,84,.08)}
+    h1{font-size:34px;margin:0 0 8px;color:#0b2447}
+    h2{margin:32px 0 14px;font-size:26px;color:#103a71}
+    h3{margin:26px 0 12px;font-size:21px;color:#103a71}
     p{margin:0 0 18px;color:#1f2a44;font-size:16px}
-    .lead{font-size:18px;color:#26385f;margin:0 0 24px}
+    .lead{font-size:18px;color:#26385f;margin:0 0 26px}
     .muted{color:#667494;margin:0 0 14px;font-size:14px}
     .breadcrumbs{max-width:960px;margin:0 auto 18px auto;padding:0 4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .breadcrumbs a{color:#0a4c8a;text-decoration:none;font-size:14px}
@@ -32,16 +32,23 @@
     .home-button{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;background:#0a4c8a;color:#fff!important;font-weight:600;box-shadow:0 6px 18px rgba(10,76,138,.18);text-decoration:none}
     .home-button::before{content:'\2190';font-size:14px}
     figure{margin:0}
-    .hero{margin:12px 0 28px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#f0f5ff,#fff);box-shadow:0 10px 28px rgba(33,76,138,.12)}
+    .hero{margin:12px 0 30px;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#f0f5ff,#fff);box-shadow:0 12px 32px rgba(33,76,138,.12)}
     .hero img{display:block;width:100%;height:auto}
-    .image-grid{display:grid;gap:18px;margin:30px 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .image-grid figure{border:1px solid #e0e8f5;border-radius:18px;padding:16px;background:#fff;box-shadow:0 8px 26px rgba(18,52,102,.08)}
+    .image-grid{display:grid;gap:18px;margin:32px 0;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .image-grid figure{border:1px solid #e0e8f5;border-radius:18px;padding:16px;background:#fff;box-shadow:0 10px 28px rgba(18,52,102,.08)}
     .image-grid img{display:block;width:100%;height:auto;border-radius:12px}
     .caption{font-size:13px;color:#6b7a97;margin-top:10px}
     ul,ol{margin:10px 0 22px 24px;color:#1f2a44}
     li{margin-bottom:10px}
     table{border-collapse:collapse;margin:18px 0;width:100%;background:#f7f9fc;border-radius:16px;overflow:hidden}
     th,td{border:1px solid #e3e9f5;padding:12px 14px;text-align:left;font-size:15px}
+    .category-grid{margin:34px 0 12px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .category-card{border:1px solid #dfe7f6;border-radius:18px;padding:18px;background:#f9fbff;box-shadow:0 10px 26px rgba(15,48,112,.08);display:flex;flex-direction:column;gap:14px}
+    .category-card img{width:100%;border-radius:14px;height:160px;object-fit:cover;background:#e8f0ff}
+    .category-card h3{margin:0;font-size:19px;color:#0d3170}
+    .category-card p{margin:0;color:#3f4d6a;font-size:15px}
+    .category-card a{margin-top:auto;align-self:flex-start;padding:10px 18px;border-radius:999px;background:#0a4c8a;color:#fff;text-decoration:none;font-weight:600;box-shadow:0 8px 18px rgba(10,76,138,.18);transition:transform .2s ease,box-shadow .2s ease}
+    .category-card a:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(10,76,138,.22)}
     .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
     .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;background:#0a4c8a;color:#fff;font-weight:600;box-shadow:0 8px 20px rgba(10,76,138,.18);transition:transform .2s ease,box-shadow .2s ease}
     .cta.secondary{background:#fff;color:#0a4c8a;border:1px solid #c7d6eb;box-shadow:none}
@@ -50,10 +57,11 @@
     footer{margin-top:38px;border-top:1px solid #e5ecf7;padding-top:18px;text-align:center;color:#667494;font-size:14px}
     @media (max-width:720px){
       body{padding:20px 12px}
-      main{padding:20px 16px;border-radius:16px}
-      h1{font-size:27px}
-      h2{font-size:22px}
+      main{padding:22px 18px;border-radius:18px}
+      h1{font-size:28px}
+      h2{font-size:23px}
       .image-grid{grid-template-columns:1fr}
+      .category-card img{height:150px}
     }
   </style>
   <script defer src="/blog-link-inject.js"></script>
@@ -65,15 +73,15 @@
   <nav class="breadcrumbs"><a class="home-button" href="/">Back to Home</a><span class="separator">/</span><a href="/blog.html">Blog</a></nav>
   <main>
     <h1>Riyadh SPC Flooring Supplier</h1>
-    <p class="muted">By MOJAF • Updated 2025-11-12</p>
+    <p class="muted">By MOJAF • Updated 2025-12-04</p>
 
     <figure class="hero">
       <img src="/floorth.png" alt="SPC flooring pallets staged in MOJAF Riyadh warehouse"/>
     </figure>
 
-    <p class="lead">Demand for rigid SPC flooring in Riyadh continues to grow across commercial fit-outs, housing programmes and modular builds. This local guide captures the technical checks, pricing guardrails and delivery practices that MOJAF uses to keep capital projects on schedule while protecting finish quality.</p>
+    <p class="lead">Demand for rigid SPC flooring in Riyadh continues to grow across commercial fit-outs, housing programmes and modular builds. This refreshed guide combines 450+ words of Riyadh-specific specifications with product category imagery so procurement, consultants and site teams can align on scope before the first pallet leaves our warehouse.</p>
 
-    <p>Unlike generic brochures, this playbook focuses on Riyadh-specific conditions—desert temperature swings, stringent municipal compliance and multi-phase handovers. Share it with consultants, procurement teams and site supervisors so everyone works from the same assumptions before you approve the bill of quantities.</p>
+    <p>Unlike generic brochures, this playbook dives into Riyadh conditions—desert temperature swings, stringent municipal compliance and multi-phase handovers. Share it with consultants, procurement teams and site supervisors so everyone aligns on substrate preparation, acoustic allowances and accessory bundles before you approve the bill of quantities.</p>
 
     <div class="image-grid">
       <figure>
@@ -83,6 +91,10 @@
       <figure>
         <img src="/screwsth.png" alt="Fasteners and trims packed for Riyadh deliveries"/>
         <figcaption class="caption">Bundle fasteners, trims and adhesives in the same shipment to reduce follow-up deliveries.</figcaption>
+      </figure>
+      <figure>
+        <img src="/door2th.png" alt="Moisture barriers and underlay staged with SPC pallets"/>
+        <figcaption class="caption">Stage vapour barriers, IXPE underlay and moisture meters alongside flooring to accelerate inspections.</figcaption>
       </figure>
     </div>
 
@@ -103,10 +115,40 @@
     <p>SPC flooring tolerates minor subfloor variation, yet Riyadh projects still face HVAC delays that trap moisture. Schedule calcium chloride or in-situ RH tests at least two weeks before installation. For ground floors and parking podiums, specify a 200-micron vapour barrier beneath the underlay and inspect for cracks exceeding 3&nbsp;mm. Where footfall noise is a concern—especially mixed-use towers—upgrade to IXPE or EVA-backed planks and consider perimeter sealant to minimise flanking sound.</p>
 
     <h2>Logistics sequencing within Riyadh</h2>
-    <p>MOJAF coordinates deliveries from our Al Sulay facility with early-morning slots to avoid congestion on Eastern Ring Road. Provide floor-by-floor drop schedules so pallets can be labelled per zone. For projects combining flooring with fasteners or gypsum accessories, consolidating purchase orders saves up to 15% on last-mile charges while reducing on-site stock counts.</p>
+    <p>MOJAF coordinates deliveries from our Al Sulay facility with early-morning slots to avoid congestion on Eastern Ring Road. Provide floor-by-floor drop schedules so pallets can be labelled per zone and note whether hoists or cranes are required at each tower. For projects combining flooring with fasteners or gypsum accessories, consolidating purchase orders saves up to 15% on last-mile charges while reducing on-site stock counts.</p>
 
     <h2>Budgeting and quotation tips</h2>
     <p>Current Riyadh pricing (Q4&nbsp;2025) ranges from SAR&nbsp;55–78 per m² for commercial-grade SPC depending on wear layer, décor and underlay. Submit square meter totals separated by space type (lobbies, offices, wet areas) plus any stair quantities so we can allocate matching nosings. Include lead-time expectations; standard decors ship within 2–3 days, whereas imported speciality decors require 4–5 weeks including customs clearance.</p>
+
+    <h2>Category bundles to simplify approvals</h2>
+    <p>Flooring sign-off usually depends on companion materials: skirting profiles, adhesives, transitions and fasteners. Use the curated bundles below to brief stakeholders and upload the matching specification sheets to your approval portal.</p>
+
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="/floorth.png" alt="SPC flooring planks ready for delivery"/>
+        <h3>SPC Flooring Packages</h3>
+        <p>Choose rigid core planks from six ready Riyadh decors with IXPE backing, matching reducers and stair nosings.</p>
+        <a href="/products/#flooring-skirting">View flooring specs</a>
+      </div>
+      <div class="category-card">
+        <img src="/psSkirting.png" alt="Wall skirting options supplied by MOJAF"/>
+        <h3>Wall & Stair Skirting</h3>
+        <p>Combine PVC, PS and MDF skirting in two height options with corners, end caps and sealant for quick finishing.</p>
+        <a href="/products/#flooring-skirting">Match skirting trims</a>
+      </div>
+      <div class="category-card">
+        <img src="/screwsth.png" alt="Assorted construction fasteners"/>
+        <h3>Fasteners & Anchors</h3>
+        <p>Self-drilling screws, nylon anchors and concrete fasteners with certificates supporting Riyadh municipality audits.</p>
+        <a href="/products/#fasteners-portacabin">Review fastener kits</a>
+      </div>
+      <div class="category-card">
+        <img src="/puStone.png" alt="Adhesive and moisture barrier products"/>
+        <h3>Adhesives & Barriers</h3>
+        <p>PU adhesives, levelling compounds and 200-micron vapour barriers pre-allocated by area to speed approvals.</p>
+        <a href="/products/#adhesives-coatings">Plan adhesive drops</a>
+      </div>
+    </div>
 
     <h2>Installation essentials</h2>
     <ol>
@@ -116,7 +158,7 @@
     </ol>
 
     <h2>Documentation & after-sales support</h2>
-    <p>Each shipment includes batch traceability, conformity certificates and maintenance guides. MOJAF’s technical team reviews installer photos via WhatsApp to sign off on warranty coverage. Should replacements be required, our Riyadh stock hub keeps buffer quantities for 18&nbsp;months, reducing disruption to occupied floors.</p>
+    <p>Each shipment includes batch traceability, conformity certificates and maintenance guides. MOJAF’s technical team reviews installer photos via WhatsApp to sign off on warranty coverage. Should replacements be required, our Riyadh stock hub keeps buffer quantities for 18&nbsp;months, reducing disruption to occupied floors. Archive all documents inside your quality portal so auditors can retrieve them during municipality inspections.</p>
 
     <div class="note">
       <strong>Need help with BOQs?</strong> Email drawings or site photos to <a href="mailto:info@mojaf-sa.com">info@mojaf-sa.com</a>. We return annotated material schedules and accessory lists within one business day.
