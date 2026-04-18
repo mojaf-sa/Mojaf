@@ -452,6 +452,10 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.catalog-card > a {
+  display: block;
+}
+
 .catalog-card a {
   display: inline-flex;
   align-items: center;
@@ -482,9 +486,27 @@ a:hover {
   margin: 0.5rem 0 0.75rem;
 }
 
+.product-media {
+  display: block;
+}
+
+.product-media img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
+}
+
 .product-card ul {
   padding-left: 1.2rem;
   margin: 0.75rem 0;
+}
+
+.product-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .table {
