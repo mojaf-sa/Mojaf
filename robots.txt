@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /blog/
+# Updated 2025-11-05: ensure new flooring, screws and skirting guides are crawlable
 # Block build/dev sources
 Disallow: /src/
 Disallow: /node_modules/

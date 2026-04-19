@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <rect width="800" height="420" fill="#1f2547"/>
+  <path d="M0 280 L800 220 L800 420 L0 420 Z" fill="#5860ff" opacity="0.6"/>
+  <g fill="#fff" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+    <text font-size="48" font-weight="600" x="60" y="170">WALL SKIRTING GUIDE</text>
+    <text font-size="32" font-weight="500" x="60" y="230">Install Steps • Materials • Tips</text>
+    <text font-size="22" x="60" y="300">MOJAF Finishing Solutions</text>
+  </g>
+</svg>

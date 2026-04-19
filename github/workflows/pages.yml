@@ -19,35 +19,43 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      # Fixes your earlier peer-dependency error automatically
-      - name: Install (safe)
+      - name: Build app when package.json exists
         run: |
-          npm config set legacy-peer-deps true
-          npm ci || npm i
+          if [ -f package.json ]; then
+            echo "package.json found -> running Node build"
+            npm config set legacy-peer-deps true
+            npm ci || npm i
+            CI=false npm run build
+          else
+            echo "No package.json found -> skipping Node build and deploying static site"
+          fi
 
-      - name: Build React app
-        env:
-          CI: false
-        run: npm run build
-
-      - name: Prepare publish folder (add static blog + SEO files)
+      - name: Prepare publish folder
         run: |
           mkdir -p out
-          cp -r dist/* out/
+          if [ -d dist ]; then cp -r dist/* out/; fi
+          cp -r about out/ || true
+          cp -r contact out/ || true
+          cp -r services out/ || true
+          cp -r partners out/ || true
+          cp -r products out/ || true
+          cp -r catalogs out/ || true
           cp -r blog out/ || true
           cp -r assets out/ || true
           cp -r ar out/ || true
           cp blog.html out/ || true
+          cp index.html out/ || true
+          cp style.css out/ || true
+          cp 404.html out/ || true
           cp robots.txt out/ || true
           cp sitemap.xml out/ || true
+          cp sitemap.xml.blog-fragment out/ || true
           cp CNAME out/ || true
+          cp docs/CNAME out/CNAME || true
           cp MOJ.jpg out/ || true
+          cp *.png out/ || true
+          cp *.webp out/ || true
+          cp *.avif out/ || true
           # Single-page-app fallback so clean URLs work
           cp out/index.html out/404.html || true
           echo "Publish folder contents:"; ls -la out
