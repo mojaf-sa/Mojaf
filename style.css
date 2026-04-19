@@ -487,6 +487,14 @@ a:hover {
   margin: 0.75rem 0;
 }
 
+.product-card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
