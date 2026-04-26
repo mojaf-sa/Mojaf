@@ -43,6 +43,12 @@ jobs:
           cp -r blog out/ || true
           cp -r assets out/ || true
           cp -r ar out/ || true
+          cp -r about out/ || true
+          cp -r services out/ || true
+          cp -r products out/ || true
+          cp -r partners out/ || true
+          cp -r contact out/ || true
+          cp -r catalogs out/ || true
           cp blog.html out/ || true
           cp robots.txt out/ || true
           cp sitemap.xml out/ || true
