@@ -25,11 +25,10 @@ jobs:
           node-version: 20
           cache: npm
 
-      # Fixes your earlier peer-dependency error automatically
+      # Use project-scoped flags; do not mutate global npm config.
       - name: Install (safe)
         run: |
-          npm config set legacy-peer-deps true
-          npm ci || npm i
+          npm ci --legacy-peer-deps || npm i --legacy-peer-deps
 
       - name: Build React app
         env:
