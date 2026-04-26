@@ -13,8 +13,6 @@ import PartnersScreen from './PartnersScreen';
 import CatalogsScreen from './CatalogsScreen';
 import { useLocation } from 'react-router-dom';
 import FloatingContactButtons from './FloatingContactButtons';
-import { HelmetProvider} from 'react-helmet-async';
-import SEO from '../utils/SEO';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -28,24 +26,21 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <HelmetProvider>
-      {/* <SEO /> */}
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/all-products" element={<AllProductsPage />} />
-          <Route path="/products/:id" element={<ProductDetailPage />} />
-          <Route path="/thanks" element={<ThankYou />} />
-          <Route path="/about" element={<AboutScreen />} />
-          <Route path="/services" element={<ServicesScreen />} />
-          <Route path="/contact" element={<ContactScreen />} />
-          <Route path="/partners" element={<PartnersScreen />} />
-          <Route path="/catalogs" element={<CatalogsScreen />} />
-        </Routes>
-      </Router>
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/all-products" element={<AllProductsPage />} />
+        <Route path="/products/:id" element={<ProductDetailPage />} />
+        <Route path="/thanks" element={<ThankYou />} />
+        <Route path="/about" element={<AboutScreen />} />
+        <Route path="/services" element={<ServicesScreen />} />
+        <Route path="/contact" element={<ContactScreen />} />
+        <Route path="/partners" element={<PartnersScreen />} />
+        <Route path="/catalogs" element={<CatalogsScreen />} />
+      </Routes>
       <FloatingContactButtons />
-    </HelmetProvider>
+    </Router>
   );
 }
 
