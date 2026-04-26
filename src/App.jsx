@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Home from './Home';
 import AllProductsPage from './AllProductsPage';
 import ThankYou from './ThankYou';
@@ -26,21 +27,23 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/all-products" element={<AllProductsPage />} />
-        <Route path="/products/:id" element={<ProductDetailPage />} />
-        <Route path="/thanks" element={<ThankYou />} />
-        <Route path="/about" element={<AboutScreen />} />
-        <Route path="/services" element={<ServicesScreen />} />
-        <Route path="/contact" element={<ContactScreen />} />
-        <Route path="/partners" element={<PartnersScreen />} />
-        <Route path="/catalogs" element={<CatalogsScreen />} />
-      </Routes>
-      <FloatingContactButtons />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/all-products" element={<AllProductsPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/thanks" element={<ThankYou />} />
+          <Route path="/about" element={<AboutScreen />} />
+          <Route path="/services" element={<ServicesScreen />} />
+          <Route path="/contact" element={<ContactScreen />} />
+          <Route path="/partners" element={<PartnersScreen />} />
+          <Route path="/catalogs" element={<CatalogsScreen />} />
+        </Routes>
+        <FloatingContactButtons />
+      </Router>
+    </HelmetProvider>
   );
 }
 
