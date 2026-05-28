@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './Home';
 import AllProductsPage from './AllProductsPage';
 import ThankYou from './ThankYou';
@@ -12,7 +12,6 @@ import ContactScreen from './ContactScreen';
 import PartnersScreen from './PartnersScreen';
 import CatalogsScreen from './CatalogsScreen';
 import BlogIndexPage from './BlogIndexPage';
-import { useLocation } from 'react-router-dom';
 import FloatingContactButtons from './FloatingContactButtons';
 
 const ScrollToTop = () => {
