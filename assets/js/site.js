@@ -121,10 +121,79 @@ function highlightActiveLinks () {
   })
 }
 
+
+function injectHomeSwitch () {
+  if (document.querySelector('.home-switch')) return
+  const isRTL = document.documentElement.getAttribute('dir') === 'rtl'
+  const a = document.createElement('a')
+  a.href = isRTL ? '/ar/' : '/'
+  a.className = 'home-switch'
+  a.setAttribute('aria-label', isRTL ? 'العودة إلى الصفحة الرئيسية' : 'Back to home')
+  a.textContent = isRTL ? '⌂ الرئيسية' : '⌂ Home'
+  document.body.appendChild(a)
+}
+
+function injectSeoDefaults () {
+  const lang = document.documentElement.lang || 'en'
+  const existingRobots = document.querySelector('meta[name="robots"]')
+  if (!existingRobots) {
+    const robots = document.createElement('meta')
+    robots.name = 'robots'
+    robots.content = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+    document.head.appendChild(robots)
+  }
+
+  const canonical = document.querySelector('link[rel="canonical"]')
+  const canonicalHref = canonical ? canonical.href : window.location.origin + window.location.pathname
+
+  if (!document.querySelector('meta[property="og:title"]') && document.title) {
+    const ogTitle = document.createElement('meta')
+    ogTitle.setAttribute('property', 'og:title')
+    ogTitle.content = document.title
+    document.head.appendChild(ogTitle)
+  }
+
+  if (!document.querySelector('meta[property="og:url"]')) {
+    const ogUrl = document.createElement('meta')
+    ogUrl.setAttribute('property', 'og:url')
+    ogUrl.content = canonicalHref
+    document.head.appendChild(ogUrl)
+  }
+
+  if (!document.querySelector('meta[property="og:type"]')) {
+    const ogType = document.createElement('meta')
+    ogType.setAttribute('property', 'og:type')
+    ogType.content = 'website'
+    document.head.appendChild(ogType)
+  }
+
+  if (!document.querySelector('script[data-seo="webpage"]')) {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      inLanguage: lang,
+      name: document.title,
+      url: canonicalHref,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'MOJAF',
+        url: 'https://mojaf-sa.com/'
+      }
+    }
+    const el = document.createElement('script')
+    el.type = 'application/ld+json'
+    el.dataset.seo = 'webpage'
+    el.textContent = JSON.stringify(schema)
+    document.head.appendChild(el)
+  }
+}
+
 function main () {
   initSlider()
   initNav()
   highlightActiveLinks()
+  injectHomeSwitch()
+  injectSeoDefaults()
 }
 
 document.addEventListener('DOMContentLoaded', main)
