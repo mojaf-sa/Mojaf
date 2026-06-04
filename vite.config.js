@@ -30,12 +30,14 @@ function copyStaticContent () {
       const directories = ['assets', 'ar', 'about', 'services', 'products', 'partners', 'contact', 'catalogs']
 
       for (const directory of directories) {
-        cpSync(directory, join(distDir, directory), { recursive: true, force: true })
+        if (existsSync(directory)) {
+          cpSync(directory, join(distDir, directory), { recursive: true, force: true })
+        }
       }
 
       copyDirectory('blog', join(distDir, 'blog'), { exclude: ['index.html'] })
 
-      for (const file of ['blog.html', 'robots.txt', 'sitemap.xml', 'CNAME', '_redirects', '_routes.json', 'MOJ.jpg']) {
+      for (const file of ['blog.html', 'robots.txt', 'sitemap.xml', 'CNAME', '_redirects', '_headers', 'MOJ.jpg']) {
         if (existsSync(file)) {
           copyFileSync(file, join(distDir, file))
         }
@@ -44,7 +46,6 @@ function copyStaticContent () {
   }
 }
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), copyStaticContent()],
   base: '/'

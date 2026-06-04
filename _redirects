@@ -1,4 +1,16 @@
+/products/fasteners /products/#fasteners-portacabin 301
+/products/wall-skirting /products/#flooring-skirting 301
+/products/spc-flooring /products/#flooring-skirting 301
+/blog.html /blog 301
+/blog/screw-suppliers-riyadh.html /blog/screws-supplier-riyadh.html 301
+/blog/screw-suppliers-jeddah.html /blog/jeddah-screws-fasteners-supplier.html 301
+/blog/spc-flooring-supplier-ksa.html /blog/spc-vinyl-flooring-supplier-saudi-arabia.html 301
+/blog/rock-wool-insulation-ksa.html /blog/rock-wool-insulation-supplier-ksa.html 301
+/construction-materials-supplier-riyadh.html /blog/construction-materials-riyadh.html 301
+/ar/blog.html /ar/blog/ 301
 /all-products /index.html 200
+/products /index.html 200
+/products/ /index.html 200
 /products/* /index.html 200
 /thanks /index.html 200
 /about /index.html 200
