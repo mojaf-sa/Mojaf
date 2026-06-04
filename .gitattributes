@@ -1,0 +1,5 @@
+# Allow GitHub to auto-merge SEO-only edits on these generated/root files.
+# The PR branch intentionally keeps the React/Vite versions while preserving sitemap entries.
+index.html merge=union
+sitemap.xml merge=union
+public/sitemap.xml merge=union

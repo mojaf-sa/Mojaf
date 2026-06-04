@@ -749,3 +749,26 @@ section + section {
 [dir="rtl"] .features-grid {
   direction: rtl;
 }
+
+.home-switch {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1100;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(226, 30, 38, 0.3);
+}
+
+.home-switch:hover {
+  color: #fff;
+  background: var(--primary-dark);
+}
+
+html[dir='rtl'] .home-switch {
+  right: auto;
+  left: 18px;
+}
