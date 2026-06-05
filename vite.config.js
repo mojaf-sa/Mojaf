@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const distDir = 'dist'
+const staticDirectories = ['assets', 'ar', 'about', 'services', 'products', 'partners', 'contact', 'catalogs']
+const staticFiles = ['blog.html', 'blog-link-inject.js', 'robots.txt', 'sitemap.xml', 'CNAME', '_redirects', '_headers', 'MOJ.jpg']
 
 function copyDirectory (source, target, options = {}) {
   if (!existsSync(source)) return
@@ -27,9 +29,7 @@ function copyStaticContent () {
   return {
     name: 'copy-static-content',
     closeBundle () {
-      const directories = ['assets', 'ar', 'about', 'services', 'products', 'partners', 'contact', 'catalogs']
-
-      for (const directory of directories) {
+      for (const directory of staticDirectories) {
         if (existsSync(directory)) {
           cpSync(directory, join(distDir, directory), { recursive: true, force: true })
         }
@@ -37,7 +37,7 @@ function copyStaticContent () {
 
       copyDirectory('blog', join(distDir, 'blog'), { exclude: ['index.html'] })
 
-      for (const file of ['blog.html', 'blog-link-inject.js', 'robots.txt', 'sitemap.xml', 'CNAME', '_redirects', '_headers', 'MOJ.jpg']) {
+      for (const file of staticFiles) {
         if (existsSync(file)) {
           copyFileSync(file, join(distDir, file))
         }
