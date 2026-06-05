@@ -37,7 +37,7 @@ function copyStaticContent () {
 
       copyDirectory('blog', join(distDir, 'blog'), { exclude: ['index.html'] })
 
-      for (const file of ['blog.html', 'robots.txt', 'sitemap.xml', 'CNAME', '_redirects', '_headers', 'MOJ.jpg']) {
+      for (const file of ['blog.html', 'blog-link-inject.js', 'robots.txt', 'sitemap.xml', 'CNAME', '_redirects', '_headers', 'MOJ.jpg']) {
         if (existsSync(file)) {
           copyFileSync(file, join(distDir, file))
         }
