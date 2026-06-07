@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaFilter, FaTimes, FaQuoteRight, FaStar } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { allProducts, productCategories, subCategories } from './product.js';
 import Header from './Header.jsx';
 
 const AllProductsPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -19,6 +20,19 @@ const AllProductsPage = () => {
 
   // Generate canonical URL
   const canonicalUrl = window.location.href.split('?')[0];
+
+  useEffect(() => {
+    const hashCategoryMap = {
+      '#flooring-skirting': 'Flooring',
+      '#fasteners-portacabin': 'Screws/Fasteners'
+    };
+    const categoryFromHash = hashCategoryMap[location.hash];
+
+    if (categoryFromHash && productCategories.includes(categoryFromHash)) {
+      setSelectedCategory(categoryFromHash);
+      setSelectedSubCategory('All');
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     let results = allProducts;
@@ -85,7 +99,7 @@ const AllProductsPage = () => {
     <>
       {/* SEO Meta Tags */}
 <Header />
-      <div className="ap-container">
+      <div className="ap-container" id="flooring-skirting">
         {/* Header with optimized animated background */}
         <div className="ap-header">
           <div className="ap-header-slideshow">
@@ -150,7 +164,7 @@ const AllProductsPage = () => {
           </div>
         )}
 
-        <div className="ap-content">
+        <div className="ap-content" id="fasteners-portacabin">
           <div className={`ap-sidebar ${showMobileFilters ? 'ap-mobile-visible' : ''}`}>
             <div className="ap-sidebar-header">
               <h2>Categories</h2>
