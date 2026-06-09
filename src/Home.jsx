@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Hero from './Hero'
+import MojafHero from './MojafHero'
 import Header from './Header';
 import { useLocation } from 'react-router-dom';
 import AboutUs from './AboutUs';
@@ -23,7 +23,7 @@ function Home() {
   return (
     <>
       <Header />
-      <Hero />
+      <MojafHero />
       <AboutUs />
       <ServicesSection />
       <BlogPreview />
