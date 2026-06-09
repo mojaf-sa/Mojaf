@@ -1,49 +1,55 @@
 export const featuredBlogs = [
   {
-    title: "Building Materials Supplier Saudi Arabia",
-    href: "/blog/building-materials-supplier-saudi-arabia.html",
-    category: "Building Materials",
-    excerpt: "How MOJAF supports contractors with dependable finishing, fit-out and construction material supply across KSA.",
-    image: "/about2.webp"
-  },
-  {
-    title: "Construction Materials Supplier Riyadh",
-    href: "/blog/construction-materials-riyadh.html",
-    category: "Riyadh Supply",
-    excerpt: "A practical guide for sourcing construction materials in Riyadh with faster lead times and better BOQ planning.",
-    image: "/herobg.avif"
-  },
-  {
-    title: "Fasteners Supplier Saudi Arabia",
-    href: "/blog/fasteners-saudi-arabia.html",
-    category: "Fasteners",
-    excerpt: "Choose the right screws, anchors and fastening accessories for Saudi commercial, MEP and fit-out projects.",
+    title: "Screw Supplier in Riyadh, Jeddah & Dammam",
+    href: "/blog/screw-supplier-riyadh-jeddah-dammam.html",
+    category: "Screws & Fixings",
+    excerpt: "How MOJAF supports buyers looking for a screw supplier in Riyadh, a screw supplier in Jeddah and a screw supplier in Dammam with self drilling screws, anchors and jobsite delivery.",
     image: "/screwsth.png"
   },
   {
-    title: "Wall Skirting Supplier Riyadh",
-    href: "/blog/wall-skirting-supplier-riyadh.html",
-    category: "Wall Skirting",
-    excerpt: "Compare PS, PVC and MDF skirting profiles for clean handover finishes in Riyadh offices, villas and retail spaces.",
+    title: "Fasteners Supplier Saudi Arabia",
+    href: "/blog/fasteners-supplier-saudi-arabia.html",
+    category: "Fasteners",
+    excerpt: "A contractor guide for sourcing from a fastener supplier in Saudi Arabia and fasteners supplier in Riyadh or Dammam for industrial, MEP and fit-out requirements.",
+    image: "/festth.png"
+  },
+  {
+    title: "Wall Skirting & Floor Skirting Supplier Saudi Arabia",
+    href: "/blog/wall-skirting-floor-skirting-saudi-arabia.html",
+    category: "Skirting",
+    excerpt: "Compare MDF, PS and decorative skirting boards for projects needing a wall skirting supplier in Riyadh, Jeddah or Dammam and floor skirting supplier in Saudi Arabia.",
     image: "/psSkirting.png"
   },
   {
-    title: "SPC Flooring Supplier Jeddah",
-    href: "/blog/spc-flooring-supplier-jeddah.html",
-    category: "SPC Flooring",
-    excerpt: "What to check when selecting SPC flooring for Jeddah coastal projects, from wear layer to accessories.",
+    title: "SPC, Vinyl & LVT Flooring Supplier KSA",
+    href: "/blog/spc-vinyl-lvt-flooring-supplier-ksa.html",
+    category: "Flooring",
+    excerpt: "Guidance for vinyl flooring supplier Saudi Arabia searches, LVT flooring Riyadh projects, SPC flooring distributor KSA needs and luxury vinyl tile supplier Jeddah selection.",
     image: "/pvcFlooring.png"
   },
   {
-    title: "Portacabin Materials Supplier Saudi Arabia",
-    href: "/blog/portacabin-materials-supplier-saudi-arabia.html",
+    title: "Building Materials & Construction Supplies KSA",
+    href: "/blog/building-materials-construction-supplies-ksa.html",
+    category: "Building Materials",
+    excerpt: "MOJAF helps contractors source construction materials in Riyadh and Jeddah, building supplies in Dammam and wholesale building materials Jubail through one KSA supply partner.",
+    image: "/about2.webp"
+  },
+  {
+    title: "Portacabin Materials Supplier Khobar & Saudi Arabia",
+    href: "/blog/portacabin-materials-supplier-khobar.html",
     category: "Portacabin Materials",
-    excerpt: "Core boards, insulation, doors, electrical and finishing materials for portacabin builders across Saudi Arabia.",
+    excerpt: "A practical checklist for portacabin builders searching for a portacabin material supplier in Khobar and across Saudi Arabia for boards, electrical, insulation and finishing items.",
     image: "/doorth.png"
   }
 ];
 
 export const additionalBlogLinks = [
+  { title: "Screw Supplier in Riyadh, Jeddah & Dammam", href: "/blog/screw-supplier-riyadh-jeddah-dammam.html" },
+  { title: "Fasteners Supplier Saudi Arabia", href: "/blog/fasteners-supplier-saudi-arabia.html" },
+  { title: "Wall Skirting & Floor Skirting Supplier Saudi Arabia", href: "/blog/wall-skirting-floor-skirting-saudi-arabia.html" },
+  { title: "SPC, Vinyl & LVT Flooring Supplier KSA", href: "/blog/spc-vinyl-lvt-flooring-supplier-ksa.html" },
+  { title: "Building Materials & Construction Supplies KSA", href: "/blog/building-materials-construction-supplies-ksa.html" },
+  { title: "Portacabin Materials Supplier Khobar & Saudi Arabia", href: "/blog/portacabin-materials-supplier-khobar.html" },
   { title: "Adhesives & Trims that Match Your Skirting", href: "/blog/Adhesives-Trims-that-Match-Your-Skirting.html" },
   { title: "Aluminum Skirting Supplier Saudi Arabia", href: "/blog/aluminum-skirting-supplier-saudi-arabia.html" },
   { title: "Anchors & Fixings for Block and Concrete Walls", href: "/blog/Anchors-Fixings-for-Block-and-Concrete-Walls.html" },

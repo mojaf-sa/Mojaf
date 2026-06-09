@@ -10,56 +10,64 @@ const CatalogComponent = () => {
       title: "SPC Flooring Catalog",
       pdfUrl: "/catalogs/SPC-Flooring-Catalog.pdf",
       thumbnail: "/pvcFlooring.png",
-      category: "Flooring Solutions"
+      category: "Flooring Solutions",
+      description: "SPC flooring distributor KSA catalog for stone plastic composite flooring suppliers, luxury vinyl tiles Saudi Arabia and durable SPC flooring Khobar specifications."
     },
     {
       id: 2,
       title: "Wall Skirting Catalog",
       pdfUrl: "/catalogs/Wall-Skirting-Catalog.pdf",
       thumbnail: "/psSkirting.png",
-      category: "Skirting & Trims"
+      category: "Skirting & Trims",
+      description: "Wall and floor skirting catalog for modern skirting solutions Saudi Arabia, decorative skirting boards KSA, MDF skirting in Jeddah and PS skirting in Dammam."
     },
     {
       id: 3,
       title: "Fasteners Catalog",
       pdfUrl: "/catalogs/Fasteners-Catalog.pdf",
       thumbnail: "/festth.png",
-      category: "Fastening Solutions"
+      category: "Fastening Solutions",
+      description: "Industrial fasteners supplier KSA catalog for anchors and fixings Saudi Arabia, stainless steel fasteners Dammam and fastening solutions in Riyadh."
     },
     {
       id: 4,
       title: "Doors Hardware Catalog",
       pdfUrl: "/catalogs/Doors-Hardware-Catalog.pdf",
       thumbnail: "/door2th.png",
-      category: "Door Systems"
+      category: "Door Systems",
+      description: "Doors hardware catalog for fit-out teams selecting durable doors, locks, hinges and project hardware in Saudi Arabia."
     },
     {
       id: 5,
       title: "Wall Panels Catalog",
       pdfUrl: "/catalogs/Wall-Panels-Catalog.pdf",
       thumbnail: "/wpcWallpanel.png",
-      category: "Wall Panels"
+      category: "Wall Panels",
+      description: "Wall panels suppliers Saudi Arabia catalog for WPC wall panels, interior cladding and home decoration materials Saudi Arabia."
     },
     {
       id: 6,
       title: "Acoustic Wall Panels Catalog",
       pdfUrl: "/catalogs/Acoustic-Wall-Panels-Catalog.pdf",
       thumbnail: "/wallpanel.png",
-      category: "Acoustic Panels"
+      category: "Acoustic Panels",
+      description: "Acoustic wall panels Saudi Arabia catalog for offices, retail spaces, hospitality interiors and controlled-noise fit-outs."
     },
     {
       id: 7,
       title: "Screws Catalog",
       pdfUrl: "/catalogs/Screws-Catalog.pdf",
       thumbnail: "/screwsth.png",
-      category: "Screws & Fixings"
+      category: "Screws & Fixings",
+      description: "Screws catalog for screws and bolts Saudi Arabia, self drilling screws Saudi Arabia and construction screws Jubail procurement."
     },
     {
       id: 8,
       title: "WPC Doors Catalog",
       pdfUrl: "/catalogs/WPC-Doors-Catalog.pdf",
       thumbnail: "/doorth.png",
-      category: "WPC Doors"
+      category: "WPC Doors",
+      description: "WPC doors Saudi Arabia catalog for moisture-resistant doors and finishing packages for residential, commercial and portacabin projects."
     }
   ];
 
@@ -106,7 +114,7 @@ const CatalogComponent = () => {
           Product Catalogues
         </motion.h1>
         <p className="subtitle" itemProp="description">
-          Browse our comprehensive collection of product catalogues
+          Download MOJAF catalogs for SPC flooring distributor KSA requirements, luxury vinyl tile supplier Jeddah projects, stone plastic composite flooring suppliers, industrial fasteners supplier KSA, screws and bolts Saudi Arabia, modern skirting solutions Saudi Arabia, acoustic wall panels Saudi Arabia and WPC doors Saudi Arabia.
         </p>
       </div>
       
@@ -145,6 +153,7 @@ const CatalogComponent = () => {
             </div>
             
             <h3 className="catalog-title" itemProp="name">{catalog.title}</h3>
+            <p className="catalog-description">{catalog.description}</p>
             
             <div className="button-group">
               <motion.button

@@ -25,7 +25,7 @@ const BlogIndexPage = () => {
             <span className="blog-index-kicker"><FaBookOpen /> MOJAF Knowledge Center</span>
             <h1>MOJAF Blog – Building Materials, Fasteners, Flooring &amp; Wall Skirting Saudi Arabia</h1>
             <p>
-              Professional articles for contractors, builders, procurement teams and fit-out companies sourcing reliable construction materials across Riyadh, Jeddah, Dammam and Saudi Arabia.
+              Professional articles for contractors, builders, procurement teams and fit-out companies sourcing fasteners supplier Saudi Arabia guidance, wall and floor skirting, SPC, vinyl and LVT flooring, construction supplies and portacabin materials across Riyadh, Jeddah, Dammam and Saudi Arabia.
             </p>
           </div>
         </section>
