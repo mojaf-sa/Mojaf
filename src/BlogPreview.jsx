@@ -10,7 +10,7 @@ const BlogPreview = () => {
           <span className="mojaf-blog-kicker"><FaBookOpen /> MOJAF Insights</span>
           <h2 id="blog-preview-title">Building Materials Guides for Saudi Contractors</h2>
           <p>
-            Explore practical buying guides for building materials, fasteners, flooring, wall skirting and portacabin materials in Saudi Arabia.
+            Explore practical buying guides for fasteners supplier Saudi Arabia searches, screw supplier in Riyadh/Jeddah/Dammam needs, wall skirting and floor skirting, SPC, vinyl and LVT flooring, construction supplies and portacabin materials in Saudi Arabia.
           </p>
         </div>
 

@@ -22,6 +22,14 @@ const AllProductsPage = () => {
   const canonicalUrl = window.location.href.split('?')[0];
 
   useEffect(() => {
+    document.title = 'Products | MOJAF Fasteners, Skirting, Flooring & Portacabin Materials';
+    const metaDescriptionTag = document.querySelector('meta[name="description"]');
+    if (metaDescriptionTag) {
+      metaDescriptionTag.setAttribute('content', 'MOJAF product categories include flooring and skirting, fasteners and screws, panels and boards, doors and hardware, portacabin materials, electrical and fit-out materials in Saudi Arabia.');
+    }
+  }, []);
+
+  useEffect(() => {
     const hashCategoryMap = {
       '#flooring-skirting': 'Flooring',
       '#fasteners-portacabin': 'Screws/Fasteners'
@@ -120,7 +128,7 @@ const AllProductsPage = () => {
           
           <div className="ap-header-content">
             <h1 className="ap-title">Our Product Collection</h1>
-            <p className="ap-subtitle">Discover high-quality materials for your next project</p>
+            <p className="ap-subtitle">Discover flooring &amp; skirting, fasteners &amp; screws, panels &amp; boards, doors &amp; hardware, portacabin materials, electrical and fit-out materials for your next Saudi project.</p>
             
             <div className="ap-search-filter">
               <div className="ap-search-box">
@@ -145,6 +153,16 @@ const AllProductsPage = () => {
             </div>
           </div>
         </div>
+
+        <section className="ap-seo-overview" aria-labelledby="product-category-seo-title">
+          <h2 id="product-category-seo-title">MOJAF Product Categories for Contractors</h2>
+          <p>
+            Browse MOJAF categories for flooring &amp; skirting, including modern skirting solutions Saudi Arabia projects use for vinyl and SPC installations. Our fasteners &amp; screws range supports buyers searching for a screw supplier in Saudi Arabia, anchors and fixings Saudi Arabia, self drilling screws Saudi Arabia, and screws and bolts Saudi Arabia for fit-out, MEP and civil works.
+          </p>
+          <p>
+            Procurement teams can also source panels &amp; boards such as cement boards Saudi Arabia, fiber boards Saudi Arabia and gypsum boards Saudi Arabia, plus doors &amp; hardware, portacabin materials, electrical appliances suppliers Saudi Arabia needs, and fit-out consumables from one coordinated product hub.
+          </p>
+        </section>
 
         {/* Rest of your existing code remains exactly the same */}
         {selectedCategory !== 'All' && (
@@ -455,6 +473,26 @@ const AllProductsPage = () => {
             background: #c19b2e;
             transform: translateY(-2px);
           }
+
+          .ap-seo-overview {
+            background: #ffffff;
+            border: 1px solid rgba(10, 37, 64, 0.08);
+            border-radius: 16px;
+            padding: 26px;
+            margin: 0 0 28px;
+            box-shadow: 0 10px 30px rgba(10, 37, 64, 0.06);
+          }
+          .ap-seo-overview h2 {
+            color: #1e293b;
+            margin: 0 0 12px;
+            font-size: 1.55rem;
+          }
+          .ap-seo-overview p {
+            color: #5f6f83;
+            line-height: 1.75;
+            margin: 0 0 12px;
+          }
+          .ap-seo-overview p:last-child { margin-bottom: 0; }
 
           .ap-subcategory-filter {
             margin-bottom: 25px;

@@ -14,8 +14,8 @@ const MojafHero = () => (
       <img className="mojaf-hero-img" src={images[0]} alt="MOJAF construction materials Saudi Arabia" />
       <div className="mojaf-hero-content">
         <div className="mojaf-kicker"><span />Welcome to MOJAF</div>
-        <h1>Explore World class<br />Construction & Building Materials</h1>
-        <p>The complete solution for construction and building materials across Riyadh, Jeddah, Dammam and Saudi Arabia.</p>
+        <h1>Building Materials Supplier<br />in Saudi Arabia</h1>
+        <p>MOJAF supplies construction materials in Riyadh, construction materials in Jeddah, building supplies in Dammam, interior finishing materials Saudi Arabia wide and portacabin material supplier support for active projects.</p>
         <Link to="/products" className="mojaf-hero-btn">Explore Products</Link>
       </div>
       <div className="mojaf-thumbs">
